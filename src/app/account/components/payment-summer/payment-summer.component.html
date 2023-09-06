@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="text">
+    مصروفات الترم الصيفى
+  </div>
+  <ul class="w3-ul">
+    <div style="text-align: center; display: flex;">
+    <button class="btn btn-primary" (click)="print()"> طباعة </button>
+    <button (click)="exportExcel()"> اكسل</button>
+    </div>
+    <li>
+      <div class="custom-panel w3-display-container w3-round application-panel student-info-panel" style="height: 350px;overflow: auto;">
+        <div class="custom-panel-body table-responsive w3-padding" id="printable">
+        <table class="table table-bordered" style="background-color: #a7c7ff2e;height: 100vh;">
+            <thead>
+                <tr class="w3-dark-gray">
+                  <th>      #  </th>
+                  <th>      التاريخ  </th>
+                  <th>      الموظف  </th>
+
+                  <th>      الطالب  </th>
+
+                    <th>   المستوى  </th>
+                    <th>   القسم</th>
+                    <th>  المبلغ</th>
+                    <th>  الخزنة    </th>
+                                     </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of results let i=index ">
+                    <tr class="">
+                      <td> {{i + 1}}</td>
+                      <td>  {{item?.date}}</td>
+                      <td>  {{item?.user.name}}</td>
+
+                      <td>  {{item?.students?.name}}</td>
+
+                        <td>
+                          {{item?.level?.name}}
+
+                        </td>
+
+                        <td> {{item?.division?.name}}</td>
+                        <td> {{item?.value}} </td>
+                        <td> {{item?.store?.name}} </td>
+
+
+
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </li>
+
+</ul>
+
+
+  </div>

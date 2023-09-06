@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="text">
+    اعدادات هيئة اعتماد النتيجة
+  </div>
+  <form  class="needs-validation" name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+    <div class="form-row">
+      <div class="form-group"style="display:flex">
+        <label style="width:200px" for="">{{ "academic year" | trans }}</label>
+        <select class="form-control"  name="year_id" formControlName="year_id" required >
+          <option value="" hidden disabled selected>  &nbsp;السنة الدراسية</option>
+
+<option *ngFor="let item of applicationService.ACADEMIC_YEARS" value="{{ item.id }}">{{item.name}}</option>
+</select>
+    </div>
+    <div class="underline"></div>
+
+   </div>
+    <div class="form-row">
+      <div class="input-data">
+         <input type="date" formControlName="date" required>
+         <div class="underline"></div>
+         <label style="bottom: 30px;" for="">    تاريخ اعتماد المعهد  </label>
+      </div>
+      <div class="input-data">
+        <input type="date" formControlName="date2" required>
+        <div class="underline"></div>
+        <label style="bottom: 30px;">    تاريخ اعتماد وزارة التعليم العالى  </label>
+     </div>
+   </div>
+     <div class="form-row">
+        <div class="input-data">
+           <input type="text" formControlName="namegrad" required>
+           <div class="underline"></div>
+           <label for=""> شئون الخريجين  </label>
+        </div>
+        <div class="input-data">
+           <input type="text" formControlName="namemanger"required>
+           <div class="underline"></div>
+           <label for=""> مدير شئون الطلاب  </label>
+        </div>
+     </div>
+     <div class="form-row">
+        <div class="input-data">
+           <input type="text" formControlName="namevice" required>
+           <div class="underline"></div>
+           <label for=""> عميد المعهد  </label>
+        </div>
+
+     </div>
+     <div class="invalid-feedback">
+      <div style="color: rgb(146, 38, 38);">  لابد من ملئ جميع الحقول حتى يتيح لك الضغط على الزرار</div>
+  </div>     <div class="form-row">
+      <button type="submit"    class="btn btn_color w-40 h-12" style="color:white; background-color: #010d7c;width: 150px;height: 55px;" [disabled]="!form.valid">حفظ</button>
+
+
+        </div>
+  </form>
+
+  </div>
+  <ul class="w3-ul">
+    <h3 style="text-align: center;"> جميع الاعدادات</h3>
+    <li>
+        <table class="table table-bordered" style="background-color: #a7c7ff2e;">
+            <thead>
+                <tr class="w3-dark-gray">
+                  <th>     السنة الدراسية</th>
+
+                    <th>  اعتماد المعهد</th>
+                    <th>    اعتماد الوزارة </th>
+                    <th>شئون الخريجين</th>
+                    <th> مدير شئون الطلاب </th>
+                    <th> عميد المعهد </th>
+
+                    <th>العمليات</th>
+                    <!-- <th>{{ "is_printed" | trans }}</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of results index as i">
+                    <tr class="">
+                      <td> <select class="form-control"  name="year_id"  [ngModel]="item.academic_year.name" required >
+                        <option value="{{item.academic_year.name}}"     selected>  &nbsp; {{item.academic_year.name}}  </option>
+
+              <option *ngFor="let item of applicationService.ACADEMIC_YEARS" value="{{ item.id }}">{{item.name}}</option>
+              </select></td>
+                         <td>
+                          <input type="date" id="completionDate" class="form-control input-sm"  class="form-control"  [(ngModel)]="item.institute_recognition_date"
+                          [ngModel]="item.institute_recognition_date | date: 'yyyy-MM-dd'" placeholder="">
+
+                        </td>
+                        <td>
+                          <input type="date" id="completionDate" class="form-control input-sm"  class="form-control"  [(ngModel)]="item.ministry_recognition_date"
+                          [ngModel]="item.ministry_recognition_date | date: 'yyyy-MM-dd'" placeholder="">
+
+                        </td>
+
+                        <td> <input type="text"[(ngModel)]="item.graduates_affair" /> </td>
+                        <td> <input type="text"[(ngModel)]="item.students_affair" /> </td>
+                        <td> <input type="text"[(ngModel)]="item.institute_dean" /> </td>
+
+                        <td>
+                          <button class="btn btn-default small-shadow"style="margin-right: 10px;background-color:blue;color:white"  (click)="onUpdate(item)"> تعديل</button>
+
+                            <button class="btn btn-default small-shadow" style="background-color: rgb(151, 48, 48);color: aliceblue;"  (click)="ondelete(item)"> حذف</button>
+
+                          </td>
+
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </li>
+
+</ul>
