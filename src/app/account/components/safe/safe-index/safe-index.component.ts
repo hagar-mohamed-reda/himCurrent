@@ -168,6 +168,7 @@ StudIDD
     this.loadStudentAccountInfo(student.id);
     this.ShowStudentrecords(student.id);
   this.showPaied()
+  this.showconfirm1();
 
   }
 
@@ -426,5 +427,30 @@ onCloseModalall(){
   this.displayall="none"
 
 }
+confirmList:any=[]
+showconfirm1(){
+   let formdata={
+    "student_id":this.StudIDD
+  }
+  this.globalService.get('account/student_expense_detail',formdata).subscribe( (res: any) => {
 
+    this.confirmList=res
+
+  });
+}
+serial_numCinfirm
+noteConfirm
+payConfirmNew
+Postconfirm1(){
+   let formdata={
+   "student_id":this.StudIDD,
+   "date":this.dateConfirm,
+   "serial_num":this.serial_numCinfirm,
+   "note":this.noteConfirm
+ }
+ this.globalService.store('account/pay',formdata).subscribe( (res: any) => {
+
+
+ });
+}
 }
