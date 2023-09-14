@@ -46,6 +46,7 @@ import { StudentGraduationResultComponent } from './components/student-graduatio
 import { Allgrdlevel2Component } from './components/allgrdlevel2/allgrdlevel2.component';
 import { GraduationGovComponent } from './components/graduation-gov/graduation-gov.component';
 import { SettingresultComponent } from './components/settingresult/settingresult.component';
+import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
 
 const routes: Routes = [
   // {
@@ -87,6 +88,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("academic_setting") },
         component: StudentsefyComponent,
+      },
+      {
+        path: "gpacalc",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("academic_setting") },
+        component: GpacalcComponent,
       },
       {
         path: "open-course",

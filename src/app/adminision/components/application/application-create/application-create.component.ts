@@ -100,7 +100,7 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   setDefaultYear() {
-    this.application.academic_years_id = 9;
+    this.application.academic_years_id = 10;
     this.watchLevel();
     /*ApplicationSettingService.ACADEMIC_YEARS.forEach(element => {
       if (element.id == 8) {
@@ -114,8 +114,8 @@ export class ApplicationCreateComponent implements OnInit {
       this.application = res;
       //
       // this.application.qualification_date = this.application.qualification_date;
-    
-    
+
+
       // -----new load registration status documents
       this.globalService.get('adminision/get_registeration_status_document').subscribe(documents => {
         this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS = documents
@@ -123,8 +123,8 @@ export class ApplicationCreateComponent implements OnInit {
       })
 
       this.application = res;
-    
-    
+
+
     });
   }
 
@@ -201,8 +201,8 @@ export class ApplicationCreateComponent implements OnInit {
       if (!this.application[element]){
         console.log(element);
         valid = false;
-  
-      }     
+
+      }
     });
 
     return valid;
@@ -223,7 +223,7 @@ export class ApplicationCreateComponent implements OnInit {
            console.log(total2);
       }
     });
-    
+
     // this.applicationSettings.QUALIFICATIONS.forEach(element => {
     //   if (this.application.qualification_id == element.id) {
     //     total = element.maxgrade;
@@ -238,7 +238,7 @@ export class ApplicationCreateComponent implements OnInit {
 
   }
 
-  
+
 
 
   validateOnRegisterationStatusDocument(registration_status_id=this.application.registration_status_id) {
@@ -273,7 +273,7 @@ export class ApplicationCreateComponent implements OnInit {
       // current year
       let currentYear = new Date().getFullYear();
       console.log(currentYear);
-      
+
       // let qualificationYear = parseInt(this.application.qualification_date);
       //new Date(this.application.qualification_date).getFullYear();
       // let differentYear = currentYear - qualificationYear;
@@ -350,7 +350,7 @@ export class ApplicationCreateComponent implements OnInit {
       }
       else {
         console.log(data.message);
-        
+
         Message.error(data.message);
         this.setCurrentError(data.message);
       }

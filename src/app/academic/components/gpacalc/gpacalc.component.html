@@ -1,0 +1,169 @@
+<div class="container">
+    <div class="w3-block">
+        <div class="w3-white material-shadow safe-box">
+            <div class="safe-box-header w3-large" style="padding: 5px!important">
+                حساب المعدل الفصلي والتراكمي للطلاب
+            </div>
+            <div class="border-bottom-dashed"></div>
+            <br>
+
+            <!-- <div class="control-message" *ngIf="!canShowResult">
+             <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-body table-responsive w3-padding w3-center">
+                    <input class="w3-round-xxlarge w3-white w3-input border-gray search-input w3-center" style="width: 90%!important" type="password" placeholder="{{ 'enter password of result' | trans }}" [(ngModel)]="password">
+                    <br>
+                    <br>
+                    <button class="btn w3-light-gray w3-round-xlarge" (click)="login()">{{ "show" | trans }}</button>
+                </div>
+            </div>
+        </div> -->
+
+            <div class="control-body">
+
+                <!-- <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+              <div class="custom-panel-title">{{ "student search" | trans }}</div>
+              <div class="custom-panel-body w3-display-container">
+                  <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " style="width: 100%!important" (keyup)="searchInputEvent()" placeholder="{{ 'search with student name code national_id' | trans }}" [(ngModel)]="searchKey">
+
+                  <div class="w3-display-topleft w3-padding" (click)="selectStudent({})" *ngIf="searchKey && !studentSearchDialogLoader" style="top: 12px;left:5%;z-index:10;">
+                      <span class="fa fa-close w3-text-red"></span>
+                  </div>
+
+                  <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:5%;z-index:10;">
+                      <span class="fa fa-spin fa-spinner w3-text-indigo"></span>
+                  </div>
+
+
+                  <div class="w3-display-topright w3-white material-shadow" *ngIf="studentSearchDialogShow" style="top: 47px;right:11px;z-index:10;width: 100%">
+                      <div class="w3-display-conitainer">
+                          <span class="w3-display-topright w3-button fa fa-close" (click)="studentSearchDialogShow=false"></span>
+                          <br>
+                          <ul class="w3-ul">
+                              <li *ngFor="let item of students" style="cursor: pointer;" class="w3-hover-light-gray w3-block text-right">
+                                  <div class="media" (click)="selectStudent(item)">
+                                      <div class="media-left">
+                                          <a href="#">
+                                              <img [src]="item.image" style="width: 30px;height: 30px;" class="w3-circle" alt=""> -->
+                <!--
+              <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
+              -->
+                <!-- </a>
+          </div>
+          <div class="media-body">
+                                          <h4 class="media-heading" [innerHTML]="item.name"></h4>
+                                          <span [innerHTML]="item.code" class="w3-large"></span>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+          </div> -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">الشعبة</label>
+                            <select class="form-control" (change)="change($event)" [(ngModel)]="filter.division_id">
+                <option value="">الشعبة</option>
+          <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
+        </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
+                            <label for="">{{ "academic year" | trans }}</label>
+                            <select class="form-control" [(ngModel)]="filter.year_id">
+              <option value="">{{ "academic year" | trans }}</option>
+        <option *ngFor="let item of applicationService.ACADEMIC_YEARS" value="{{ item.id }}">{{item.name}}</option>
+      </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <button mat-raised-button color="primary" *ngIf="isSubmitted1!=false" (click)=" gpaclac()" style="margin: 21px;">
+
+                        <!-- <i *ngIf="isSubmitted1==false" class="fa fa-spin fa-spinner"></i> -->
+                        <!-- <span *ngIf="isSubmitted1==false"> نشكرك على الانتظار جارى حساب المعدل         </span> -->
+
+                        <span *ngIf="isSubmitted1!=false">اعادة حساب المعدل الفصلى والتراكمى </span>
+                           </button>
+                        <button *ngIf="isSubmitted1==false" style="margin: 21px;background-color: rgb(182, 45, 45); color:azure">
+
+                            <i class="fa fa-spin fa-spinner"></i>
+                            <span  > نشكرك على الانتظار جارى حساب المعدل         </span>
+
+                                </button>
+                    </div>
+                    <!-- <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="">{{ "level" | trans }}</label>
+                          <select class="form-control" [(ngModel)]="filter.level_id">
+              <option value="">المستوي</option>
+        <option   value="2">التانى</option>
+        <option   value="4">الرابع</option>
+
+      </select>
+                      </div>
+                  </div> -->
+                    <!-- <div class="col-lg-3 col-md-3">
+                    <div class="form-group">
+                        <label for=""> عدد الصفحات</label>
+                        <select class="form-control"[(ngModel)]="pageNumber" >
+            <option value="1">1</option>
+      <option *ngFor="let pages of arrnumberpage" value="{{ pages }}">{{pages}}</option>
+    </select>
+                    </div>
+                </div> -->
+                    <!-- <div class="col-md-3">
+                      <label for="">العدد الكلي</label>
+                      <div class="form-control" style="border: none !important;">
+                          {{ttotal}}
+                      </div>
+
+                  </div> -->
+                </div>
+                <!-- </div>
+  </div> -->
+                <!-- <div class="row">
+        <div class="col-lg-4">
+            <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-body table-responsive w3-padding">
+                    <div>
+                        <input type="text" (keyup)="searchAboutCourse()" [(ngModel)]="searchCourseKey" class="w3-input w3-round-xxlarge w3-block" placeholder="{{ 'search about course' | trans }}">
+                    </div>
+                    <div style="height: 147px;overflow: auto;">
+                        <ul class="w3-ul">
+                            <li *ngFor="let item of courses index as i" class="course-item">
+                                <mat-slide-toggle (change)="toggle(item.id, selectedCourses);loadData()" [checked]="selectedCourses.has(item.id)"></mat-slide-toggle>
+                                <span style="padding-right: 3px">{{ item.name }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-title">{{ "divisions" | trans }}</div>
+                <div class="custom-panel-body filter-top" style="height: 200px;overflow: auto;">
+                    <ul class="w3-ul">
+                        <li *ngFor="let item of divisions index as i">
+                            <mat-slide-toggle (change)="toggle(item.id, selectedDivisions);loadData()" [checked]="selectedDivisions.has(item.id)"></mat-slide-toggle>
+                            <span style="padding-right: 3px">{{ item.name }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div> -->
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

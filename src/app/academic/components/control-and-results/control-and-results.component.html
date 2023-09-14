@@ -11,12 +11,12 @@
             <div class="custom-panel w3-display-container w3-round ">
 
                 <div class="custom-panel-body table-responsive w3-padding w3-center">
-                  <a [routerLink]="['/academic/settingresult']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
-                    <b>اعدادات هيئة اعتماد النتيجة </b>
-                    <a class="pull-left">
-                        <i class="fa fa-newspaper-o"></i>
+                    <a [routerLink]="['/academic/settingresult']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>اعدادات هيئة اعتماد النتيجة </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
                     </a>
-                </a>
                     <a [routerLink]="['/academic/student-result']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>{{ "control" | trans }}</b>
                         <a class="pull-left">
@@ -43,6 +43,12 @@
                     </a>
                     <a [routerLink]="['/academic/students-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج الطلاب</b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                    <a [routerLink]="['/academic/gpacalc']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>     حساب المعدل الفصلى والتراكمى</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
@@ -96,11 +102,11 @@
                         </a>
                     </a>
                     <a [routerLink]="['/academic/graduatuin-gov']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
-                      <b> تقرير الخريجين - المحافظة   </b>
-                      <a class="pull-left">
-                          <i class="fa fa-newspaper-o"></i>
-                      </a>
-                  </a>
+                        <b> تقرير الخريجين - المحافظة   </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
                     <a [routerLink]="['/academic/grade']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>تقرير تقديرات الطلبه</b>
                         <a class="pull-left">

@@ -207,7 +207,6 @@ export class StudentIndexComponent implements OnInit {
     if(item.paid_value ==0){
       this.studentService.getSummer(this.StudData.id,this.StudData.level_id ,this.StudData.division_id).subscribe( (res: any) => {
 
-        console.log("ddddddddddddddddddddd"+res);
 
         this.resStudData1 = res;
         this.coursees2=res["Course"]

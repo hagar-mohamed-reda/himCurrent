@@ -12,6 +12,7 @@ import { SafeAlerter } from '../../../helpers/safe-alerter';
 import { StudentService } from 'src/app/student/services/student.service';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { environment } from '../../../../../environments/environment';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-safe-index',
@@ -46,7 +47,7 @@ paymony=0;
   idd
   dateConfirm ;
   localCompleteDate;
-  constructor(public studentService: StudentService,private globalService: GlobalService ,private studentAcountService: StudentAccountService, private route: ActivatedRoute) {
+  constructor( public studentService: StudentService,private globalService: GlobalService ,private studentAcountService: StudentAccountService, private route: ActivatedRoute) {
     this.init();
     this.initSafeObject();
     const id = this.route.snapshot.params['id'];
@@ -168,7 +169,6 @@ StudIDD
     this.loadStudentAccountInfo(student.id);
     this.ShowStudentrecords(student.id);
   this.showPaied()
-  this.showconfirm1();
 
   }
 
@@ -421,36 +421,186 @@ const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width
 }
 displayall ="none"
 openmodelSure(){
+  this.payConfirmNew=0;
+this.wz_serial =0;
+this.in_serial=0;
+this.confirmList=[]
+this.itemids=[]
+this.ccompare={}
+this.itcompare=[]
+this.Wccompare={}
+this.Witcompare=[]
+this.noteCon=""
+  this.showconfirm1();
   this.displayall="block"
+
+
 }
 onCloseModalall(){
   this.displayall="none"
 
+
 }
 confirmList:any=[]
+wz_serial =0;
+in_serial=0;
+noteCon
 showconfirm1(){
+
    let formdata={
     "student_id":this.StudIDD
   }
   this.globalService.get('account/student_expense_detail',formdata).subscribe( (res: any) => {
+     this.confirmList=res["data"]
+    if(res["data"]==null){
+      Message.success(res["message"])
+      this.displayall='none'
+     }
 
-    this.confirmList=res
 
+    if(res["wz_serial"]!=null){
+      this.wz_serial=res["wz_serial"]
+
+    }
+    if(res["in_serial"] !=null){
+      this.in_serial=res["in_serial"]
+
+    }
+
+
+    for(let i =0;i<this.confirmList.length;i++){
+
+      // this.payConfirmNew+=this.confirmList[i].value
+      // this.itemids.push(this.confirmList[i].id)
+
+      if(this.confirmList[i].wz_value==1){
+        this.Wccompare={
+          "id":this.confirmList[i].id,
+          "name":this.confirmList[i].name
+        }
+        this.Witcompare.push(this.Wccompare)
+
+      }else{
+        this.ccompare={
+          "id":this.confirmList[i].id,
+          "name":this.confirmList[i].name
+        }
+        this.itcompare.push(this.ccompare)
+
+
+      }
+
+    }
   });
 }
 serial_numCinfirm
 noteConfirm
-payConfirmNew
+noteMin
+DisMin=0;
+payConfirmNew=0;
+DisHim=0
 Postconfirm1(){
+
+
    let formdata={
+
    "student_id":this.StudIDD,
-   "date":this.dateConfirm,
-   "serial_num":this.serial_numCinfirm,
-   "note":this.noteConfirm
+   "date": this.dateConfirm ,
+   "wz_serial":this.wz_serial,
+   "in_serial":this.in_serial,
+
+    "payment_ids":this.itemids.toString(),
+    "payment_type":"academic_year_expense",
+
+   "note":this.noteCon
  }
  this.globalService.store('account/pay',formdata).subscribe( (res: any) => {
-
+  if(res["status"]==1){
+    Message.success(res["message"])
+    this.displayall='none'
+    this.showRecitConfirm()
+  }
+  else{
+    Message.error(res["message"])
+  }
 
  });
+
+
+
+}
+
+disCcountIDIn
+disCcountIDwz
+showRecitConfirm(){
+  let formdata={
+    api_token: Auth.getApiToken(),
+
+   "student_id":this.StudIDD,
+   "date": this.dateConfirm ,
+   "wz_serial":this.wz_serial,
+   "in_serial":this.in_serial,
+   "payment_ids":this.itemids.toString(),
+   "payment_type":"academic_year_expense",
+
+   "notes_in":this.noteCon,
+   "notes_wz":this.noteMin,
+"discount_value":this.DisHim,
+"discount_id":this.disCcountIDIn,
+"discount_value_wz":this.DisMin,
+"discount_id_wz":this.disCcountIDwz,
+
+ }
+  const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=905,height=484";
+
+  const url = environment.apiUrl + "/account/new_pay?" + AppModule.doc.jquery.param(formdata);
+  window.open(url, "_blank", options);
+  this.displayall='none'
+  this.searchInputEvent()
+
+}
+serial_numCinfirmminstry;
+itemids=[]
+itcompare=[]
+ccompare={}
+
+Witcompare=[]
+Wccompare={}
+ checkValue(event: any,item){
+debugger
+  if(event.target.checked==true){
+      this.payConfirmNew +=item.value
+      if(item.wz_value==1){
+          this.Wccompare={"id":item.id,"name":item.name}
+           this.Witcompare.push(this.Wccompare);
+
+      }else{
+        this.ccompare={"id":item.id,"name":item.name}
+        this.itcompare.push(this.ccompare);
+
+
+      }
+
+      this.itemids.push(item.id);
+  }else{
+    this.payConfirmNew -=item.value
+    let index = this.itemids.findIndex((element) => element  == item.id);
+
+    this.itemids.splice(index, 1);
+
+
+    if(item.wz_value==1){
+      let index2 = this.Witcompare.findIndex((element) => element.id  == item.id);
+      this.Witcompare.splice(index2, 1);
+
+    }else{
+      let index22 = this.itcompare.findIndex((element) => element.id  == item.id);
+      this.itcompare.splice(index22, 1);
+
+
+    }
+
+  }
+  console.log(event.target.checked );
 }
 }
