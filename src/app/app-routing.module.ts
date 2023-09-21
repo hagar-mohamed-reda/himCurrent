@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout.component';
 import { AuthGuardService } from './shared/middlewares/auth-guard.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BookserviceComponent } from './bookservice/bookservice.component';
 
 const routes: Routes = [
 
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: UserProfileComponent
+      },
+      {
+        path: 'bookservice',
+        component: BookserviceComponent
       },
       {
         path: 'users',

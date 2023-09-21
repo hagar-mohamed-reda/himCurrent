@@ -97,9 +97,9 @@
                                     <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/sections-schedule">{{"sections schedule" | trans }}</a>
                                     <a permission="academic_setting" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/setting">{{
                                       "academic_setting" | trans }}</a>
-                                      <a permission="open_course" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/open-course">{{ "open_courses" | trans }}</a>
-                                      <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/available-courses-report">تقرير المقررات المتاحة</a>
-                                      <a permission="doctor_read" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/doctors">{{ "doctors" | trans }}</a>
+                                    <a permission="open_course" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/open-course">{{ "open_courses" | trans }}</a>
+                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/available-courses-report">تقرير المقررات المتاحة</a>
+                                    <a permission="doctor_read" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/doctors">{{ "doctors" | trans }}</a>
                                     <a permission="control" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/control-and-results">الكنترول و النتائج</a>
                                     <!-- <a permission="control" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/student-result">{{ "control" | trans }}</a> -->
                                     <!-- <a permission="control_report" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/result-stats">احصائيات النتيجة</a> -->
@@ -151,7 +151,10 @@
                         </li> -->
                         <li class="waves-effect waves-white" *ngIf="canAccessMilitary()">
                             <a routerLink="/military" class="dropdown-toggle" data-toggle="dropdown">{{ "military" |
-                                trans }} </a>
+                              trans }} </a>
+                        </li>
+                        <li class="waves-effect waves-white" *ngIf="canAccesBook()">
+                            <a routerLink="/bookservice" class="dropdown-toggle" data-toggle="dropdown"> خدمة الكتب</a>
                         </li>
                         <li class="waves-effect waves-white" *ngIf="canAccessUsers()">
                             <a routerLink="/users" class="dropdown-toggle" data-toggle="dropdown">{{ "users" | trans }}

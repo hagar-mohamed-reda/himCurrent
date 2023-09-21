@@ -75,6 +75,8 @@ export class GraduationGovComponent implements OnInit {
       const formdate={
         "division_id":this.filter.division_id,
         "level_id":this.filter.level_id,
+        "term_id":this.filter.term_id,
+
         api_token: Auth.getApiToken()
       }
       const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=905,height=484";

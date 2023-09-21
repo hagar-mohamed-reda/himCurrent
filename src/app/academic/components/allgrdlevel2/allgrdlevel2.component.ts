@@ -105,9 +105,10 @@ export class Allgrdlevel2Component implements OnInit  {
     this.searchData.divisions = this.selectedDivisions.getKeys();
     // this.searchData.page = this.currentPage;
     this.searchData.division_id = this.filter.division_id;
-    // this.searchData.year_id = this.filter.year_id;
+    this.searchData.term_id = this.filter.term_id;
     this.searchData.level_id = this.filter.level_id;
     this.searchData.pageNumber=this.pageNumber;
+    this.searchData.year_id=this.filter.year_id;
     this.isSubmitted = true;
     this.reportService.getAllStudentsResultLevel2(this.searchData).subscribe((res) => {
 
@@ -130,8 +131,9 @@ getTotalPage() {
     this.searchData.divisions = this.selectedDivisions.getKeys();
     // this.searchData.page = this.currentPage;
     this.searchData.division_id = this.filter.division_id;
-    // this.searchData.year_id = this.filter.year_id;
+    this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
+    this.searchData.term_id = this.filter.term_id;
 
     this.isSubmitted = true;
     this.reportService.gettotalPages(this.searchData).subscribe((res) => {

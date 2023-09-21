@@ -59,16 +59,16 @@
                           </div>
               </div> -->
                 <div class="row">
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-2 col-md-3">
                         <div class="form-group">
                             <label for="">الشعبة</label>
-                            <select class="form-control"(change)="change()" [(ngModel)]="filter.division_id">
+                            <select class="form-control" (change)="change()" [(ngModel)]="filter.division_id">
                     <option value="">الشعبة</option>
               <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
             </select>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-2 col-md-3">
                         <div class="form-group">
                             <label for="">{{ "academic year" | trans }}</label>
                             <select class="form-control" [(ngModel)]="filter.year_id">
@@ -77,7 +77,7 @@
           </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="">{{ "level" | trans }}</label>
                             <select class="form-control" [(ngModel)]="filter.level_id">
@@ -88,15 +88,27 @@
           </select>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
-                      <div class="form-group">
-                          <label for=""> عدد الصفحات</label>
-                          <select class="form-control"[(ngModel)]="pageNumber" >
+                    <div class="col-lg-2 col-md-3">
+                        <div class="form-group">
+                            <label for=""> فصل التخرج</label>
+                            <select class="form-control" [(ngModel)]="filter.term_id">
+                      <option value="1">الكل</option>
+                      <option value="2"> فصل  دراسي اول</option>
+                      <option value="3"> فصل دراسي ثانى  </option>
+                      <option value="4"> فصل دراسي صيفى  </option>
+
+                  </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <div class="form-group">
+                            <label for=""> عدد الصفحات</label>
+                            <select class="form-control" [(ngModel)]="pageNumber">
               <option value="1">1</option>
         <option *ngFor="let pages of arrnumberpage" value="{{ pages }}">{{pages}}</option>
       </select>
-                      </div>
-                  </div>
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <label for="">العدد الكلي</label>
                         <div class="form-control" style="border: none !important;">
@@ -256,8 +268,8 @@
                                         </tbody>
                                     </table>
 
-                                    <div *ngIf='response.registerCoursesTerm1level1 && response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].code != 202110433 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الأول &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ response.student_gpa_fasly_Term1level }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div *ngIf='response.registerCoursesTerm1level1 && response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].code != 202110433 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الأول &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ response.student_gpa_fasly_Term1level
+                                        }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </div>
                                     <div *ngIf='(response.registerCoursesTerm1level1 == "" || response.registerCoursesTerm1level1.length == 0) && !response.student_case_constraint_excuse_term1' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px;">
                                         لم يتم تسجيل إرشاد أكاديمي
@@ -317,8 +329,8 @@
                                         </table>
 
 
-                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px;font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الثاني &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            {{ response.student_gpa_fasly_Term2level1| number : '1.2-2' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px;font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الثاني &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ response.student_gpa_fasly_Term2level1|
+                                            number : '1.2-2' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
 
                                     </ng-container>
@@ -359,8 +371,8 @@
                                         </table>
 
 
-                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الصيفي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            {{ response.student_gpa_fasly_Term3level1 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الصيفي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ response.student_gpa_fasly_Term3level1
+                                            }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
                                     </ng-container>
                                 </div>
@@ -408,8 +420,7 @@
                                         </tbody>
                                     </table>
 
-                                    <div *ngIf='response.registerCoursesTerm1 && response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].code != 202110433 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الأول &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        {{ response.student_gpa_fasly_Term1 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div *ngIf='response.registerCoursesTerm1 && response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].code != 202110433 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الأول &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ response.student_gpa_fasly_Term1 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </div>
                                     <div *ngIf='(response.registerCoursesTerm1 == "" || response.registerCoursesTerm1.length == 0) && !response.student_case_constraint_excuse_term1' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px;">
                                         لم يتم تسجيل إرشاد أكاديمي
@@ -469,8 +480,7 @@
                                         </table>
 
 
-                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الثاني &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            {{ response.student_gpa_fasly_Term2 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الثاني &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ response.student_gpa_fasly_Term2 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
 
                                     </ng-container>
@@ -511,8 +521,7 @@
                                         </table>
 
 
-                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الصيفي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            {{ response.student_gpa_fasly_Term3 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div *ngIf='response.studentInfo[0].case_constraint_id != 6 && response.studentInfo[0].case_constraint_id != 8 && response.studentInfo[0].case_constraint_id != 7' style="background-color:rgba(0,0,0,.5) !important;text-align: center;margin-bottom: 5px; font-size: 10px !important;">نتيجة الطالب عقب إعلان الفصل الدراسي الصيفي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معدل فصلي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ response.student_gpa_fasly_Term3 }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
                                     </ng-container>
                                 </div>
@@ -684,9 +693,11 @@
                 <!-- course categories panel -->
                 <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
                     <div class="custom-panel-body table-responsive w3-padding">
-                        <button mat-raised-button color="primary"  (click)="loadData();getTotalPage()" style="margin: 5px">
+                        <button mat-raised-button color="primary" (click)="loadData();getTotalPage()" style="margin: 5px">
+                <i *ngIf="isSubmitted" class="fa fa-spin fa-spinner"></i>
+                        <!-- <span *ngIf="isSubmitted1==false"> نشكرك على الانتظار جارى حساب المعدل         </span> -->
 
-                  <span  >{{ "update" | trans }} </span>
+                  <span   >{{ "update" | trans }} </span>
                      </button>
 
                         <button mat-raised-button color="primary" class="w3-margin-left w3-black" (click)="print()"> <i class="fa fa-print" ></i> {{ "print" | trans }}</button>

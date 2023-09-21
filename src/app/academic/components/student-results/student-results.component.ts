@@ -101,6 +101,7 @@ export class StudentResultsComponent implements OnInit {
     this.searchData.division_id = this.filter.division_id;
     this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
+    this.searchData.term_id=this.filter.term_id
     this.isSubmitted = true;
     this.reportService.getWithTermAndYearStudents(this.searchData).subscribe((res) => {
       this.responses = res;
@@ -110,6 +111,7 @@ export class StudentResultsComponent implements OnInit {
   }
 
   login() {
+    debugger
     let resultPassword: any = this.academicSetting.get(12);
     if (!resultPassword)
       return;

@@ -34,8 +34,11 @@ export class SettingTemplate {
     let item = {};
     this.data.push(item);
   }
-
-  validate(item=this.item) {
+  add2() {
+    let item = {};
+     this.data.splice(0, 0, item);
+    }
+   validate(item=this.item) {
     let valid = true;
     this.requiredFields.forEach(element => {
       if (!item[element])
@@ -53,6 +56,7 @@ export class SettingTemplate {
   }
 
   store(item=this.item, index=null, callback=null) {
+    debugger
     if (!this.validate(item))
       return Message.error(Helper.trans('fill all data'));
 

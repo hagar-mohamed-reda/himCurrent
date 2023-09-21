@@ -103,11 +103,12 @@ export class StudentGraduationResultComponent implements OnInit {
     this.searchData.division_id = this.filter.division_id;
     // this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
+    this.searchData.term_id  = this.filter.term_id
     this.searchData.pageNumber=this.pageNumber;
 
     this.isSubmitted = true;
     this.reportService.GetAllStudentsResultLevel1level2(this.searchData).subscribe((res) => {
-      debugger
+
       this.responses = res["arrayPush"];
       this.ttotal=res["taotalCount"];      // this.prePagniation();
       this.isSubmitted = true;
@@ -130,10 +131,11 @@ getTotalPage() {
     this.searchData.division_id = this.filter.division_id;
     // this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
+    this.searchData.term_id  = this.filter.term_id
 
     this.isSubmitted = true;
     this.reportService.gettotalPages(this.searchData).subscribe((res) => {
-debugger
+
       this.numberPages = res;
       for(let i=2;i<=this.numberPages;i++){
         this.arrnumberpage.push(i);
@@ -155,6 +157,8 @@ debugger
     this.searchData.division_id = this.filter.division_id;
     // this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
+    this.searchData.term_id  = this.filter.term_id
+
     this.isSubmitted = true;
     this.reportService.GetAllStudentsResultLevel2(this.searchData).subscribe((res) => {
       this.responses2 = res;

@@ -122,13 +122,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>{{ "qualification" | trans }} *</th>
+                                            <th>{{ "qualification" | trans }} </th>
                                             <td>
-                                                <select (change)="emptyData()" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed':
-                              application.qualification_id,
-                            'border-bottom-red': !application.qualification_id
-                          }" [(ngModel)]="application.qualification_id">
+                                                <select (change)="emptyData()" class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.qualification_id">
                           <option
                             *ngFor="
                               let item of applicationSettings.QUALIFICATIONS
@@ -141,14 +137,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>{{ "qualification_types" | trans }} *</th>
+                                            <th>{{ "qualification_types" | trans }} </th>
                                             <td>
-                                                <select class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed':
-                              application.qualification_types_id,
-                            'border-bottom-red':
-                              !application.qualification_types_id
-                          }" [(ngModel)]="application.qualification_types_id">
+                                                <!-- [ngClass]="{'border-bottom-dashed':application.qualification_types_id,   'border-bottom-red':    !application.qualification_types_id }"  -->
+                                                <select class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.qualification_types_id">
                           <ng-container
                             *ngFor="
                               let item of applicationSettings.QUALIFICATION_TYPES
@@ -173,12 +165,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>{{ "grade" | trans }} *</th>
+                                            <th>{{ "grade" | trans }} </th>
                                             <td>
-                                                <input type="number" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed': application.grade,
-                            'border-bottom-red': !application.grade
-                          }" [(ngModel)]="application.grade" />
+                                                <input type="number" class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.grade" />
                                                 <p *ngIf="gradeError" class="w3-text-red w3-tiny">
                                                     {{ gradeError }}
                                                 </p>
@@ -196,24 +185,16 @@
                                         <tr>
                                             <th>{{ "gender" | trans }}</th>
                                             <td>
-                                                <select (change)="filterDataBaisedOnGender()" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed': application.gender,
-                            'border-bottom-red': !application.gender
-                          }" [(ngModel)]="application.gender">
+                                                <select (change)="filterDataBaisedOnGender()" class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.gender">
                           <option value="male">{{ "male" | trans }}</option>
                           <option value="female">{{ "female" | trans }}</option>
                         </select>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>{{ "registration_status" | trans }} *</th>
+                                            <th>{{ "registration_status" | trans }} </th>
                                             <td>
-                                                <select class="custom-input form-control input-sm w3-input input-sm" (change)="validateOnRegisterationStatusDocument()" [ngClass]="{
-                            'border-bottom-dashed':
-                              application.registration_status_id,
-                            'border-bottom-red':
-                              !application.registration_status_id
-                          }" [(ngModel)]="application.registration_status_id">
+                                                <select class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" (change)="validateOnRegisterationStatusDocument()" [(ngModel)]="application.registration_status_id">
                           <option
                             *ngFor="
                               let item of applicationSettings.REGISTERATION_STATUS
@@ -226,17 +207,13 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>{{ "qualification_date" | trans }} *</th>
+                                            <th>{{ "qualification_date" | trans }} </th>
                                             <td>
-                                                <input type="text" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed':
-                              application.qualification_date,
-                            'border-bottom-red': !application.qualification_date
-                          }" [(ngModel)]="application.qualification_date" />
+                                                <input type="text" class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.qualification_date" />
                                             </td>
                                         </tr>
                                         <tr>
-                      <!-- <th>{{ "case_constraint" | trans }} *</th>
+                                            <!-- <th>{{ "case_constraint" | trans }} *</th>
                       <td>
                         <select
                           class="custom-input form-control input-sm w3-input input-sm"
@@ -257,14 +234,11 @@
                           </option>
                         </select>
                       </td> -->
-                    </tr>
+                                        </tr>
                                         <tr>
-                                            <th>{{ "level" | trans }} *</th>
+                                            <th>{{ "level" | trans }} </th>
                                             <td>
-                                                <select class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed': application.level_id,
-                            'border-bottom-red': !application.level_id
-                          }" [(ngModel)]="application.level_id">
+                                                <select class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.level_id">
                           <option
                             *ngFor="let item of levels"
                             value="{{ item.id }}"
@@ -280,12 +254,9 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <table class="table w3-block w3-block">
                                         <tr>
-                                            <th>{{ "department" | trans }} *</th>
+                                            <th>{{ "department" | trans }} </th>
                                             <td>
-                                                <select class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [ngClass]="{
-                            'border-bottom-dashed': application.department_id,
-                            'border-bottom-red': !application.department_id
-                          }" [(ngModel)]="application.department_id">
+                                                <select class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm border-bottom-dashed" [(ngModel)]="application.department_id">
                           <ng-container
                             *ngFor="let item of applicationSettings.DEPARTMENTS"
                           >
@@ -301,12 +272,9 @@
                                         </tr>
 
                                         <tr>
-                                            <th>{{ "division" | trans }} *</th>
+                                            <th>{{ "division" | trans }} </th>
                                             <td>
-                                                <select class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [ngClass]="{
-                            'border-bottom-dashed': application.division_id,
-                            'border-bottom-red': !application.division_id
-                          }" [(ngModel)]="application.division_id">
+                                                <select class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm border-bottom-dashed" [(ngModel)]="application.division_id">
                           <ng-container
                             *ngFor="let item of applicationSettings.DIVISIONS"
                           >
@@ -736,12 +704,11 @@
                             application['required_document_' + item.id]
                         }">
                                                 <th>
-                                                    <i *ngIf="application['required_document_' + item.id]" class="fa fa-check-circle w3-text-green"></i>
+                                                    <!-- <i *ngIf="application['required_document_' + item.id]" class="fa fa-check-circle w3-text-green"></i>
 
                                                     <i *ngIf="
-                              requiredDocumentList.get(item.id) == 1 &&
-                              !application['required_document_' + item.id]
-                            " class="fa fa-exclamation-circle w3-text-red"></i> {{ item.name }}
+                              requiredDocumentList.get(item.id) == 1 &&  !application['required_document_' + item.id]
+                            " class="fa fa-exclamation-circle w3-text-red"></i> {{ item.name }} -->
                                                 </th>
                                                 <th>{{ item.type | trans }}</th>
                                                 <td>

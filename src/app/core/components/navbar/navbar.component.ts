@@ -107,6 +107,10 @@ export class NavBarComponent implements OnInit {
     let permissions = ["military_status","military_area","military_age"];
     return Auth.canOr(permissions);
   }
+  canAccesBook() {
+    let permissions = ["military_status","military_area","military_age"];
+    return Auth.canOr(permissions);
+  }
 
   canAccessAcademic() {
     let permissions = ["result_transfer","control_report","control","open_course","academic_setting","doctor_remove","doctor_add","doctor_edit","doctor_read","degree_map_remove","degree_map_add","degree_map_edit","degree_map_read","course_category_remove","course_category_add","course_category_edit","course_category_read","course_remove","course_add","course_edit","course_read","student_register"];

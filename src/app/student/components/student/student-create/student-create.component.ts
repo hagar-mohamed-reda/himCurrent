@@ -45,18 +45,18 @@ export class StudentCreateComponent implements OnInit {
 
   public required_field = [
     'name',
-    'qualification_id',
+    // 'qualification_id',
     'national_id' ,
-    'registration_status_id',
-    'academic_years_id',
-    'grade',
-    'qualification_date',
-    'qualification_types_id',
-    'level_id',
-    'department_id',
+    // 'registration_status_id',
+    // 'academic_years_id',
+    // 'grade',
+    // 'qualification_date',
+    // 'qualification_types_id',
+    // 'level_id',
+    // 'department_id',
     // 'case_constraint_id',
-    'division_id',
-    'gender'
+    // 'division_id',
+    // 'gender'
   ];
 
   public col = "col-lg-10 col-md-10 col-sm-12";
@@ -80,7 +80,7 @@ export class StudentCreateComponent implements OnInit {
 
   loadApplication(id) {
     this.studentService.load(id).subscribe((res: any) => {
-      
+
       // -----new load registration status documents
       this.globalService.get('adminision/get_registeration_status_document').subscribe(documents => {
         this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS = documents
@@ -152,15 +152,15 @@ export class StudentCreateComponent implements OnInit {
     for(let key of Object.keys(this.application)) {
       if(this.application[key])
       // console.log(key , this.application[key]);
-      
+
         data.append(key, this.application[key]);
     }
 
     // return console.log(data);
-    
+
     this.studentService.store(data).subscribe((res)=>{
       console.log(res);
-      
+
       const data: any = res;
 
       if (data.status == 1)  {

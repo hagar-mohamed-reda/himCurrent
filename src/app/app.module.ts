@@ -46,8 +46,9 @@ import { MilitaryModule } from './military/military.module';
 import { AuthModule } from './auth/auth.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { StudentsResultsComponent } from './students-results/students-results.component';
+import { BookserviceComponent } from './bookservice/bookservice.component';
 @NgModule({
-  declarations: [
+  declarations: [	
     LayoutComponent,
     AuthComponent,
     AppComponent,
@@ -55,8 +56,8 @@ import { StudentsResultsComponent } from './students-results/students-results.co
     UserProfileComponent,
     SystemLabelComponent,
     StudentsResultsComponent,
-
-  ],
+      BookserviceComponent
+   ],
   imports: [
     NgxPaginationModule,
     BrowserModule,
