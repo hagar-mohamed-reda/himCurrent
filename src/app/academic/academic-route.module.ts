@@ -47,6 +47,8 @@ import { Allgrdlevel2Component } from './components/allgrdlevel2/allgrdlevel2.co
 import { GraduationGovComponent } from './components/graduation-gov/graduation-gov.component';
 import { SettingresultComponent } from './components/settingresult/settingresult.component';
 import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
+import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
+import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
 
 const routes: Routes = [
   // {
@@ -136,6 +138,18 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control") },
         component: Allgrdlevel2Component,
+      },
+      {
+        path: "report-status-students",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: ReportStatusStudentsComponent,
+      },
+      {
+        path: "report-status-course-students",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: ReportStatusCourseStudComponent,
       },
       {
         path: "student-results",

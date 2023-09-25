@@ -290,6 +290,8 @@
                                             <th>#</th>
                                             <th>{{ "code" | trans }}</th>
                                             <th>{{ "name" | trans }}</th>
+                                            <th>الفصل الدراسي</th>
+
                                             <th>النوع</th>
                                             <th>{{ "credit_hour" | trans }}</th>
                                             <th>{{ "prerequsites" | trans }}</th>
@@ -301,6 +303,8 @@
                                             <td>{{ counter + 1 }}</td>
                                             <td>{{ course.code }}</td>
                                             <td>{{ course.name }}</td>
+                                            <td>{{ course.term.name }}</td>
+
                                             <td *ngIf="course.type == 1">اجباري</td>
                                             <td *ngIf="course.type == 2">اختياري</td>
                                             <!-- <td>{{ course.division? course.division.name : '' }}</td> -->

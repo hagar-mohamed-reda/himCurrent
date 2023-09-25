@@ -35,6 +35,20 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
+
+                    <a [routerLink]="['/academic/report-status-students']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>   تقرير حالة الطلاب  </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                    <a [routerLink]="['/academic/report-status-course-students']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>   تقرير  المقررات الغير مجتازة    </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+
                     <a [routerLink]="['/academic/student-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج طالب</b>
                         <a class="pull-left">

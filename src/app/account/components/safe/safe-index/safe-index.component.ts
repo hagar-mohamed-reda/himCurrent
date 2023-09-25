@@ -570,16 +570,16 @@ Wccompare={}
 debugger
   if(event.target.checked==true){
       this.payConfirmNew +=item.value
-      if(item.wz_value==1){
-          this.Wccompare={"id":item.id,"name":item.name}
-           this.Witcompare.push(this.Wccompare);
+      // if(item.wz_value==1){
+      //     this.Wccompare={"id":item.id,"name":item.name}
+      //      this.Witcompare.push(this.Wccompare);
 
-      }else{
-        this.ccompare={"id":item.id,"name":item.name}
-        this.itcompare.push(this.ccompare);
+      // }else{
+      //   this.ccompare={"id":item.id,"name":item.name}
+      //   this.itcompare.push(this.ccompare);
 
 
-      }
+      // }
 
       this.itemids.push(item.id);
   }else{
@@ -589,16 +589,16 @@ debugger
     this.itemids.splice(index, 1);
 
 
-    if(item.wz_value==1){
-      let index2 = this.Witcompare.findIndex((element) => element.id  == item.id);
-      this.Witcompare.splice(index2, 1);
+    // if(item.wz_value==1){
+    //   let index2 = this.Witcompare.findIndex((element) => element.id  == item.id);
+    //   this.Witcompare.splice(index2, 1);
 
-    }else{
-      let index22 = this.itcompare.findIndex((element) => element.id  == item.id);
-      this.itcompare.splice(index22, 1);
+    // }else{
+    //   let index22 = this.itcompare.findIndex((element) => element.id  == item.id);
+    //   this.itcompare.splice(index22, 1);
 
 
-    }
+    // }
 
   }
   console.log(event.target.checked );

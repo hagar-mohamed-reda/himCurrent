@@ -1,0 +1,96 @@
+<div class="w3-block w3-row">
+    <div class="w3-white material-shadow safe-box w3-block">
+        <div class="safe-box-header w3-large" style="padding: 5px!important">
+            تقرير المقررات الغير مجتازة
+        </div>
+        <div class="border-bottom-dashed"></div>
+        <br>
+
+        <div class="">
+
+            <div class="">
+                <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+
+                    <div class="custom-panel-body table-responsive w3-padding">
+
+                        <div id="form" class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label for="">{{ "academic year" | trans }}</label>
+                                    <select class="form-control" [(ngModel)]="filter.year_id">
+                <option value="">{{ "academic year" | trans }}</option>
+          <option *ngFor="let item of yearss" value="{{ item.id }}">{{item.name}}</option>
+        </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2  ">
+
+                                <div class="form-group">
+                                    <label>{{ "level" | trans }}</label>
+                                    <select class="form-control" [(ngModel)]="filter.level_id">
+                                    <option value="">{{ "level" | trans }}</option>
+                                    <option *ngFor="let item of levels"  value="{{ item.id }}">{{ item.name }}</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 ">
+                                <div class="form-group">
+                                    <label for="">{{ "division" | trans }}</label>
+                                    <select class="form-control" [(ngModel)]="filter.division_id" (change)="onchange($event.target.value)">
+                                    <option value="">{{ "division" | trans }}</option>
+                                    <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 ">
+                                <div class="form-group">
+                                    <label for=""> الفصل الدراسي</label>
+                                    <select class="form-control" [(ngModel)]="filter.term_id" (change)="onchange($event.target.value)">
+                                   <option *ngFor="let item of terms" value="{{ item.id }}">{{item.name}}</option>
+                              </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2  ">
+                                <div class="form-group">
+                                    <label for="">  المقررات</label>
+                                    <select class="form-control" [(ngModel)]="filter.course_id">
+                         <!-- <option value="">  الكل</option> -->
+                         <option *ngFor="let item of courses" value="{{ item.id }}">{{item.name}}</option>
+
+
+                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2" style="margin-top:25px">
+                                <button class="btn btn-default w3-round" (click)="load()">
+                                                        <i *ngIf="isSubmitted1==false" class="fa fa-spin fa-spinner"></i>
+
+                                {{ "search" | trans }}</button>
+                                <button style="margin: 0 5px;" class="btn btn-default w3-round" (click)="printContent()">{{ "print" | trans }}</button>
+                                <button class="btn btn-default w3-round" (click)="excel()">{{ "excel" | trans }}</button>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="custom-panel w3-display-container w3-round application-panel student-info-panel" id="printable">
+
+                    <div dir="rtl" class="custom-panel-body table-responsive w3-padding" id="reportContent">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</div>

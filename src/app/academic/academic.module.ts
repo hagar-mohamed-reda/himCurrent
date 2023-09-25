@@ -58,10 +58,14 @@ import { Allgrdlevel2Component } from './components/allgrdlevel2/allgrdlevel2.co
 import { GraduationGovComponent } from './components/graduation-gov/graduation-gov.component';
 import { SettingresultComponent } from './components/settingresult/settingresult.component';
 import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
+import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
+import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
 
 @NgModule({
   declarations: [
     MinistryCumulativeReportComponent,
+    ReportStatusStudentsComponent,
+    ReportStatusCourseStudComponent,
     Allgrdlevel2Component,GraduationGovComponent,
     GraduationReportComponent,SettingresultComponent,
     StudentGraduationResultComponent,
