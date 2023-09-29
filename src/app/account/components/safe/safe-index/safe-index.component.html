@@ -579,10 +579,14 @@
                 </div>
                 <br>
                 <div class="row">
+                    <p style="color:red"> الرجاء ادخال القيمة الحقل اولا ثم الضغط على الاختيار اذا تم غير ذلك يجيب اقفال الشاشه وفتحها ثانيا </p>
                     <!--  -->
                     <div class="col-lg-4" *ngFor="let item of confirmList">
                         <input type="checkbox" (change)="checkValue($event,item)">
                         <label for="vehicle1" style="margin-right: 10px;">  {{item.name}}  </label>
+                        <br>
+                        <input type="number" [(ngModel)]="item.value" style="width: 37%; margin-right: 5px;">
+
                         <!-- <input type="text" class="form-control"[(ngModel)]="dis" placeholder=" الخصم"> -->
                     </div>
 

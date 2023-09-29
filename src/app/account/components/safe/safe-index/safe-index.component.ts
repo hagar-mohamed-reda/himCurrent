@@ -431,6 +431,8 @@ this.itcompare=[]
 this.Wccompare={}
 this.Witcompare=[]
 this.noteCon=""
+this.valueCehhecked=[]
+this.valueCehhecked1={}
   this.showconfirm1();
   this.displayall="block"
 
@@ -533,6 +535,7 @@ Postconfirm1(){
 disCcountIDIn
 disCcountIDwz
 showRecitConfirm(){
+  debugger
   let formdata={
     api_token: Auth.getApiToken(),
 
@@ -549,6 +552,8 @@ showRecitConfirm(){
 "discount_id":this.disCcountIDIn,
 "discount_value_wz":this.DisMin,
 "discount_id_wz":this.disCcountIDwz,
+"values":this.valueCehhecked.toString(),
+
 
  }
   const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=905,height=484";
@@ -566,10 +571,16 @@ ccompare={}
 
 Witcompare=[]
 Wccompare={}
+valueCehhecked=[]
+valueCehhecked1={}
+ disableininput =false;
  checkValue(event: any,item){
 debugger
   if(event.target.checked==true){
-      this.payConfirmNew +=item.value
+       this.payConfirmNew +=item.value
+      //  this.valueCehhecked1={"id":item.id,"value":item.value}
+       this.valueCehhecked.push(item.value);
+       this.disableininput=true
       // if(item.wz_value==1){
       //     this.Wccompare={"id":item.id,"name":item.name}
       //      this.Witcompare.push(this.Wccompare);
@@ -583,12 +594,14 @@ debugger
 
       this.itemids.push(item.id);
   }else{
+
     this.payConfirmNew -=item.value
     let index = this.itemids.findIndex((element) => element  == item.id);
 
     this.itemids.splice(index, 1);
 
-
+    let index234 = this.valueCehhecked.findIndex((element) => element   == item.value);
+     this.valueCehhecked.splice(index234, 1);
     // if(item.wz_value==1){
     //   let index2 = this.Witcompare.findIndex((element) => element.id  == item.id);
     //   this.Witcompare.splice(index2, 1);
@@ -602,5 +615,10 @@ debugger
 
   }
   console.log(event.target.checked );
+}
+checkValue4(event: any,item){
+  // this.payConfirmNew +=item.value
+
+
 }
 }
