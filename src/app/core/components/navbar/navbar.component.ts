@@ -108,7 +108,7 @@ export class NavBarComponent implements OnInit {
     return Auth.canOr(permissions);
   }
   canAccesBook() {
-    let permissions = ["military_status","military_area","military_age"];
+    let permissions = ["receive_books"];
     return Auth.canOr(permissions);
   }
 

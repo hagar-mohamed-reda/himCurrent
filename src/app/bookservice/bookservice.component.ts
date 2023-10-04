@@ -33,7 +33,7 @@ export class BookserviceComponent implements OnInit  {
     academicYears: any = [];
     doc: any = document;
     terms: any = [];
-
+currentPage=1;
     constructor(
        private termService:TermService,
 
@@ -46,21 +46,34 @@ export class BookserviceComponent implements OnInit  {
       //   });
 
   }
- 
+
   bookData:any=[];
   isSubmitted1=true
   isSubmitted2=true
-  getData(){
+  getData(page=1){
    this.bookData=[]
     this.isSubmitted1=false;
-
+this.filter.page=page
     this.globalService.get('account/book_payments',this.filter).subscribe( (res: any) => {
 
       this.bookData =res
+      this.prePagniation();
+
       this.isSubmitted1=true;
 
     });
   }
+  prePagniation() {
+    if (!this.bookData.data)
+      return;
+    this.bookData.prev_page = this.bookData.prev_page_url? this.bookData.prev_page_url.replace(this.bookData.path+'?page=', '') : null;
+    this.bookData.next_page = this.bookData.next_page_url? this.bookData.next_page_url.replace(this.bookData.path+'?page=', '') : null;
+    this.bookData.pages = Math.ceil(this.bookData.total / this.bookData.per_page);
+    this.bookData.pages_arr = [];
+    for(let i = 0; i < this.bookData.pages; i ++)
+      this.bookData.pages_arr.push(i+1);
+  }
+
   loadSettings() {
     this.systemSettingService.getSystemSetting().subscribe((res: any)=>{
       debugger
@@ -72,12 +85,12 @@ export class BookserviceComponent implements OnInit  {
   notes
   yearss=[]
   getyaer(){
-    
- 
+
+
     this.globalService.get('academic_years').subscribe( (res: any) => {
 
       this.yearss =res
- 
+
     });
   }
   update(bookData){
@@ -91,7 +104,7 @@ export class BookserviceComponent implements OnInit  {
       this.formatDate22.id= bookData.id;
       this.formatDate22.note= bookData.note;
 
- 
+
     this.globalService.store('account/update_book_payments',this.formatDate22).subscribe( (res: any) => {
 
 
@@ -121,7 +134,7 @@ export class BookserviceComponent implements OnInit  {
       this.filter.division_id="";
       this.filter.receive_id="";
 
-    
+
       this.getData()
     }
 
@@ -145,19 +158,19 @@ export class BookserviceComponent implements OnInit  {
     additional_books=0;
     checkValue(event: any,item){
        debugger
-       
+
          if(event.target.checked==true){
           this.formatDate22.receive_id=1;
-            
+
         }else{
 
           this.formatDate22.receive_id=0;
 
         }
-         
+
         }
        checkValue2(event: any,item){
-         
+
           if(event.target.checked==true){
             this.formatDate22.additional_book=1;
         }else{
@@ -165,7 +178,7 @@ export class BookserviceComponent implements OnInit  {
           this.formatDate22.additional_book=0;
 
         }
-        
+
 
        }
 }

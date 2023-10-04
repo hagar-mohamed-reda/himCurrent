@@ -101,7 +101,7 @@ export class StudentGraduationResultComponent implements OnInit {
     this.searchData.divisions = this.selectedDivisions.getKeys();
     // this.searchData.page = this.currentPage;
     this.searchData.division_id = this.filter.division_id;
-    // this.searchData.year_id = this.filter.year_id;
+    this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
     this.searchData.term_id  = this.filter.term_id
     this.searchData.pageNumber=this.pageNumber;
@@ -129,7 +129,7 @@ getTotalPage() {
     this.searchData.divisions = this.selectedDivisions.getKeys();
     // this.searchData.page = this.currentPage;
     this.searchData.division_id = this.filter.division_id;
-    // this.searchData.year_id = this.filter.year_id;
+    this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
     this.searchData.term_id  = this.filter.term_id
 
@@ -155,7 +155,7 @@ getTotalPage() {
     this.searchData.divisions = this.selectedDivisions.getKeys();
     // this.searchData.page = this.currentPage;
     this.searchData.division_id = this.filter.division_id;
-    // this.searchData.year_id = this.filter.year_id;
+    this.searchData.year_id = this.filter.year_id;
     this.searchData.level_id = this.filter.level_id;
     this.searchData.term_id  = this.filter.term_id
 
