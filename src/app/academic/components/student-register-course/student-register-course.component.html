@@ -535,3 +535,52 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display4}" style="background-color: rgba(90,90,90,0.5);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#b10d0d;">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseModal4()">
+    <span aria-hidden="true" style="color: #fff">&times;</span>
+  </button>
+
+                <p class="modal-title" style="color: #fff">
+                    <span style="vertical-align: middle; padding-left:8px">
+تنبيه                </span>
+                </p>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>لقد تخطيت &nbsp; {{student.register_hours}} &nbsp; من عدد الساعات المسموح بها
+
+                </p>
+                <br>
+                <input type="text" class="form-control" [(ngModel)]="valepa2" placeholder=" ادخل الرقم السرى">
+
+            </div>
+
+
+
+
+            <div class="modal-footer">
+                <button class="btn btn-white bbtclose" (click)="onCloseModal4()">
+    <!-- Annulla -->
+    الغاء
+  </button>
+                <button class="btn btn_color w-40 h-12" style="color: white;
+  background-color:#ad0a0a;;
+  width: 100px;
+  height: 45px;  line-height: 15px;" (click)="increaseTimes()">
+تخطى
+</button>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

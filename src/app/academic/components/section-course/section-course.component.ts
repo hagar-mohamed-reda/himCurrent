@@ -169,11 +169,11 @@ export class SectionCourseComponent implements OnInit {
     var _this = this;
     Message.confirm(Helper.trans('are you sure'), () => {
       this.applicationSettingService.sectionDestroy(id).subscribe((res: any) => {
-        if (res == 1) {
+        if (res["status"] == 1) {
           this.load();
-          return Message.success(Helper.trans('done'));
+          return Message.success(Helper.trans(res["message"]));
         } else {
-          return Message.error(Helper.trans('failed'));
+          return Message.error(Helper.trans(res["message"]));
 
         }
       })
@@ -236,4 +236,34 @@ export class SectionCourseComponent implements OnInit {
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     this.terms = Cache.get(TermService.TERPM_PREFIX);
   }
+  isall=false;
+  isall2=false;
+
+  arrId:any=[]
+  CheckDelete(event,section){
+
+    if(event.target.checked === true){
+      this.arrId.push(section.id)
+    }else{
+      let index = this.arrId.findIndex((element) => element  == section.id);
+     this.arrId.splice(index, 1);
+    }
+  }
+  deleteCh(){
+    let formDta={
+      "ids":this.arrId
+    }
+    this.globalService.store("academic/student-sections/deleteSelected",formDta).subscribe((res: any) => {
+      if (res["status"] == 1) {
+        this.load();
+        this.arrId=[]
+
+        return Message.success(Helper.trans(res["message"]));
+      } else {
+        return Message.error(Helper.trans(res["message"]));
+
+      }
+    })
+  }
+
 }

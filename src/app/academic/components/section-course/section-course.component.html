@@ -82,14 +82,20 @@
 
                 </div>
             </div>
-
+            <button class="btn btn-danger" style="margin-bottom: 10px;" (click)="deleteCh()">
+              حذف
+              السكاشن المختارة
+            <i   class="fa fa-trash"></i>
+         </button>
             <div class="row">
 
                 <div class="col-lg-12">
                     <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
                         <div class="custom-panel-body table-responsive w3-padding w3-center" style="height: 400px;">
+
                             <table class=" table-bordered">
                                 <thead>
+                                    <th></th>
                                     <th>الترتيب</th>
                                     <th>المادة</th>
                                     <th>الجروب</th>
@@ -102,6 +108,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let section of prevsections index as i">
+                                        <td> <input type="checkbox" (change)="CheckDelete($event,section)"></td>
                                         <td>{{ i + 1 }}</td>
                                         <td>
                                             {{ section.course.name }}

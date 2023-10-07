@@ -221,11 +221,35 @@ export class StudentRegisterCourseComponent implements OnInit {
 
     return true;
   }
+  onCloseModal4(){
+    this.display4="none";
 
+  }
+  openModel4(course){
+    this.display4="block";
+    this.valepa2=""
+
+  }
+  display4="none";
+  counter=4;
+  increaseTimes(){
+    if(this.pass2==this.valepa2){
+      this.counter=150;
+
+      this.display4 = 'none';
+
+    }else{
+      Message.error(" كلمة السر غير صحيحة ");
+      this.valepa2=""
+    }
+  }
   addCourse(course) {
-   
-    if(Object.keys(this.registerCourses.table).length > 10){
+
+    if(Object.keys(this.registerCourses.table).length > this.counter){
+      this.openModel4(course)
+
       return Message.error("عدي الحد المسموح من المواد");
+
     } else {
       if(this.student.gpa < 2 && course.level_id == 3 ){
         return Message.error("غير مسموح للطالب تسجيل مقررات من المستوي الثالث والمعدل التراكمي الخاص بة اقل من 2");
@@ -244,7 +268,7 @@ export class StudentRegisterCourseComponent implements OnInit {
       //       check = check + array[i].service_count;
       //     }
       // }
-      
+
       // if(this.registerCourses.getAll().length < check && this.x == 0 ) {
         // alert('vvn');
         if(this.student.academic_year_expense_total_current_year >= this.student.academic_setting_payment ) {
@@ -268,6 +292,8 @@ export class StudentRegisterCourseComponent implements OnInit {
       }
     }
   }
+  pass2="556677"
+  valepa2
 
   removeCourse(course) {
     let self = this;
@@ -502,6 +528,7 @@ export class StudentRegisterCourseComponent implements OnInit {
     this.students = [];
     this.studentSearchDialogLoader = true;
     this.isWait = true;
+
     clearTimeout(this.timeoutId);
 
     this.timeoutId = setTimeout(() => {
@@ -527,6 +554,8 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.student_id = student.id;
       this.loadStudentInfo(student.id);
     }
+    this.counter=4;
+
     this.studentSearchDialogShow = false;
   }
 
