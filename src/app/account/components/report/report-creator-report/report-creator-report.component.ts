@@ -201,6 +201,7 @@ export class ReportCreatorReportComponent implements OnInit {
   }
 
   loadData() {
+    debugger
     this.searchData.levels = this.selectedLevels.getKeys();
     this.searchData.divisions = this.selectedDivisions.getKeys();
     this.searchData.academic_years = this.selectedAcademicYears.getKeys();

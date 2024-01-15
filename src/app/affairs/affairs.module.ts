@@ -23,6 +23,7 @@ import { PatientsComponent } from './report/patients/patients.component';
 import { PatientreportComponent } from './report/patientreport/patientreport.component';
 import { CreditHoursComponent } from './report/credit-hours/credit-hours.component';
 import { ServiceComponent } from './report/service/service.component';
+import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ServiceComponent } from './report/service/service.component';
     StudentAffairReport4Component,
     StudentAffairReport5Component,
     StudentAffairReport6Component,
+    StudlatexamComponent,
     StudentAffairReport10Component,
     StudentAffairReport11Component,
     StudentAffairReport14Component,

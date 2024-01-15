@@ -45,7 +45,7 @@
                     <div class="col-lg-2 col-md-3">
                         <div class="form-group">
                             <label for="">الشعبة</label>
-                            <select class="form-control" (change)="change($event)" [(ngModel)]="filter.division_id">
+                            <select class="form-control" [(ngModel)]="filter.division_id">
               <option value="">الشعبة</option>
         <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
       </select>
@@ -66,51 +66,99 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-md-3">
-                        <button mat-raised-button color="primary" (click)=" getData()" style="margin: 21px;">
 
-                      <i *ngIf="isSubmitted1==false" class="fa fa-spin fa-spinner"></i>
-                      <!-- <span *ngIf="isSubmitted1==false"> نشكرك على الانتظار جارى حساب المعدل         </span> -->
-
-                      <span *ngIf="isSubmitted1!=false">   بحث       </span>
-                         </button>
-
-                    </div>
 
                 </div>
-                <br>
+                <div class="row">
 
-                <div class="custom-panel w3-display-container w3-round application-panel student-info-panel" style="height:455px;overflow: auto;margin-left: 78px !important;">
-                    <div class="custom-panel-body table-responsive w3-padding" id="printable">
-                        <table class="table table-striped" style="background-color: white;" id="tablePrint">
-                            <tr>
+                    <div class="custom-panel w3-display-container w3-round">
+                        <div class="custom-panel-title">{{ "search" | trans }}</div>
 
-                                <th scope="col">الاسم</th>
-                                <th scope="col">المستوى</th>
-                                <th scope="col">التخصص</th>
+                        <div class="custom-panel-body w3-display-container">
+                            <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " (keyup)="searchInputEvent()" placeholder="{{ 'search with student name code national_id' | trans }}" [(ngModel)]="searchKey">
 
-                                <th scope="col"> خدمة الكتب </th>
-                                <th scope="col"> الكتب الاضافية </th>
+                            <!-- <button (click)="loadStudentAccountInfo(studentSearchId)" class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge">{{ "search"
+| trans }}</button> -->
 
-                                <th scope="col"> ملاحظات</th>
+                            <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:30%;z-index:10;">
+                                <span class="fa fa-spin fa-spinner w3-text-indigo"></span>
+                            </div>
+
+                            <div class="w3-display-topright w3-white material-shadow" *ngIf="studentSearchDialogShow" style="top: 47px;right:11px;z-index:10;width: 60%">
+                                <div class="w3-display-conitainer">
+                                    <span class="w3-display-topright w3-button fa fa-close" (click)="studentSearchDialogShow=false"></span>
+                                    <br>
+                                    <ul class="w3-ul">
+                                        <li *ngFor="let item of students" style="cursor: pointer;" class="w3-hover-light-gray w3-block text-right">
+                                            <div class="media" (click)="selectStudent(item)">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img [src]="item.image" style="width: 30px;height: 30px;" class="w3-circle" alt="">
+                                                        <!--
+          <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
+          -->
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading" [innerHTML]="item.name"></h4>
+                                                    <span [innerHTML]="item.code" class="w3-large"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="col-lg-2 col-md-3" style="display: contents;">
+                        <button mat-raised-button color="primary" (click)=" getData()" style="margin: 21px;">
+
+                  <i *ngIf="isSubmitted1==false" class="fa fa-spin fa-spinner"></i>
+
+                  <span *ngIf="isSubmitted1!=false">   بحث       </span>
+                     </button>
+                        <button mat-raised-button color="primary" (click)="print()"> <i class="fa fa-print" ></i> {{ "print" | trans }}</button>
+
+                        <button mat-raised-button color="primary" (click)="exportExcel()" style="margin-right: 20px;"> <i class="fa fa-file-excel-o" ></i> {{ "excel" | trans }}</button>
+
+                    </div>
+                    <div>
+                        <br>
+
+                        <div class="custom-panel w3-display-container w3-round application-panel student-info-panel" style="height:455px;overflow: auto;margin-left: 78px !important;">
+                            <div class="custom-panel-body table-responsive w3-padding" style="    direction: rtl;   ">
+                                <table class="table table-striped" style="background-color: white;">
+                                    <tr>
+
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">المستوى</th>
+                                        <th scope="col">التخصص</th>
+
+                                        <th scope="col"> خدمة الكتب </th>
+                                        <th scope="col"> الكتب الاضافية </th>
+
+                                        <th scope="col"> ملاحظات</th>
 
 
-                            </tr>
-                            <tr *ngFor="let res of bookData.data  ">
+                                    </tr>
+                                    <tr *ngFor="let res of bookData.data  ">
 
-                                <td> {{res.student.name}}</td>
+                                        <td> {{res.student_name}}</td>
 
-                                <!-- {{res.student.level.name}} -->
-                                <td>{{res.student?.level.name}} </td>
-                                <!-- {{res.student.division.name}} -->
-                                <td>{{res.student.division?.name}}</td>
-                                <td>
-                                    <input type="checkbox" [checked]="res.receive" (change)="checkValue($event,res)" /> </td>
-                                <td><input type="checkbox" [checked]="res.additional_books" (change)="checkValue2($event,res)" /> </td>
+                                        <!-- {{res.student.level.name}} -->
+                                        <td>{{res.level_id}} </td>
+                                        <!-- {{res.student.division.name}} -->
+                                        <td>{{res.division_id}}</td>
+                                        <td>
+                                            <input type="checkbox" [checked]="res.receive" (change)="checkValue($event,res)" /> </td>
+                                        <td><input type="checkbox" [checked]="res.additional_books" (change)="checkValue2($event,res)" /> </td>
 
-                                <td><input type="text" [(ngModel)]="res.note" /> </td>
+                                        <td><input type="text" [(ngModel)]="res.note" /> </td>
 
-                                <td> <button mat-raised-button color="primary" (click)=" update(res)">
+                                        <td> <button mat-raised-button color="primary" (click)=" update(res)">
 
                                   <i *ngIf="isSubmitted2==false" class="fa fa-spin fa-spinner"></i>
                                   <!-- <span *ngIf="isSubmitted1==false"> نشكرك على الانتظار جارى حساب المعدل         </span> -->
@@ -118,30 +166,46 @@
                                   <span *ngIf="isSubmitted2!=false">   تعديل       </span>
                                      </button></td>
 
-                            </tr>
-                        </table>
-                        <div class="text-center w3-center">
+                                    </tr>
+                                </table>
 
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <li>
-                                        <a class="" [ngClass]="{'disabled': !bookData.prev_page}" (click)="getData(bookData.prev_page)" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li *ngFor="let item of bookData.pages_arr">
-                                        <a class="" [ngClass]="{'active': bookData.current_page == item}" (click)="getData(item)">{{ item  }}</a>
-                                    </li>
-                                    <li>
-                                        <a class="" [ngClass]="{'disabled': !bookData.next_page}" (click)="getData(bookData.next_page)" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            </div>
                         </div>
+
+                        <div class="custom-panel w3-display-container w3-round application-panel student-info-panel" style="display:none; height:455px;overflow: auto;margin-left: 78px !important;">
+                            <div class="custom-panel-body table-responsive w3-padding" id="printable" style="    direction: rtl;   ">
+                                <table class="table table-striped" style="background-color: white;">
+                                    <tr>
+
+                                        <th scope="col">الاسم</th>
+                                        <th scope="col">المستوى</th>
+                                        <th scope="col">التخصص</th>
+
+
+
+                                        <th scope="col"> ملاحظات</th>
+
+
+                                    </tr>
+                                    <tr *ngFor="let res of bookData.data  ">
+
+                                        <td> {{res.student_name}}</td>
+
+                                        <!-- {{res.student.level.name}} -->
+                                        <td>{{res.level_id}} </td>
+                                        <!-- {{res.student.division.name}} -->
+                                        <td>{{res.division_id}}</td>
+                                        <td>{{res.note}}</td>
+
+
+
+
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-    </div>

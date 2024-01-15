@@ -55,6 +55,8 @@
         <tr class="w3-light-gray">
             <th class="w3-padding">{{ "#" | trans }}</th>
             <th class="w3-padding">{{ "date" | trans }}</th>
+            <th class="w3-padding">كود الطالب</th>
+
             <th class="w3-padding">{{ "student" | trans }}</th>
             <th class="w3-padding">{{ "level" | trans }}</th>
             <th class="w3-padding">{{ "payment_code" | trans }}</th>
@@ -73,6 +75,9 @@
                 </td>
                 <td>
                     {{ item.date }}
+                </td>
+                <td>
+                    {{ item.code }}
                 </td>
                 <td>
                     {{ item.name? item.name : '' }}

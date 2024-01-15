@@ -103,6 +103,15 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th> اسم الطالب بالانجليزى</th>
+                                            <td>
+                                                <input class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
+                          'border-bottom-dashed': application.name_en,
+'border-bottom-red': !application.name_en}" [(ngModel)]="application.name_en
+                        " />
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>{{ "academic_years" | trans }} *</th>
                                             <td>
                                                 <select class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
@@ -119,6 +128,15 @@
                             {{ item.name }}
                           </option>
                         </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "national_id" | trans }} *</th>
+                                            <td>
+                                                <input type="text" (blur)="validateOnNationalId()" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
+                          'border-bottom-dashed': application.national_id,
+                          'border-bottom-red': !application.national_id
+                        }" [(ngModel)]="application.national_id" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -173,15 +191,7 @@
                                                 </p>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th>{{ "national_id" | trans }} *</th>
-                                            <td>
-                                                <input type="text" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{
-                            'border-bottom-dashed': application.national_id,
-                            'border-bottom-red': !application.national_id
-                          }" [(ngModel)]="application.national_id" />
-                                            </td>
-                                        </tr>
+
                                         <tr>
                                             <th>{{ "gender" | trans }}</th>
                                             <td>
@@ -667,6 +677,12 @@
                                             <th>{{ "birth_address" | trans }}</th>
                                             <td>
                                                 <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.birth_address" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th> محل الميلاد بالانجليزى</th>
+                                            <td>
+                                                <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.birth_address_en" />
                                             </td>
                                         </tr>
                                         <tr>

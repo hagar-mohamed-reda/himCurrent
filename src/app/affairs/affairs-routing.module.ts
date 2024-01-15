@@ -28,6 +28,8 @@ import { RegistrationreportComponent } from "../adminision/components/registrati
 import { PatientreportComponent } from "./report/patientreport/patientreport.component";
 import { CreditHoursComponent } from "./report/credit-hours/credit-hours.component";
 import { ServiceComponent } from "./report/service/service.component";
+import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
+
 
 const routes: Routes = [
   {
@@ -61,6 +63,10 @@ const routes: Routes = [
       {
         path: "application_required",
         component: ApplicationRequiredComponent,
+      },
+      {
+        path: "studlatexam",
+        component:StudlatexamComponent,
       },
       {
         path: "report/report1",
@@ -139,7 +145,7 @@ const routes: Routes = [
         path: "report/service",
         component: ServiceComponent,
       },
-      
+
     ],
   },
 

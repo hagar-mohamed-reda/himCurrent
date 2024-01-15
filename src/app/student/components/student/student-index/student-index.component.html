@@ -76,12 +76,15 @@
                         <a href="#" permission="student_show" [routerLink]="['/student/show/', item.id]" style="margin: 5px"><i
                                 class="material-shadow fa fa-desktop btn btn-success btn-sm"></i></a>
 
-                        <button permission="safe_student_payment" (click)="showStudentPayments(item)" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm"> {{ "student payments" | trans }}
+                        <button permission="safe_student_payment" (click)="showStudentPayments(item)" style="margin: 5px;font-size: 11px;padding: 8px;" class="material-shadow fa fa-money btn w3-indigo btn-sm"> {{ "student payments" | trans }}
+                        </button>
+                        <button permission="safe_student_payment" class="btn btn-success btn-sm">
+                          <b style=" font-size: 11px;">{{ item.academic_year_expense_total_current_year }}</b><b style=" font-size: 11px;">جنيه</b>
+                      </button>
+                        <button permission="safe_student_payment" class="btn btn-info btn-sm" style="margin-right: 5px">
+                            <b style=" font-size: 11px;">{{ item.paid_value }}</b><b style=" font-size: 11px;">جنيه</b>
                         </button>
 
-                        <button permission="safe_student_payment" class="btn btn-info btn-sm">
-                            <b>{{ item.paid_value }}</b><b>جنيه</b>
-                        </button>
                         <br>
                         <button (click)="openModel(item)" style="width: 100%;background-color: red !important; font-weight: 900 !important;margin: 5px" *ngIf="item.case_constraint_id!=null &&(item.level_id==1||item.level_id==2)" class="material-shadow fa fa-money btn w3-indigo btn-sm"> تسجيل الفصل الصيفى
                         </button>
@@ -95,7 +98,7 @@
                 </div>
                 <div class="media-body">
                     <h5 class="media-heading">{{ item.name }}..</h5>
-                    <table class="w3-tiny">
+                    <table class="w3-tiny" style="width: 80%;">
                         <tr>
                             <th>{{ "code" | trans }}</th>
                             <td>{{ item.code }}</td>

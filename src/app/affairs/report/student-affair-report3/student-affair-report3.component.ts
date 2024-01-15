@@ -65,26 +65,37 @@ export class StudentAffairReport3Component implements OnInit {
       var self = this;
       Request.fire(false, () => {
       });
-          
+
 
     }
     ngOnInit() {
       this.levels = Cache.get(LevelService.LEVEL_PREFIX);
-      
+
     }
   calculateCount() {
     this.$('#count').text(this.$('#reportContent tbody tr').length);
   }
+  onChange(event:any){
 
+this.case_constraint_id2=event
+  }
+  case_constraint_id2 = new HashTable();
+  government_id = new HashTable();
+  onChange2(event:any){
+      this.government_id=event
+ }
+ array:any[]=[];
+
+AddtoArray(feature:any){
+    this.array.push(feature);
+}
   load() {
-    // if (!Helper.validator(this.filter, ['level_id', 'division_id', 'academic_year_id' ,'is_application','qualification_id','is_register','created_at','isVaccinated'])) {
-    //  return Message.error(Helper.trans('please choose all filters'));
-    // }
+ debugger
+    this.filter.government_id=this.government_id.toString();;
+    this.filter.case_constraint_id=this.case_constraint_id2.toString();
+    this.globalService.loadHtml("affair/report3",  this.filter).subscribe((res) => {
+       console.log(this.case_constraint_id);
 
-    this.globalService.loadHtml("affair/report3", this.filter).subscribe((res) => {
-      // case_constraint_id: this.student.case_constraint_id,
-      console.log(this.case_constraint_id);
-      
       $('#reportContent').html(res);
       this.calculateCount();
     });

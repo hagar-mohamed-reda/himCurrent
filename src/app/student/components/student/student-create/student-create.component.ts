@@ -12,6 +12,7 @@ import { HashTable } from 'angular-hashtable';
 import { Auth } from 'src/app/shared/auth';
 import { exit } from 'process';
 import { GlobalService } from 'src/app/shared/services/global.service';
+import { ApplicationHelper } from 'src/app/adminision/components/application/application-helper';
 
 @Component({
   selector: 'app-student-create',
@@ -91,7 +92,55 @@ export class StudentCreateComponent implements OnInit {
       this.application = res;
     });
   }
+  validateOnNationalId() {
+    var message = Helper.trans("national id is not valid");
+    var self = this;
 
+    // get birth date from national id
+    this.application.birthdate = ApplicationHelper.getBirthdate(this.application.national_id);
+    this.calculateAge();
+
+    // get gender from national id
+    this.application.gender = ApplicationHelper.getGenderFromNationalId(this.application.national_id);
+
+    /*if (!ApplicationHelper.validateOnNationalId(this.application.national_id, this.application.birthdate)) {
+
+      this.setCurrentError(message);
+      Message.confirm(message, function(){
+        self.$('.national_id')[0].focus();
+      }, () => {
+        self.$('.national_id')[0].focus();
+      });
+
+    } else {
+      this.setCurrentError("");
+    }*/
+
+    // set gender
+  }
+  calculateAge() {
+    if (!this.application.birthdate)
+      return 0;
+
+    var years = 0;
+    try {
+      var calcDate = new Date();
+      calcDate.setMonth(9);
+      calcDate.setDate(1);
+
+      var birthdate = this.application.birthdate;
+      var bDate = new Date(birthdate);
+
+      var diffTime = calcDate.getTime() - bDate.getTime();
+      console.log("diffTime : ", diffTime);
+
+      years = parseInt((diffTime / (24 * 60 * 60 * 1000 * 365)) + "");
+      this.application.years = years;
+    } catch (error) {
+      console.log(error);
+    }
+    return years;
+  }
   validate() {
     let valid = true;
 

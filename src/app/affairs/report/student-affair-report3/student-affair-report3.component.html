@@ -57,16 +57,31 @@
                         <div class="col-lg-3 col-md-3">
                             <div class="form-group">
                                 <label for="">{{ " نوع القيد : "   }}</label>
-                                <select multiple class="form-control" name="filter.case_constraint_id" [(ngModel)]="filter.case_constraint_id" style="height: 110px !important;">
+                                <select multiple class="form-control" name="case_constraint_id" (ngModelChange)="onChange($event)" [(ngModel)]="case_constraint_id" style="">
                                   <option value="">{{ "all" | trans }}</option>
 
                                     <option
                                       *ngFor="let item of studentSettings.CASE_CONSTRAINTS"
-                                      value="{{ item.id }}"
+                                      [ngValue]="item.id"
                                     >
                                       {{ item.name }}
                                     </option>
                                   </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group">
+                                <label for=""> المحافظة</label>
+                                <select multiple class="form-control" name="government_id" (ngModelChange)="onChange2($event)" [(ngModel)]="government_id" style="">
+                                <option value="">{{ "all" | trans }}</option>
+
+                                  <option
+                                    *ngFor="let item of applicationService.GOVERNMENTS"
+                                    [ngValue]="item.id"
+                                  >
+                                    {{ item.name }}
+                                  </option>
+                                </select>
                             </div>
                         </div>
                         <!-- <div class="col-lg-12" style="margin-bottom: 20px!important;">
@@ -100,9 +115,9 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3">
-                          <div class="form-group">
-                              <label>نوع التقديم</label>
-                              <select class="custom-input form-control input-sm w3-input input-sm" [(ngModel)]="filter.registration_status_id">
+                            <div class="form-group">
+                                <label>نوع التقديم</label>
+                                <select class="custom-input form-control input-sm w3-input input-sm" [(ngModel)]="filter.registration_status_id">
                                 <option value="" selected>الكل</option>
                                 <option
                                 *ngFor="
@@ -113,9 +128,20 @@
                                 {{ item.name }}
                               </option>
                             </select>
-                          </div>
-                      </div>
-
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label>لقاح كورونا</label>
+                                    <select class="form-control" [(ngModel)]="filter.isVaccinated">
+                                          <option value="">{{ "all" | trans }}</option>
+                                      <option value="1">حاصل علي لقاح كورونا</option>
+                                      <option value="0">غير حاصل علي لقاح كورونا</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <!-- <div class="col-lg-3 col-md-3">
@@ -128,16 +154,7 @@
                           </select>
                                 </div>
                             </div> -->
-                        <div class="col-lg-3 col-md-3">
-                            <div class="form-group">
-                                <label>لقاح كورونا</label>
-                                <select class="form-control" [(ngModel)]="filter.isVaccinated">
-                            <option value="">{{ "all" | trans }}</option>
-                      <option value="1">حاصل علي لقاح كورونا</option>
-                      <option value="0">غير حاصل علي لقاح كورونا</option>
-                    </select>
-                            </div>
-                        </div>
+
 
                         <div class="col-lg-3 col-md-3">
                             <div class="form-group">

@@ -174,7 +174,7 @@
 
                                 <!-- [disabled]="isExportSubmitted || !selectedCard.id" -->
 
-                                <button [disabled]="student.case_constraint.id != 2 && student.case_constraint.id != 3 " (click)="saveAndPrint()" class="btn btn-default w3-block small-shadow btn-margin-bottom">
+                                <button [disabled]="student.case_constraint.id != 2 && student.case_constraint.id != 3 && student.case_constraint.id != 17&& student.case_constraint.id !=18" (click)="saveAndPrint()" class="btn btn-default w3-block small-shadow btn-margin-bottom">
             <span *ngIf="isExportSubmitted" class="fa fa-spin fa-spinner" ></span>
             <span *ngIf="!isExportSubmitted"  >{{ "save & print" | trans }}</span>
 

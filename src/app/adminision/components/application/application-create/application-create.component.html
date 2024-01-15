@@ -98,6 +98,16 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th>اسم الطالب بالانجليزى *</th>
+                                            <td>
+                                                <input class="custom-input form-control input-sm w3-input input-sm" placeholder="أدخل الأسم بالانجليزى  " [ngClass]="{
+                          'border-bottom-dashed': application.name_en,
+                          'border-bottom-red': !application.name_en
+                        }" [(ngModel)]="application.name_en
+                        " />
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>{{ "national_id" | trans }} *</th>
                                             <td>
                                                 <input placeholder="أدخل الرقم القومى (إجبارى)" type="text" (blur)="validateOnNationalId()" class="national_id custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [ngClass]="{
@@ -726,6 +736,13 @@
                                             <th>{{ "birth_address" | trans }}</th>
                                             <td>
                                                 <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.birth_address" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th> محل الميلاد بالانجليزى</th>
+                                            <td>
+                                                <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.birth_address_en" />
                                             </td>
                                         </tr>
                                         <!--

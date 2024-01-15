@@ -38,7 +38,7 @@ currentPage=1;
        private termService:TermService,
 
       private globalService: GlobalService,private systemSettingService: SystemSettingService,
-      private applicationSettingService: ApplicationSettingService) {
+      private applicationSettingService: ApplicationSettingService,private studentAcountService: StudentAccountService,) {
       // this.titleService.setTitle("HIM"+ " - " + Helper.trans('print result'))
       //     this.applicationSettingService.queueRequests();
       //   var self = this;
@@ -51,10 +51,10 @@ currentPage=1;
   isSubmitted1=true
   isSubmitted2=true
   getData(page=1){
-   this.bookData=[]
-    this.isSubmitted1=false;
-this.filter.page=page
-    this.globalService.get('account/book_payments',this.filter).subscribe( (res: any) => {
+       this.bookData=[]
+        this.isSubmitted1=false;
+      this.filter.page=page
+      this.globalService.get('account/book_payments',this.filter).subscribe( (res: any) => {
 
       this.bookData =res
       this.prePagniation();
@@ -93,6 +93,7 @@ this.filter.page=page
 
     });
   }
+  printt:any
   update(bookData){
      debugger
         this.isSubmitted2=false;
@@ -156,6 +157,14 @@ this.filter.page=page
 
     receive=0
     additional_books=0;
+    print() {
+      Helper.print();
+    }
+
+    exportExcel() {
+      const filename = "   الكتب-"+new Date().toLocaleTimeString();
+      this.doc.exportExcel(filename);
+    }
     checkValue(event: any,item){
        debugger
 
@@ -181,4 +190,94 @@ this.filter.page=page
 
 
        }
+        paymony=0;
+         public safeObject: any = {};
+          public searchKey: string;
+         totalPayments : number = 0;
+         public studentSearchId;
+         public availableServices: any;
+
+         public studentSearchDialogShow = false;
+         public studentSearchDialogLoader = false;
+         public showStudentInstallment = false;
+         public isWait = false;
+         public timeoutId;
+         public students: any = [];
+         public isStudentSayed = false;
+         public updateStudent: any;
+
+         public selectedServices = new HashTable<any, any>();
+        searchInputEvent() {
+        if (!this.searchKey)
+          return;
+
+        this.students = [];
+        this.studentSearchDialogLoader = true;
+        this.isWait = true;
+        clearTimeout(this.timeoutId);
+
+        this.timeoutId = setTimeout(() => {
+           this.searchAboutStudent();
+        }, 500);
+      }
+
+      searchAboutStudent() {
+        this.studentAcountService.search(this.searchKey).subscribe((r) => {
+            this.studentSearchDialogLoader = false;
+            this.students = r;
+            if (this.students.length > 0) {
+              this.studentSearchDialogShow = true;
+            }
+        });
+      }
+      StudIDD
+  selectStudent(student) {
+    this.studentSearchDialogShow = false;
+    this.searchKey = student.name;
+    this.studentSearchId = student.id;
+    this.StudIDD=student.id;
+    //
+    this.loadStudentAccountInfo(student.id);
+    // this.ShowStudentrecords(student.id);
+      // this.showPaied()
+
+  }
+
+  loadStudentAccountInfo(id) {
+    if (!id)
+      return Message.error('search about student first');
+    this.studentAcountService.getStudentAccount(id).subscribe((r: any) => {
+
+    this.filter.student_name=r.name;
+
+
+
+
+      if (this.safeObject.id != r.id)
+        this.isStudentSayed = false;
+
+      this.safeObject = r;
+      // this.buildSafeMsg();
+      this.studentSearchId = this.safeObject.id;
+
+      if (!this.safeObject.old_balance)
+        this.safeObject.old_balance = 0;
+
+      if (!this.safeObject.current_balance)
+        this.safeObject.current_balance = 0;
+
+      if (!this.safeObject.paid_value)
+        this.safeObject.paid_value = 0;
+
+      if (!this.safeObject.image)
+        this.safeObject.image = '/assets/img/avatar.png';
+      // this.loadAvailableServices();
+
+      // this.alertForOldBalance();
+      // this.safeAlerter = new SafeAlerter(this.safeObject);
+      // this.safeAlerter.notify();
+    });
+  }
+
+  u
 }
