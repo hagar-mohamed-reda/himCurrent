@@ -428,12 +428,15 @@ export class StudentRegisterCourseComponent implements OnInit {
     let url2 = environment.publicUrl + "/academic/register-course-user-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
     Helper.openWindow(url1);
     Helper.openWindow(url2);
-    if((this.student.gpa < 2)){
+    if((this.student.gpa <= 2.3)){
       let url3 = environment.publicUrl + "/academic/register-course-prevent-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
       Helper.openWindow(url3);
     }
   }
-
+  efada() {
+    let url1 = environment.publicUrl + "/academic/student-statement/" + this.student.id + "?api_token=" + Auth.getApiToken();
+     Helper.openWindow(url1);
+  }
   sortTable() {
     let sorts = this.$('.sort-select').val();
     console.log(sorts);

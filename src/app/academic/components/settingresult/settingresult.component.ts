@@ -23,6 +23,10 @@ export class SettingresultComponent implements OnInit {
     namegrad: new FormControl('', Validators.required),
     namevice: new FormControl('', Validators.required),
     namemanger: new FormControl('', Validators.required),
+    graduates_affair_en: new FormControl('', Validators.required),
+    students_affair_en: new FormControl('', Validators.required),
+    institute_dean_en: new FormControl('', Validators.required),
+
     year_id: new FormControl('', Validators.required),
 
 
@@ -41,6 +45,9 @@ this.formdata={
   "graduates_affair":this.form.value.namegrad,
   "institute_dean":this.form.value.namevice,
   "students_affair":this.form.value.namemanger,
+  "graduates_affair_en":this.form.value.graduates_affair_en,
+  "institute_dean_en":this.form.value.institute_dean_en,
+  "students_affair_en":this.form.value.students_affair_en,
 
 }
      this.globalService.store("academic/graduation/settings/store",this.formdata).subscribe((res) => {

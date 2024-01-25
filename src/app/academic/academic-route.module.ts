@@ -49,6 +49,7 @@ import { SettingresultComponent } from './components/settingresult/settingresult
 import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
 import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
 import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
+import { EfadaComponent } from './components/efada/efada.component';
 
 const routes: Routes = [
   // {
@@ -138,6 +139,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control") },
         component: Allgrdlevel2Component,
+      },
+      {
+        path: "efada",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: EfadaComponent,
       },
       {
         path: "report-status-students",

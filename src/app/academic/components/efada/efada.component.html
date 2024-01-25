@@ -1,0 +1,112 @@
+<div class="w3-block w3-row">
+    <div class="w3-white material-shadow safe-box w3-block">
+        <div class="safe-box-header w3-large" style="padding: 5px!important">
+            الافادات
+        </div>
+        <div class="border-bottom-dashed"></div>
+        <br>
+
+        <div class="">
+
+            <div class="">
+                <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+
+                    <div class="custom-panel-body table-responsive w3-padding">
+                        <div class="custom-panel-body table-responsive w3-padding">
+
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label>{{ "level" | trans }}</label>
+                                    <select class="form-control" [(ngModel)]="filter.level_id">
+                                      <option value="">{{ "all" | trans }}</option>
+                                  <option *ngFor="let item of levels"  value="{{ item.id }}">{{ item.name }}</option>
+                                </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label>{{ "division" | trans }}</label>
+                                    <select class="form-control" [(ngModel)]="filter.division_id">
+                                      <option value="">{{ "all" | trans }}</option>
+                                  <option *ngFor="let item of applicationService.DIVISIONS" value="{{ item.id }}">{{ item.name }}</option>
+                                  <option value="1">غير محدد</option>
+                                </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label>{{ "academic_year" | trans }}</label>
+                                    <select class="form-control" [(ngModel)]="filter.academic_year_id">
+                                      <option value="">{{ "all" | trans }}</option>
+                                <option *ngFor="let item of applicationService.ACADEMIC_YEARS"  value="{{ item.id }}">{{ item.name }}</option>
+                              </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-3">
+                                <div class="form-group">
+                                    <label for="">{{ " نوع القيد : "   }}</label>
+                                    <select multiple class="form-control" name="case_constraint_id" (ngModelChange)="onChange($event)" [(ngModel)]="case_constraint_id" style="">
+                                  <option value="">{{ "all" | trans }}</option>
+
+                                    <option
+                                      *ngFor="let item of studentSettings.CASE_CONSTRAINTS"
+                                      [ngValue]="item.id"
+                                    >
+                                      {{ item.name }}
+                                    </option>
+                                  </select>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div id="form" class="row">
+
+                            <!-- course categories panel -->
+                            <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                                <div class="custom-panel-body table-responsive w3-padding">
+
+
+
+                                    <button (click)="load()" mat-raised-button color="primary" class="w3-margin-left w3-red"> <i class="fa fa-send-o" ></i> افادة بسحب الملف</button>
+                                    <button (click)="efada()" mat-raised-button color="primary" class="w3-margin-left w3-red"> <i class="fa fa-send-o" ></i> افادة بعدم القيد  </button>
+
+                                </div>
+                                <div class="custom-panel-body table-responsive w3-padding">
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="custom-panel w3-display-container w3-round application-panel student-info-panel" id="printable">
+
+                    <div dir="rtl" class="custom-panel-body table-responsive w3-padding" id="reportContent">
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</div>

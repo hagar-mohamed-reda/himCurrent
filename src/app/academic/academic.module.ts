@@ -60,10 +60,11 @@ import { SettingresultComponent } from './components/settingresult/settingresult
 import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
 import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
 import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
+import { EfadaComponent } from './components/efada/efada.component';
 
 @NgModule({
   declarations: [
-    MinistryCumulativeReportComponent,
+    MinistryCumulativeReportComponent,EfadaComponent,
     ReportStatusStudentsComponent,
     ReportStatusCourseStudComponent,
     Allgrdlevel2Component,GraduationGovComponent,
