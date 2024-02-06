@@ -46,21 +46,30 @@ getPagsNumbers(){
   if(this.filter.level_id != null && this.filter.division_id != null && this.filter.term_id != null && this.filter.year_id != null ){
     this.globalService.getPagesNumbers(this.filter).subscribe((data)=>{
       this.Pages = [];
-      for (var i = 1; i <= data; i++) {
+      for (var i = 1; i <= Number(data); i++) {
         this.Pages.push(i);
     }
     })
   }
 }
+isLoading = false;
 
 load() {
   if (!Helper.validator(this.filter, ['level_id' , 'division_id' , 'term_id' , 'year_id' ])) {
     return Message.error(Helper.trans('please choose all filters'));
   }
+  this.isLoading = true;
 
   this.globalService.loadHtml("affair/get-result-advertsment-show", this.filter).subscribe((res) => {
     $('#reportContent').html(res);
-  });
+    this.isLoading = false;
+
+  },(error) => {
+    this.isLoading = false;
+
+  }
+
+  );
 }
 
 excel() {

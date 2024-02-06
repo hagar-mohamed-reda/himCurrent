@@ -59,16 +59,32 @@
                       </div>
           </div> -->
                 <div class="row">
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label>{{ "level" | trans }}</label>
+                            <select (change)="getPagsNumbers()" class="form-control" [(ngModel)]="filter.level_id">
+                       <option *ngFor="let item of levels"  value="{{ item.id }}">{{ item.name }}</option>
+                    </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2">
                         <div class="form-group">
                             <label for="">الشعبة</label>
-                            <select class="form-control" (change)="change($event)" [(ngModel)]="filter.division_id">
-                <option value="">الشعبة</option>
-          <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
+                            <select (change)="getPagsNumbers()" class="form-control" (change)="change($event)" [(ngModel)]="filter.division_id">
+           <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
         </select>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="form-group">
+                            <label for="">رقم الصفحة</label>
+                            <select class="form-control" [(ngModel)]="filter.pageNumber">
+                          <option value="">الكل</option>
+                          <option *ngFor="let item of Pages" value="{{item}}">{{item}}</option>
+                      </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-3">
                         <div class="form-group">
                             <label for="">{{ "academic year" | trans }}</label>
                             <select class="form-control" [(ngModel)]="filter.year_id">
@@ -76,7 +92,7 @@
         <option *ngFor="let item of applicationService.ACADEMIC_YEARS" value="{{ item.id }}">{{item.name}}</option>
       </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-lg-3 col-md-3">
                         <button mat-raised-button color="primary" *ngIf="isSubmitted1!=false" (click)=" gpaclac()" style="margin: 21px;">
 
@@ -166,4 +182,3 @@
         </div>
     </div>
 </div>
-

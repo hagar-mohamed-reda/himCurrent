@@ -71,13 +71,26 @@ export class GpacalcComponent implements OnInit{
     this.loadSettings();
 
   }
+  Pages:any = [];
+  getPagsNumbers(){
+    this.Pages = [];
+    if(this.filter.level_id != null && this.filter.division_id != null   ){
+      this.globalService.cgpagetPagesNumbers(this.filter).subscribe((data)=>{
+        this.Pages = [];
+        for (var i = 1; i <= Number(data); i++) {
+          this.Pages.push(i);
+      }
+      })
+    }
+  }
   isSubmitted1=true
   gpaclac(){
 
   this.isSubmitted1=false;
     let formdata={
-      "year_id":this.filter.year_id,
-      "division_id": this.filter.division_id
+      "level_id":this.filter.level_id,
+      "division_id": this.filter.division_id,
+      "pageNumber":this.filter.pageNumber
      }
     this.globalService.get('academic/results/cgpa/calc',formdata).subscribe( (res: any) => {
       if(res["status"]==1){
