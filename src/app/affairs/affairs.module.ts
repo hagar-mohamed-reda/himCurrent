@@ -24,11 +24,12 @@ import { PatientreportComponent } from './report/patientreport/patientreport.com
 import { CreditHoursComponent } from './report/credit-hours/credit-hours.component';
 import { ServiceComponent } from './report/service/service.component';
 import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
+import { ReportstatustagnedComponent } from "./report/reportstatustagned/reportstatustagned.component";
 
 @NgModule({
   declarations: [
     AffairsComponent,
-    StudentAffairReport1Component,
+    StudentAffairReport1Component,ReportstatustagnedComponent,
     StudentAffairReport2Component,
     StudentAffairReport3Component,
     StudentAffairReport4Component,

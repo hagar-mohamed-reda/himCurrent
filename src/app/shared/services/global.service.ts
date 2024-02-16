@@ -63,7 +63,7 @@ export class GlobalService {
   }
 
   public cgpagetPagesNumbers(data: any) {
-    return this.http.get('academic/results/cgpa/pagination?api_token=' + Auth.getApiToken(), data);
+    return this.http.get('academic/results/cgpa/pagination?api_token=' + Auth.getApiToken()+ "&" + this.$.param(data));
   }
   /**
    * update service

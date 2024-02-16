@@ -30,6 +30,9 @@ import { CreditHoursComponent } from "./report/credit-hours/credit-hours.compone
 import { ServiceComponent } from "./report/service/service.component";
 import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
 
+import { ReportstatustagnedComponent } from "./report/reportstatustagned/reportstatustagned.component";
+import { AuthGuestService } from "../shared/middlewares/auth-guest.service";
+import { Auth } from "../shared/auth";
 
 const routes: Routes = [
   {
@@ -107,6 +110,12 @@ const routes: Routes = [
       {
         path: "report/report11",
         component: StudentAffairReport11Component,
+      },
+      {
+        path: "report/reportStatus",
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('student_affair_report35')},
+        component: ReportstatustagnedComponent,
       },
       {
         path: "report/report21",
