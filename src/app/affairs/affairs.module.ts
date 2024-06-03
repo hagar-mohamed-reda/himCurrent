@@ -25,11 +25,12 @@ import { CreditHoursComponent } from './report/credit-hours/credit-hours.compone
 import { ServiceComponent } from './report/service/service.component';
 import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
 import { ReportstatustagnedComponent } from "./report/reportstatustagned/reportstatustagned.component";
+import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.component";
 
 @NgModule({
   declarations: [
     AffairsComponent,
-    StudentAffairReport1Component,ReportstatustagnedComponent,
+    StudentAffairReport1Component,ReportstatustagnedComponent,GradeStatmentComponent,
     StudentAffairReport2Component,
     StudentAffairReport3Component,
     StudentAffairReport4Component,

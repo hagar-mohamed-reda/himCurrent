@@ -189,6 +189,10 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                       
+
+
                         <div class="w3-block text-center" *ngIf="!response.data">
                             <b>{{ "please select course" | trans }}</b>
                         </div>
@@ -227,6 +231,9 @@
           </button>
 
                         <button mat-raised-button color="primary" class="w3-margin-left w3-black" (click)="print()"> <i class="fa fa-print" ></i> {{ "print" | trans }}</button>
+                        <button mat-raised-button color="primary" class="w3-margin-left w3-black" (click)=" midtermprint()"> <i class="fa fa-print" ></i> طباعة ميد ترم</button>
+                        <button mat-raised-button color="primary" class="w3-margin-left w3-black" (click)="practicalprint()"> <i class="fa fa-print" ></i> طباعة اعمال سنة</button>
+                        <button mat-raised-button color="primary" class="w3-margin-left w3-black" (click)="finalprint()"> <i class="fa fa-print" ></i> طباعة فاينال</button>
 
                         <button mat-raised-button color="primary" class="w3-margin-left w3-green" (click)="exportExcel()"> <i class="fa fa-file-excel-o" ></i> {{ "excel" | trans }}</button>
                         <button permission="result_transfer" mat-raised-button color="primary" class="w3-margin-left w3-red" routerLink="/academic/result-transfer"> <i class="fa fa-send-o" ></i> {{ "result_transfer" | trans }}</button>

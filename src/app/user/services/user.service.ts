@@ -24,7 +24,9 @@ export class UserService {
   public store(data: any) {
     return this.http.post('users/store' + '?api_token=' + Auth.getApiToken(), data);
   }
-
+  public resultaccess(data: any) {
+    return this.http.post('users/result/access' + '?api_token=' + Auth.getApiToken(), data);
+  }
   /**
    * update service
    */

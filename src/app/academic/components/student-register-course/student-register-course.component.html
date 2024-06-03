@@ -79,7 +79,7 @@
                                                 <b>{{ "national id" | trans }}</b> : {{ student.national_id }}
                                             </td>
                                             <td>
-                                                <b>{{ "gpa" | trans }}</b> : {{ student.gpa }}
+                                                <b>المعدل التراكمى للمستوى الاول والثانى</b> : {{ student?.gpa_level1_level2 }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -94,6 +94,9 @@
                                             </td>
                                             <td>
                                                 <b>{{ "constraint status" | trans }}</b> : {{ student.registeration_status? student.registeration_status.name : '' }}
+                                            </td>
+                                            <td>
+                                                <b>المعدل التراكمى للمستوى الثالث والرابع</b> : {{ student?.gpa_level3_level4  }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -119,8 +122,19 @@
                                                 <td>
                                                     <b>{{ " الساعات التى اجتازها "  }}</b> : {{ student.register_hours }}
                                                 </td>
+                                                <td>
+                                                    <b>{{ "سن الطالب "  }}</b> : {{  student.student_age  }}
+                                                </td>
+                                                <td>
+                                                    <b>{{ "الجهه"  }}</b> : {{ student.governmental_entity }}
+                                                </td>
                                             </tr>
                                     </table>
+                                    <div *ngIf="student.case_constraint_excuse!=null&&student.case_constraint_excuse.length>0" style="font-weight: 600; color: rgb(159, 25, 25);"> 
+                                        تنبيه : هذا الطالب لديه عذر
+                                        &nbsp;&nbsp;
+                                    <button mat-raised-button color="primary"  (click)="openmodel10(student.case_constraint_excuse)">عرض  </button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -576,6 +590,58 @@
   height: 45px;  line-height: 15px;" (click)="increaseTimes()">
 تخطى
 </button>
+                <!-- Confirm -->
+
+            </div>
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display10}" style="background-color: rgba(90,90,90,0.5);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 150px;">
+            <div class="modal-header" style="background-color:#b10d0d;">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseModal10()">
+    <span aria-hidden="true" style="color: #fff">&times;</span>
+  </button>
+
+                <p class="modal-title" style="color: #fff">
+                    <span style="vertical-align: middle; padding-left:8px">
+الاسباب                </span>
+                </p>
+
+            </div>
+
+            <div class="modal-body">
+
+ <table calss="table" >
+    <tr>
+        <th>الكود</th>
+        <th>التاريخ</th>
+        <th>السبب</th>
+
+        </tr>
+        <tr *ngFor="let item of resonsss">
+<td>{{item.acceptance_code}}</td>
+<td>{{item.acceptance_date}}</td>
+<td>{{item.reason}}</td>
+
+        </tr>
+ </table>
+            </div>
+
+
+
+
+            <div class="modal-footer">
+                <button class="btn btn-white bbtclose" (click)="onCloseModal10()">
+    <!-- Annulla -->
+    الغاء
+  </button>
+                
                 <!-- Confirm -->
 
             </div>

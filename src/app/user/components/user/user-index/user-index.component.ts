@@ -65,7 +65,7 @@ export class UserIndexComponent implements OnInit {
 
   initDisplayColumns() {
     this.displayedColumns = [
-      'image', 'name', 'email', 'password', 'username', 'phone', 'role', "action"
+      'image', 'name', 'email', 'password', 'username', 'phone', 'role','allow', "action"
     ];
   }
 
@@ -116,4 +116,27 @@ export class UserIndexComponent implements OnInit {
     if (this.dataSource)
       this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  dataa:any={}
+  selectchanges(event:any,staff){
+    debugger
+     this.dataa.user_id=staff.id
+    if(event.target.checked){
+      console.log("checked")
+      this.dataa.result_access=1
+    }
+    else{
+      console.log("Unchecked")
+      this.dataa.result_access=0
+
+    }
+    this.submitt(this.dataa)
+  }
+  submitt(data) {
+    this.userService.resultaccess(data).subscribe( (res: any) => {
+       this.loadResources() 
+       Message.success("done");
+
+    });
+  }
+
 }

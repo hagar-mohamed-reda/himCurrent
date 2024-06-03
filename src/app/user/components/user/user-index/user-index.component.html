@@ -68,7 +68,10 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "role" | trans }}</th>
         <td mat-cell *matCellDef="let element"> {{ element.role? element.role.name : ''  }} </td>
       </ng-container>
-
+      <ng-container matColumnDef="allow">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> رفع النتيجة</th>
+        <td mat-cell *matCellDef="let element"> <input    type="checkbox" [checked]="element.result_access==1" (change)="selectchanges($event,element)"></td>
+      </ng-container>
       <!-- Position Column -->
       <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>

@@ -50,6 +50,9 @@ import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
 import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
 import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
 import { EfadaComponent } from './components/efada/efada.component';
+import { StudReasonComponent } from './components/stud-reason/stud-reason.component';
+import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
+import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
 
 const routes: Routes = [
   // {
@@ -141,11 +144,25 @@ const routes: Routes = [
         component: Allgrdlevel2Component,
       },
       {
+        path: "regisdiff",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: RegisdiffComponent,
+      },
+      {
         path: "efada",
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control") },
         component: EfadaComponent,
+      }, {
+        path: "stud-reason",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: StudReasonComponent,
       },
+
+      
+
       {
         path: "report-status-students",
         canActivate: [AuthGuestService],
@@ -187,6 +204,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control_report") },
         component: ControlReportComponent,
+      },
+      {
+        path: "grade-enhance",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control_report") },
+        component: GradeEnahnceComponent,
       },
       {
         path: "control-and-results",

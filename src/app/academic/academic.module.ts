@@ -61,11 +61,14 @@ import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
 import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
 import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
 import { EfadaComponent } from './components/efada/efada.component';
+import { StudReasonComponent } from './components/stud-reason/stud-reason.component';
+import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
+import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
 
 @NgModule({
   declarations: [
-    MinistryCumulativeReportComponent,EfadaComponent,
-    ReportStatusStudentsComponent,
+    MinistryCumulativeReportComponent,EfadaComponent,StudReasonComponent,
+    ReportStatusStudentsComponent,RegisdiffComponent,
     ReportStatusCourseStudComponent,
     Allgrdlevel2Component,GraduationGovComponent,
     GraduationReportComponent,SettingresultComponent,
@@ -115,7 +118,7 @@ import { EfadaComponent } from './components/efada/efada.component';
     AcademicNewComponent,
     FaildStudentComponent,
     AvailableCoursesReportComponent,
-    AcademicReportDailyComponent,
+    AcademicReportDailyComponent,GradeEnahnceComponent,
     DetailsAcademicRegisterComponent
   ],
   imports: [

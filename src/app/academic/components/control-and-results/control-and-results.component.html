@@ -17,7 +17,7 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/student-result']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a *ngIf="user.result_access==1" [routerLink]="['/academic/student-result']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>{{ "control" | trans }}</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
@@ -63,6 +63,18 @@
                     </a>
                     <a [routerLink]="['/academic/gpacalc']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>     حساب المعدل الفصلى والتراكمى</b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                    <a [routerLink]="['/academic/regisdiff']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b> التسجيل فى المستويات المختلفة </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                    <a [routerLink]="['/academic/grade-enhance']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>  تقرير الطلاب بالتقدير    </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>

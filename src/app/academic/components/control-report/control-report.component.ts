@@ -13,6 +13,7 @@ import { Auth } from 'src/app/shared/auth';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { Title } from '@angular/platform-browser';
 import { TermService } from 'src/app/account/services/term.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-control-report',
@@ -204,5 +205,29 @@ export class ControlReportComponent implements OnInit {
       this.student = res;
       this.loadData();
     });
+  }
+  finalprint() {
+    this.searchData.courses = this.selectedCourses.getKeys();
+    this.searchData.levels = this.selectedLevels.getKeys();
+    this.searchData.divisions = this.selectedDivisions.getKeys();
+    this.searchData.page = this.currentPage;
+    let url1 = environment.publicUrl + "/academic/report/get-result/final-print/"+ "?api_token=" + Auth.getApiToken()+"&"+this.$.param(this.searchData);
+     Helper.openWindow(url1);
+  }
+  midtermprint() {
+    this.searchData.courses = this.selectedCourses.getKeys();
+    this.searchData.levels = this.selectedLevels.getKeys();
+    this.searchData.divisions = this.selectedDivisions.getKeys();
+    this.searchData.page = this.currentPage;
+    let url1 = environment.publicUrl + "/academic/report/get-result/midterm-print/"  + "?api_token=" + Auth.getApiToken()+"&"+this.$.param(this.searchData);
+     Helper.openWindow(url1);
+  }
+  practicalprint() {
+    this.searchData.courses = this.selectedCourses.getKeys();
+    this.searchData.levels = this.selectedLevels.getKeys();
+    this.searchData.divisions = this.selectedDivisions.getKeys();
+    this.searchData.page = this.currentPage;
+    let url1 = environment.publicUrl + "/academic/report/get-result/practical-print/" + "?api_token=" + Auth.getApiToken()+"&"+this.$.param(this.searchData);
+     Helper.openWindow(url1);
   }
 }

@@ -118,7 +118,24 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.maxSetNumber = res;
     })
   }
+  
+  register_levels_warning() {
+    if (this.student.register_levels_warning ==true) {
+      let message = 'تنيه الطالب استمر اكثر من سنه فى مستوى واحد       '  
+      this.doc.Swal.fire({title: message});
+    }
+  }
 
+  calculateAge(dateString: any): number {
+    const today = new Date();
+   let birthdate = new Date(dateString);
+    let age = today.getFullYear() - birthdate.getFullYear();
+    const m = today.getMonth() - birthdate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+      age--;
+    }
+    return age;
+  }
   /**
    * convert arr to hashtable
    *
@@ -180,6 +197,7 @@ export class StudentRegisterCourseComponent implements OnInit {
     this.getMoreHours();
     this.loadRegisterCourses();
     this.isSelected = true;
+    this.register_levels_warning();
   }
 
   calculateRequiredHours() {
@@ -245,13 +263,14 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
   addCourse(course) {
 
-    if(Object.keys(this.registerCourses.table).length > this.counter){
-      this.openModel4(course)
+    // if(Object.keys(this.registerCourses.table).length > this.counter){
+    //   // this.openModel4(course)
 
-      return Message.error("عدي الحد المسموح من المواد");
+    //   // return Message.error("عدي الحد المسموح من المواد");
 
-    } else {
-      if(this.student.gpa < 2 && course.level_id == 3 ){
+    // }
+    // else {
+      if(this.student.level_id < 3 &&this.student.gpa < 2 && course.level_id == 3 ){
         return Message.error("غير مسموح للطالب تسجيل مقررات من المستوي الثالث والمعدل التراكمي الخاص بة اقل من 2");
       } else {
         if (this.registerCourses.has(course.id)) {
@@ -291,7 +310,7 @@ export class StudentRegisterCourseComponent implements OnInit {
       // }
       }
     }
-  }
+
   pass2="556677"
   valepa2
 
@@ -625,5 +644,18 @@ export class StudentRegisterCourseComponent implements OnInit {
     // let url2 = environment.publicUrl + "/academic/register-course-user-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
     // Helper.openWindow(url1);
     // Helper.openWindow(url2);
+  }
+  display10:any="none"
+  onCloseModal10(){
+    this.display10="none"
+    this.resonsss=[]
+  }
+  resonsss:any=[]
+  openmodel10(arr){
+    this.resonsss=[]
+
+    this.resonsss=arr
+    this.display10="block"
+
   }
 }

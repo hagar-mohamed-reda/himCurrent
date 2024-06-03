@@ -33,6 +33,7 @@ import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
 import { ReportstatustagnedComponent } from "./report/reportstatustagned/reportstatustagned.component";
 import { AuthGuestService } from "../shared/middlewares/auth-guest.service";
 import { Auth } from "../shared/auth";
+import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.component";
 
 const routes: Routes = [
   {
@@ -133,6 +134,10 @@ const routes: Routes = [
       {
         path: "report/student-status",
         component: StudentAffairStudentStatusComponent,
+      },
+      {
+        path: "report/grade-statment",
+        component: GradeStatmentComponent,
       },
       {
         path: "report/registration",
