@@ -621,22 +621,38 @@
                                         <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">أ.د / أحمد ابوالقمصان <br> عميد المعهد </h6>
                                     </div>
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-4" *ngIf="response.studentInfo[0].level_name=='الاول'" >
                                         <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">رئيس لجنة النظام والمراقبة</h6>
-                                        <h6 *ngIf="filter.level_id == 1" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د مني داود</h6>
-                                        <h6 *ngIf="filter.level_id == 2" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د احمد رضوان </h6>
+                                        <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د مني داود</h6>
+                                        <!-- <h6 *ngIf="filter.level_id == 2" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د احمد رضوان </h6> -->
                                     </div>
-
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-4" *ngIf="response.studentInfo[0].level_name=='الثالث'" >
+                                        <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">رئيس لجنة النظام والمراقبة</h6>
+                                         <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د احمد رضوان </h6>
+                                    </div>
+                                    <div class="col-xs-4" *ngIf="response.studentInfo[0].level_name=='الثانى'" >
+                                        <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">رئيس لجنة النظام والمراقبة</h6>
+                                        <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د  شيرين الحجار</h6>
+                                        <!-- <h6 *ngIf="filter.level_id == 2" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د احمد رضوان </h6> -->
+                                    </div>
+                                    <div class="col-xs-4" *ngIf="response.studentInfo[0].level_name=='الاول'">
                                         <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">لجنة الكنترول</h6>
-                                        <h6 *ngIf="filter.level_id == 1" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د / منى داود</h6>
-                                        <h6 *ngIf="filter.level_id == 1" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د سماء ابراهيم</h6>
-                                        <h6 *ngIf="filter.level_id == 1" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د يوسف ابراهيم</h6>
-                                        <h6 *ngIf="filter.level_id == 2" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د شيرين الحجار</h6>
-                                        <h6 *ngIf="filter.level_id == 2" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د احمد رضوان</h6>
-                                        <h6 *ngIf="filter.level_id == 2" style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د شيماء لبيب</h6>
+                                        <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د / منى داود</h6>
+                                         <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د يوسف ابراهيم</h6>
+                                         <h6  style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د سالى  محمد</h6>
+                                        <h6  style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د سماء سليمان</h6>
                                     </div>
-
+                                    <div class="col-xs-4" *ngIf="response.studentInfo[0].level_name=='الثانى'" >
+                                        <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">لجنة الكنترول</h6>
+                                         <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د شيرين الحجار</h6>
+                                        <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د نيرمين  بيومى</h6>
+                                        <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د شيماء بركات</h6>
+                                    </div>
+                                    <div class="col-xs-4" *ngIf="response.studentInfo[0].level_name=='الثالث'" >
+                                        <h6 style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">لجنة الكنترول</h6>
+                                         <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;"> د احمد رضوان</h6>
+                                         <h6   style="text-align: center !important;font-size: 9px !important;font-weight: bolder !important;">د شيماء بركات</h6>
+                                    </div>
                                 </div>
                             </div>
                             <table class="table table-bordered mt-3" style="direction: rtl!important;margin-top: 5px !important;">

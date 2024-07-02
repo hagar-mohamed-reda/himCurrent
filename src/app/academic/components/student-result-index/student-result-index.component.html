@@ -151,7 +151,7 @@
                                     <!-- <input id="final_tahrery_degree{{item.id}}" type="number" [(ngModel)]="item.final_tahrery_degree" max="{{item.large_degree }}" class="form-control input-sm"> -->
                                     <ng-container *ngIf="excelClick2">{{item.final_tahrery_degree}}</ng-container>
                                 </td>
-                                <td id="final_degree{{item.id}}" *ngIf="item.final_tahrery_degree != -1 && item.final_tahrery_degree != -2 && item.final_tahrery_degree != -3 && item.final_tahrery_degree != -4">
+                                <td id="final_degree{{item.id}}" *ngIf="item.final_tahrery_degree != -1 && item.final_tahrery_degree != -2 && item.final_tahrery_degree != -3 && item.final_tahrery_degree != -4 && item.final_tahrery_degree != -5 && item.final_tahrery_degree != -6">
                                     {{item.final_degree}}
                                 </td>
                                 <td id="final_degree{{item.id}}" *ngIf="item.final_tahrery_degree == -1">
@@ -165,6 +165,12 @@
                                 </td>
                                 <td id="final_degree{{item.id}}" *ngIf="item.final_tahrery_degree == -4">
                                     انسحاب
+                                </td>
+                                <td id="final_degree{{item.id}}" *ngIf="item.final_tahrery_degree == -5">
+                                    راسب تحريرى
+                                </td>
+                                <td id="final_degree{{item.id}}" *ngIf="item.final_tahrery_degree == -6">
+                                     حرمان  
                                 </td>
                                 <td id="gpa{{item.id}}">{{ item.gpa }}</td>
                                 <td id="gpa_word{{item.id}}">{{ item.gpa_word }}</td>

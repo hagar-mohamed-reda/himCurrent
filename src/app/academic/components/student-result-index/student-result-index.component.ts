@@ -201,6 +201,7 @@ export class StudentResultIndexComponent implements OnInit {
       this.response.pages_arr.push(i+1);
   }
   calculate(id: any){
+    debugger
     if($(`#final_tahrery_degree${id}`).val() == -1) {
       $(`#final_degree${id}`).html('غياب');
       // $('#cal').trigger('click');
@@ -221,6 +222,20 @@ export class StudentResultIndexComponent implements OnInit {
       // }, 1000);
     } else if($(`#final_tahrery_degree${id}`).val() == -4){
       $(`#final_degree${id}`).html('انسحاب');
+      // $('#cal').trigger('click');
+      // setTimeout(() => {
+      //   $('#getResult').trigger('click');
+      // }, 1000);
+    } 
+    else if($(`#final_tahrery_degree${id}`).val() == -5){
+      $(`#final_degree${id}`).html('راسب تحريرى');
+      // $('#cal').trigger('click');
+      // setTimeout(() => {
+      //   $('#getResult').trigger('click');
+      // }, 1000);
+    }
+    else if($(`#final_tahrery_degree${id}`).val() == -6){
+      $(`#final_degree${id}`).html('حرمان');
       // $('#cal').trigger('click');
       // setTimeout(() => {
       //   $('#getResult').trigger('click');
