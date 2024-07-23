@@ -82,6 +82,7 @@
       <th class="w3-padding" >{{ "date" | trans }}</th>
       <th class="w3-padding hidden" >{{ "bank" | trans }}</th>
       <th class="w3-padding" >{{ "check_number" | trans }}</th>
+      <th class="w3-padding" > الشخص الموجه له</th>
       <th class="w3-padding" >{{ "notes" | trans }}</th>
       <th class="w3-padding" >{{ "value" | trans }}</th>
       <th class="w3-padding" >{{ "is_paid" | trans }}</th>
@@ -127,6 +128,14 @@
           (change)="sendResource(item)"
           [(ngModel)]="item.number"  >
           <span style="display: none;" >{{ item.number }}</span>
+        </td>
+        <td>
+          <input
+          type="text"
+          class="w3-block w3-border-0  text-center"
+          (change)="sendResource(item)"
+          [(ngModel)]="item.person"  >
+          <span style="display: none;" >{{ item.person }}</span>
         </td>
         <td>
           <input

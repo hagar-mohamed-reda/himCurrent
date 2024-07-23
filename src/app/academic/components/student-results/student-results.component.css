@@ -84,4 +84,16 @@ input[type=file] {
 .number_input {
   width: 45px;
 }
+.page-break {
+  page-break-after: always;
+}
 /*# sourceMappingURL=student-results.component.css.map */
+@media print {
+  .page-break {
+    page-break-after: always;
+  }
+}
+@page {
+   size: A4;
+   margin: 15mm 8mm 25mm 8mm; /* top, right, bottom, left */
+}

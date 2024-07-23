@@ -67,7 +67,7 @@ export class DepositeSheetComponent implements OnInit {
   }
 
   updateResource(object: any) {
-    this.globalService.store('account/transformations/update/'+object.id, object).subscribe((res: any) => {
+    this.globalService.store('account/transformations/worksheet/update/'+object.id, object).subscribe((res: any) => {
       if (res.status == 1)
         this.loadData();
       else
@@ -76,7 +76,7 @@ export class DepositeSheetComponent implements OnInit {
   }
 
   createResource(object: any) {
-    this.globalService.store('account/transformations/store', object).subscribe((res: any) => {
+    this.globalService.store('account/transformations/worksheet/store', object).subscribe((res: any) => {
       if (res.status == 1)
         this.loadData();
       else
@@ -96,7 +96,7 @@ export class DepositeSheetComponent implements OnInit {
   remove(object: any, index) {
     var self = this;
     Message.confirm(Helper.trans('are you sure'), (res) => {
-      self.globalService.store('account/transformations/delete/'+object.id, object).subscribe((res: any) => {
+      self.globalService.store('account/transformations/worksheet/delete/'+object.id, object).subscribe((res: any) => {
         if (res.status == 1) {
           Message.success(res.message);
         }
