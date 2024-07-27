@@ -495,43 +495,52 @@
                                 {{ "level" | trans }} - {{ level.name }}
                             </th>
                         </tr>
-                        <ng-container *ngFor="let term of level.terms">
-                            <tr>
-                                <th colspan="10" class="text-center w3-light-gray" style="text-align: center;">
-                                    {{ term.name + " - " + term.academic_year }}
-                                </th>
-                            </tr>
-
-                            <tr>
-                                <th>#</th>
-                                <th>{{ "code" | trans }}</th>
-                                <th>{{ "name" | trans }}</th>
-                                <th>{{ "division" | trans }}</th>
-                                <th>{{ "credit_hour" | trans }}</th>
-                                <!-- <th>{{ "book_price" | trans }}</th> -->
-                                <th>{{ "degree" | trans }}</th>
-                                <th>{{ "student_mark" | trans }}</th>
-                                <th>{{ "register_date" | trans }}</th>
-                                <th>{{ "gpa" | trans }}</th>
-                            </tr>
-                            <tr *ngFor="let course of term.courses index as counter">
-                                <td>{{ counter + 1 }}</td>
-                                <td>{{ course.code }}</td>
-                                <td>{{ course.name }}</td>
-                                <td>{{ course.division? course.division.name : '' }}</td>
-                                <td>{{ course.credit_hour }}</td>
-                                <!-- <td>{{ course.book_price }}</td> -->
-                                <td>{{ course.large_degree }}</td>
-                                <td>{{ course.gpa_word }}</td>
-                                <td>{{ course.created_at | date: 'yyyy-mm-d' }}</td>
-                                <td>{{ course.gpa }}</td>
-                            </tr>
-                            <tr>
-                                <td>المعدل التراكمي للتيرم</td>
-                                <td>{{ term.gpa_fasly }}</td>
-                            </tr>
+                        <ng-container *ngFor="let academicYear of level.terms | keyvalue">
+                            <ng-container *ngFor="let term of academicYear.value">
+                                <tr>
+                                    <th colspan="10" class="text-center w3-light-gray" style="text-align: center;">
+                                        {{ term.name + " - " + term.academic_year }}
+                                    </th>
+                                </tr>
+                    
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{ "code" | trans }}</th>
+                                    <th>{{ "name" | trans }}</th>
+                                    <th>{{ "division" | trans }}</th>
+                                    <th>{{ "credit_hour" | trans }}</th>
+                                    <th>{{ "degree" | trans }}</th>
+                                    <th>{{ "student_mark" | trans }}</th>
+                                    <th>{{ "register_date" | trans }}</th>
+                                    <th>{{ "gpa" | trans }}</th>
+                                </tr>
+                                <tr *ngFor="let course of term.courses; index as counter">
+                                    <td>{{ counter + 1 }}</td>
+                                    <td>{{ course.code }}</td>
+                                    <td>{{ course.name }}</td>
+                                    <td>{{ course.division ? course.division.name : '' }}</td>
+                                    <td>{{ course.credit_hour }}</td>
+                                    <td>{{ course.large_degree }}</td>
+                                    <td>{{ course.gpa_word }}</td>
+                                    <td>{{ course.created_at | date: 'yyyy-MM-dd' }}</td>
+                                    <td>{{ course.gpa }}</td>
+                                </tr>
+                                <tr *ngIf="term.courses.length == 0 && term.case_constraint_excuse == null">
+                                    <td colspan="9" class="text-center">لم يتم تسجيل الارشاد الاكاديمى</td>
+                                </tr>
+                                
+                                <tr *ngIf="term.case_constraint_excuse != null">
+                                    <td colspan="9" class="text-center"> 
+                                        عذر بموافقة الوزاره عن {{ term.name }} رقم القرار {{ term.case_constraint_excuse.acceptance_code }}  </td>
+                                </tr>
+                                <tr *ngIf="term.courses.length > 0">
+                                    <td>المعدل التراكمي للتيرم</td>
+                                    <td>{{ term.gpa_fasly }}</td>
+                                </tr>
+                             </ng-container>
                         </ng-container>
                     </ng-container>
+
                 </table>
 
             </div>
