@@ -83,7 +83,7 @@ export class WorkPrivateCheckComponent implements OnInit {
   }
 
   validate(object: any) {
-    return (this.filter.bank_id && object.bank_id && this.filter.person_id && object.person_id && object.date && object.value);
+    return (this.filter.bank_id && object.bank_id && object.date && object.value);
   }
 
   updateResource(object: any) {

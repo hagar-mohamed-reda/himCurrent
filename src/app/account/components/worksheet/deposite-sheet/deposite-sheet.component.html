@@ -84,7 +84,7 @@
           class="w3-block w3-border-0  text-center"
           (change)="sendResource(item)"
           [(ngModel)]="item.bank_id">
-          <option *ngFor="let row of banks |bank:1" value="{{ row.id }}">{{ row.name }}</option>
+          <option *ngFor="let row of banks " value="{{ row.id }}">{{ row.name }}</option>
         </select>
         <span style="display: none;" >{{ item.bank? item.bank.name : '' }}</span>
         </td>

@@ -28,6 +28,7 @@ export class SettingresultComponent implements OnInit {
     institute_dean_en: new FormControl('', Validators.required),
 
     year_id: new FormControl('', Validators.required),
+    month: new FormControl('', Validators.required),
 
 
    });
@@ -36,7 +37,6 @@ export class SettingresultComponent implements OnInit {
    applicationService: any = ApplicationSettingService;
 
    onSubmit() {
-console.log("dddddddddddddddddddd"+this.form.value.year_id)
 this.formdata={
   "institute_recognition_date":this.form.value.date,
   "ministry_recognition_date":this.form.value.date2,
@@ -48,6 +48,7 @@ this.formdata={
   "graduates_affair_en":this.form.value.graduates_affair_en,
   "institute_dean_en":this.form.value.institute_dean_en,
   "students_affair_en":this.form.value.students_affair_en,
+  "month":this.form.value.month,
 
 }
      this.globalService.store("academic/graduation/settings/store",this.formdata).subscribe((res) => {
