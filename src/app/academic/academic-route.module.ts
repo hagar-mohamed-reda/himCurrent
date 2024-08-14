@@ -53,6 +53,7 @@ import { EfadaComponent } from './components/efada/efada.component';
 import { StudReasonComponent } from './components/stud-reason/stud-reason.component';
 import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
 import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
+import { CourseStudLevelComponent } from './components/course-stud-level/course-stud-level.component';
 
 const routes: Routes = [
   // {
@@ -118,6 +119,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("student_register") },
         component: StudentRegisterCourseComponent,
+      },
+      {
+        path: "student-level-course",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("student_register") },
+        component: CourseStudLevelComponent,
       },
       {
         path: "doctors",

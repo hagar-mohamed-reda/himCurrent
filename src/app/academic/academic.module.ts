@@ -64,10 +64,11 @@ import { EfadaComponent } from './components/efada/efada.component';
 import { StudReasonComponent } from './components/stud-reason/stud-reason.component';
 import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
 import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
+import { CourseStudLevelComponent } from './components/course-stud-level/course-stud-level.component';
 
 @NgModule({
   declarations: [
-    MinistryCumulativeReportComponent,EfadaComponent,StudReasonComponent,
+    MinistryCumulativeReportComponent,EfadaComponent,StudReasonComponent,CourseStudLevelComponent,
     ReportStatusStudentsComponent,RegisdiffComponent,
     ReportStatusCourseStudComponent,
     Allgrdlevel2Component,GraduationGovComponent,
