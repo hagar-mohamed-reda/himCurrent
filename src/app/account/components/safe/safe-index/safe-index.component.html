@@ -259,18 +259,65 @@
                                         <thead>
                                             <tr>
                                                 <th style="border: 1px solid black;text-align: center;">القيمة</th>
+                                                <th style="border: 1px solid black;text-align: center;">النوع</th>
+
                                                 <th style="border: 1px solid black;text-align: center">السنة</th>
+                                                <th style="border: 1px solid black;text-align: center">المستوى</th>
+                                                <th style="border: 1px solid black;text-align: center">الترم</th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let payment of safeObject.payments" style="text-align: center;">
                                                 <td>{{payment.value}}</td>
+                                                
+                                                <td >
+                                                    <span *ngIf="payment.model_type!='summer_courses'">  {{payment.model_object?.name}}</span>
+                                                    <span *ngIf="payment.model_type=='summer_courses'"> ترم  صيفي </span>
+                                                    <span *ngIf="payment.model_type=='summer_services'" > خدمة ترم صيفى </span>
+                                                  </td>
+ 
                                                 <td>{{payment.academic_year?.name}}</td>
+                                                <td>{{payment.level?.name}}</td>
+                                                <td>{{payment.term?.name}}</td>
+
                                             </tr>
                                             <tr>
                                                 <td style="text-align: center;">المجموع</td>
                                                 <td style="font-weight: bold;color : #3f51b5;text-align: center;">{{totalPayments || 0}}</td>
                                             </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div *ngIf="safeObject.discounts" class="custom-panel w3-display-container w3-round">
+                            <div class="custom-panel-title">  معلومات الخصومات</div>
+
+                            <div class="custom-panel-body">
+                                <div class="row" style="padding: 10px 20px">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th style="border: 1px solid black;text-align: center;">القيمة</th>
+ 
+                                                <th style="border: 1px solid black;text-align: center">السنة</th>
+ 
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let dis of safeObject.discounts" style="text-align: center;">
+                                                <td>{{dis.value}}</td>
+                                                
+                                                <td>{{dis.academic_year?.name}}</td>
+
+ 
+                                            </tr>
+                                             
                                         </tbody>
                                     </table>
 

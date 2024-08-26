@@ -278,10 +278,48 @@ export class RegistrationtypeComponent implements OnInit {
     }
     this.studentSearchDialogShow = false;
   }
-  loadStudentInfo(id) {
+   display2="none"
+   pass2="556677"
+   valepa2
+   notVailed=false
+   increaseTimes(){
+    this.notVailed=false
+
+    if(this.pass2==this.valepa2){
+      // this.counter=150;
+
+      this.display2 = 'none';
+          this.isShow=false
+
+    }else{
+      this.notVailed=true
+       this.isShow=true
+
+      Message.error(" كلمة السر غير صحيحة ");
+      this.valepa2=""
+    }
+  }
+  isShow=true
+  loadStudentInfo(id: number) {  // Assuming `id` is of type `number`
+    this.isShow=true
+
     this.academicSettingService.getStudentInfo(id).subscribe((res: any) => {
-      this.student = res;
-      this.loadData();
+        this.student = res;
+        if (this.student.case_constraint_excuse.length >= 2) { // Ensure `case_constraint_excuse` is safely accessed
+            this.valepa2 = "";  // Added space before and after the equals sign for readability
+            this.display2 = "block";
+            this.isShow=true
+
+        }
+        else{
+          this.isShow=false
+
+        }
+        this.loadData();
     });
+}
+
+  oncloseMode(){
+    this.display2="none"
   }
 }

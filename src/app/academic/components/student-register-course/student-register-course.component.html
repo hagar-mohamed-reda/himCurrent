@@ -629,14 +629,18 @@
  <table calss="table" >
     <tr>
         <th>الكود</th>
+        <th>نوع القيد</th>
+
         <th>التاريخ</th>
         <th>السبب</th>
 
         </tr>
         <tr *ngFor="let item of resonsss">
-<td>{{item.acceptance_code}}</td>
-<td>{{item.acceptance_date}}</td>
-<td>{{item.reason}}</td>
+<td>{{item?.acceptance_code}}</td>
+<td>{{item?.case_constraint?.name}}</td>
+
+<td>{{item?.acceptance_date}}</td>
+<td>{{item?.reason}}</td>
 
         </tr>
  </table>

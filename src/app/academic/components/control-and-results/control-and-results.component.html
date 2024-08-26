@@ -11,7 +11,7 @@
             <div class="custom-panel w3-display-container w3-round ">
 
                 <div class="custom-panel-body table-responsive w3-padding w3-center">
-                    <a [routerLink]="['/academic/settingresult']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/settingresult']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>اعدادات هيئة اعتماد النتيجة </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
@@ -23,159 +23,159 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/result-stats']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/result-stats']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>احصائيات النتيجة</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/courses-stats']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/courses-stats']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>احصائيات المواد</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
 
-                    <a [routerLink]="['/academic/report-status-students']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/report-status-students']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>   تقرير حالة الطلاب  </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/report-status-course-students']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/report-status-course-students']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>   تقرير  المقررات الغير مجتازة    </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
 
-                    <a [routerLink]="['/academic/student-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/student-results']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج طالب</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/students-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/students-results']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج الطلاب</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/gpacalc']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/gpacalc']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>     حساب المعدل الفصلى والتراكمى</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/regisdiff']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/regisdiff']" role="button" *ngIf="user.role_id !=9"class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b> التسجيل فى المستويات المختلفة </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/grade-enhance']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/grade-enhance']" role="button" *ngIf="user.role_id !=9"  class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>  تقرير الطلاب بالتقدير    </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/student-graduation-result']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/student-graduation-result']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج خريجين</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/student-level-course']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/student-level-course']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>   تقرير تسجيل الطلاب  </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/allgradlevel2']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/allgradlevel2']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>  نتائج الفرقة الثانية </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/publisher-result']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/publisher-result']" role="button"  *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة النتيجة</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/publisher-result-report']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/publisher-result-report']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>تقرير عرض النتيجه</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/control-report']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/control-report']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>{{ "control report" | trans }}</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/attendance-report']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/attendance-report']" role="button"  *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>{{ "attendance report" | trans }}</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/ministry-cumulative-report']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/ministry-cumulative-report']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>تقرير التراكمي للوزارة</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/graduation-report']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/graduation-report']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>تقرير  الخريجين  </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/graduatuin-gov']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/graduatuin-gov']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b> تقرير الخريجين - المحافظة   </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/grade']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/grade']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>تقرير تقديرات الطلبه</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/prerequsite']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/prerequsite']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>تقرير  المتطلبات السابقه</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/medterm']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/medterm']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>   الطلبه المتخلفه عن الميد</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/details']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/details']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>   تقرير تفاصيل  الساعات المسجله</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/topten']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/topten']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>  تقرير الطلبه الاوائل </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/yearwork']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/yearwork']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>  تقرير أعمال السنه </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/faild_student']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/faild_student']" role="button"  *ngIf="user.role_id !=9"class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b> تقرير التخلفات </b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>

@@ -150,6 +150,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   loadAvailableCourses() {
+    this.courses ={}
     let data = {
       student_id: this.searchData.student_id
     };

@@ -1,5 +1,5 @@
 <div class="w3-block w3-row" permission="student_code_series">
-  <div class="w3-white material-shadow safe-box col-lg-6 col-md-6 col-sm-6">
+  <div class="w3-white material-shadow safe-box col-lg-8 col-md-8 col-sm-8">
     <div class="safe-box-header w3-large text-center" style="padding: 5px!important">
       {{ "student code series" | trans }}
     </div>
@@ -17,6 +17,8 @@
                 <th>{{ "code" | trans }}</th>
                 <th>{{ "academic_year" | trans }}</th>
                 <th>{{ "level" | trans }}</th>
+                <th>     دبلوم تجارى او معاهد تجارية    </th>
+
                 <th></th>
               </thead>
               <tbody>
@@ -35,6 +37,7 @@
                       <option *ngFor="let level of levels" value="{{ level.id }}">{{ level.name }}</option>
                     </select>
                   </td>
+                  <td><input type="checkbox" class=" " [(ngModel)]="item.has_diplom" /></td>
                   <td>
                     <button class="btn btn-success"
                     [disabled]="isSubmitted"

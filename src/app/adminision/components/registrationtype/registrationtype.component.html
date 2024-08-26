@@ -139,7 +139,7 @@
           <div class="col-lg-12 ">
             <label for=""></label><br />
 
-            <button
+            <button *ngIf="isShow==false"
               id="beforeLoading"
               [disabled]="loading"
               style="margin-right: 52%;"
@@ -154,4 +154,69 @@
       </div>
     </div>
   </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display2}" style="background-color: rgba(90,90,90,0.5);">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content" style="    margin-top: 150px;">
+          <div class="modal-header" style="background-color:#007aff;">
+              <button type="button" class="close" aria-label="Close" >
+    <span aria-hidden="true" style="color: #fff">&times;</span>
+  </button>
+
+              <p class="modal-title" style="color: #fff">
+                  <span style="vertical-align: middle; padding-left:8px">
+التخطى
+              </span>
+              </p>
+
+
+          </div>
+
+          <div class="modal-body">
+            <table calss="table table-striped" >
+              <tr>
+                  <th>الكود</th>
+                  <th>نوع القيد</th>
+          
+                  <th>التاريخ</th>
+                  <th>السبب</th>
+          
+                  </tr>
+                  <tr *ngFor="let item of student?.case_constraint_excuse">
+          <td>{{item?.acceptance_code}}</td>
+          <td>{{item?.case_constraint?.name}}</td>
+          
+          <td>{{item?.acceptance_date}}</td>
+          <td>{{item?.reason}}</td>
+          
+                  </tr>
+           </table>
+           <br>
+          <hr>
+            <h5> برجاء ادخال كلمة السر للتخطى</h5>
+
+              <input type="text" style="width: 50%;" class="form-control" [(ngModel)]="valepa2" placeholder=" ادخل الرقم السرى">
+              <div class="invalid-feedback" *ngIf="notVailed==true">
+                  <div style="color: red;"> كلمة السر غير صحيحه </div>
+              </div>
+          </div>
+
+          <div class="modal-footer">
+              <!-- <button class="btn btn-white bbtclose" (click)="onCloseModal2()">
+              الغاء
+            </button> -->
+              <!-- Confirm -->
+              <button class="btn btn_color w-40 h-12" style="color: white;
+            background-color:#007aff;;
+            width: 100px;
+            height: 45px;  line-height: 15px;" (click)="increaseTimes()">
+     تخطى
+  </button>
+          </div>
+
+
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
