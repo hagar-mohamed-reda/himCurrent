@@ -111,7 +111,11 @@ export class CardComponent implements OnInit {
   saveAndPrint() {
     if (!this.student.id)
       return Message.error(Helper.trans('select student first'));
-
+      if(this.isprinted){
+        this.openModel4()
+        return;
+      }
+      
       // no
       // this.selectedCard.id = 1
     if (!this.selectedCard.id)
@@ -196,12 +200,41 @@ export class CardComponent implements OnInit {
     }
     this.studentSearchDialogShow = false;
   }
-
+isprinted=false
   loadStudentInfo(id) {
     this.studentAcountService.getStudentAccount(id).subscribe((res: any) => {
       this.student = res;
+      if(this.student.card_printed==1){
+        this.isprinted=true
+      }else{
+        this.isprinted=false
+
+      }
       this.preAvailableCards();
     });
   }
+  display4="none";
 
+  pass2="556677"
+  valepa2
+  openModel4(){
+    this.display4="block";
+    this.valepa2=""
+
+  }
+  onCloseModal4(){
+    this.display4="none";
+  }
+  isconfirm(){
+    if(this.pass2==this.valepa2){
+     this.isprinted=false;
+          this.display4 = 'none';
+
+    }else{
+      Message.error(" كلمة السر غير صحيحة ");
+      this.isprinted=true;
+
+      this.valepa2=""
+    }
+  }
 }

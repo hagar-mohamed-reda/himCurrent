@@ -9,7 +9,9 @@
   .border-bottom-red {
     border-bottom: 2px dashed red!important;
   }
-
+  .activedisa{
+    pointer-events: none; opacity: 0.5;
+  }
   .border-dashed {
     border: 2px dashed lightgray!important;
   }

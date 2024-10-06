@@ -36,7 +36,7 @@ export class StudentResultService {
   /**
    * store new service
    */
-  public startResultTransfer() {
-    return this.http.post('academic/result-transfer/start' + '?api_token=' + Auth.getApiToken(), null);
+  public startResultTransfer(filter) {
+    return this.http.post('academic/result-transfer/start' + '?api_token=' + Auth.getApiToken()+"&"+this.$.param(filter), null);
   }
 }

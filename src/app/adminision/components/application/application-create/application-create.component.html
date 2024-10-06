@@ -49,36 +49,8 @@
                 </div>
 
                 <div class="col-lg-9 col-md-9 col-sm-12">
-                    <!--
-    => student basic info
-    name	                  email
-    academic_years_id	      grade
-    registeration_date	      phone_1
-    registration_status_id	  registration_method_id
-    qualification_date1	      qualification_set_number
-    qualification_types_id	  qualification_id
-    level_id	              case_constraint_id
-    national_id	              password
-    acceptance_code	          acceptance_date
-    status	                  writen_by
-    => additional info
-    nationality_id	          gender
-    language_1_id	          language_2_id
-    city_id	                  government_id
-    country_id	              religion
-    address	                  birth_address
-    national_id_date	      national_id_place
-    => military info
-    military_status_id	      military_area_id
-    triple_number
-    => parent info
-    parent_name	              parent_national_id
-    parent_job_id	          parent_address
-    parent_phone	          relative_relation_id
-    => personal image
-    personal_photo
-    => required document
-    -->
+                  <div [class.activedisa]="isdis"  >
+
                     <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
                         <div class="custom-panel-title">
                             {{ "student basic info" | trans }}
@@ -300,7 +272,12 @@
                         </select>
                                             </td>
                                         </tr>
-
+                                        <tr>
+                                          <th> دبلوم تجارى او معاهد تجارية</th>
+                                          <td>
+                                              <input type="checkbox" class=" " [(ngModel)]="application.has_diplom" />
+                                          </td>
+                                      </tr>
                                         <tr *ngIf="
                         application.registration_status_id == 4 ||
                         application.registration_status_id == 8 ||
@@ -459,6 +436,18 @@
                                               <input  type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.governmental_entity" />
                                           </td>
                                       </tr>
+                                      <tr>
+                                        <th>  تسليم أصل المؤهل    </th>
+                                        <td>
+                                            <input  type="checkbox" class=" " [(ngModel)]="application.has_qualification" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <th>  تسليم  ورق التجنيد</th>
+                                      <td>
+                                          <input  type="checkbox" class=" " [(ngModel)]="application.has_conscription" />
+                                      </td>
+                                  </tr>
                                     </table>
                                 </div>
                             </div>
@@ -819,7 +808,7 @@
                             </div>
                         </div>
                     </div>
-
+                  </div>
                     <div class="custom-panel w3-display-container w3-round">
                         <div class="custom-panel-body">
                             <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted" (click)="sendApplication()">

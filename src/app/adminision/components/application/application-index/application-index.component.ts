@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Auth } from 'src/app/shared/auth';
 import { exit } from 'process';
 import { Helper } from 'src/app/shared/helper';
+import { UserProfileService } from 'src/app/user-profile/user-profile.service';
 
 @Component({
   selector: 'app-application-index',
@@ -37,7 +38,7 @@ export class ApplicationIndexComponent implements OnInit {
 
   public col = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 
-  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) {
+  constructor(private applicationService: ApplicationService, private route: ActivatedRoute,private service:UserProfileService) {
     !Auth.can('application_read')? exit() : '';
 
     // init breadcrum
@@ -138,7 +139,16 @@ export class ApplicationIndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadProfile()
     this.loadResources();
+  }
+  user:any={}
+
+  loadProfile() {
+    this.service.getProfile().subscribe((res: any) => {
+      debugger
+       this.user = res.user;
+     });
   }
 
 

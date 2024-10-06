@@ -13,6 +13,7 @@ import { Auth } from 'src/app/shared/auth';
 import { exit } from 'process';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { ApplicationHelper } from 'src/app/adminision/components/application/application-helper';
+import { UserProfileService } from 'src/app/user-profile/user-profile.service';
 
 @Component({
   selector: 'app-student-create',
@@ -62,7 +63,7 @@ export class StudentCreateComponent implements OnInit {
 
   public col = "col-lg-10 col-md-10 col-sm-12";
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute , private globalService : GlobalService) {
+  constructor(private studentService: StudentService, private route: ActivatedRoute , private globalService : GlobalService, private service:UserProfileService) {
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       !Auth.can('student_edit')? exit() : '';
@@ -78,7 +79,10 @@ export class StudentCreateComponent implements OnInit {
         this.col = col;
     });
   }
-
+  setDefaultYear() {
+    this.application.academic_years_id = 11;
+    this.application.nationality_id=1
+  }
   loadApplication(id) {
     this.studentService.load(id).subscribe((res: any) => {
 
@@ -286,10 +290,26 @@ export class StudentCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadProfile() 
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     //
     this.application.old_balance_notes = "باقى رسوم سابقه عن عام ";
+    this.setDefaultYear()
   }
-
+  user:any={}
+  isdis=false
+  loadProfile() {
+     this.service.getProfile().subscribe((res: any) => {
+       debugger
+        this.user = res.user;
+        if(this.user.role_id==22){
+          this.isdis=true
+        }
+        else{
+          this.isdis=false
+        }
+      });
+   }
+ 
 }

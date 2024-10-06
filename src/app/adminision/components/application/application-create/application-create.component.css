@@ -1,7 +1,9 @@
 .safe-box {
   padding: 10px;
 }
-
+.activedisa{
+  pointer-events: none; opacity: 0.5;
+}
 .border-bottom-dashed {
   border-bottom: 2px dashed gray !important;
 }

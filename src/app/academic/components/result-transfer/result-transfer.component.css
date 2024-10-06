@@ -1,1 +1,6 @@
 /* No CSS *//*# sourceMappingURL=result-transfer.component.css.map */
+@media (max-width:867px){
+    .mobiledisplll{
+        display: block !important;
+    }
+}

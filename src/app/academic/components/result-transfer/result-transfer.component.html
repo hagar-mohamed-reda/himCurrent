@@ -34,10 +34,21 @@
              <img src="/assets/img/result-image.jpg" class="animated {{ currentStep == 2? 'lightSpeedIn' : '' }}" style="max-width: 250px;margin: auto" >
              <br>
              <p class="w3-text-red" >
-               البدا فى ترحيل النتيجة لكل المستويات
+               البدا فى ترحيل النتيجة 
              </p>
              <br>
-             <button mat-raised-button class="w3-red"  (click)="start()" >{{ "start" | trans }}</button>
+             <div style="display: flex; justify-content: center; ">
+              <div class="mobiledisplll"  style="display: flex; justify-content: center;gap: 33px;">
+                <label>{{ "level" | trans }} : </label>
+               <select class="form-control" [(ngModel)]="filter.level_id" id='level_id_search'style="width: 200px;" >
+         <option value="">{{ "level" | trans }}</option>
+ <option *ngFor="let item of levels"  value="{{ item.id }}">{{ item.name }}</option>
+</select>
+           </div>
+             </div>
+             <br>
+             
+                        <button mat-raised-button class="w3-red"  (click)="start()" >{{ "start" | trans }}</button>
              <br>
              <br>
            </div>

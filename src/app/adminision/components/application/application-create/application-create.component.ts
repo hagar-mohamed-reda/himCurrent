@@ -14,6 +14,7 @@ import { exit } from 'process';
 import { Router } from '@angular/router';
 import { ApplicationHelper } from '../application-helper';
 import { GlobalService } from 'src/app/shared/services/global.service';
+import { UserProfileService } from 'src/app/user-profile/user-profile.service';
 
 @Component({
   selector: 'app-application-create',
@@ -74,7 +75,8 @@ export class ApplicationCreateComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private applicationSettingService: ApplicationSettingService,
-    private globalService : GlobalService
+    private globalService : GlobalService,
+    private service:UserProfileService
     ) {
     this.applicationSettingService.queueRequests();
     Request.fire(false, () => {
@@ -100,7 +102,8 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   setDefaultYear() {
-    this.application.academic_years_id = 10;
+    this.application.academic_years_id = 11;
+    this.application.nationality_id=1
     this.watchLevel();
     /*ApplicationSettingService.ACADEMIC_YEARS.forEach(element => {
       if (element.id == 8) {
@@ -108,7 +111,21 @@ export class ApplicationCreateComponent implements OnInit {
       }
     });*/
   }
+  user:any={}
+isdis=false
+  loadProfile() {
+     this.service.getProfile().subscribe((res: any) => {
+       debugger
 
+        this.user = res.user;
+        if(this.user.role_id == 22){
+          this.isdis=true
+        }else{
+          this.isdis=false
+        }
+      });
+   }
+ 
   loadApplication(id) {
     this.applicationService.load(id).subscribe((res: any) => {
       this.application = res;
@@ -549,6 +566,8 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadProfile();
+
     $('#level_id').on('change' , ()=>{
       this.level_id = $('#level_id').val();
     })

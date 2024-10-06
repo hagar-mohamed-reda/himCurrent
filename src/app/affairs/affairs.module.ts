@@ -26,6 +26,7 @@ import { ServiceComponent } from './report/service/service.component';
 import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
 import { ReportstatustagnedComponent } from "./report/reportstatustagned/reportstatustagned.component";
 import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.component";
+import { DeliverComponent } from './report/deliver/deliver.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.c
     Report21Component,
     StudentAffairStudentStatusComponent,
     RegistrationComponent,
-    PatientsComponent,
+    PatientsComponent,DeliverComponent,
     PatientreportComponent,
     CreditHoursComponent,
     ServiceComponent,

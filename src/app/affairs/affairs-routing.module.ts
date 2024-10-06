@@ -34,6 +34,7 @@ import { ReportstatustagnedComponent } from "./report/reportstatustagned/reports
 import { AuthGuestService } from "../shared/middlewares/auth-guest.service";
 import { Auth } from "../shared/auth";
 import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.component";
+import { DeliverComponent } from "./report/deliver/deliver.component";
 
 const routes: Routes = [
   {
@@ -111,6 +112,10 @@ const routes: Routes = [
       {
         path: "report/report11",
         component: StudentAffairReport11Component,
+      },
+      {
+        path: "report/deliver",
+        component: DeliverComponent,
       },
       {
         path: "report/reportStatus",

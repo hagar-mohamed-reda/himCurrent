@@ -83,7 +83,9 @@
 
       => required document
 
-          -->
+          --> 
+          <div [class.activedisa]="isdis"  >
+
                     <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
                         <div class="custom-panel-title">
                             {{ "student basic info" | trans }}
@@ -374,7 +376,18 @@
                                               <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.governmental_entity" />
                                           </td>
                                       </tr>
-                                      
+                                      <tr> 
+                                        <th>  تسليم أصل المؤهل    </th>
+                                        <td>
+                                            <input  type="checkbox" class=" " [(ngModel)]="application.has_qualification" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <th>  تسليم  ورق التجنيد</th>
+                                      <td>
+                                          <input  type="checkbox" class=" " [(ngModel)]="application.has_conscription" />
+                                      </td>
+                                  </tr>
                                     </table>
                                 </div>
                             </div>
@@ -756,7 +769,7 @@
                             </div>
                         </div>
                     </div>
-
+          </div>
                     <div class="custom-panel w3-display-container w3-round">
                         <div class="custom-panel-body">
                             <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted" (click)="sendApplication()">

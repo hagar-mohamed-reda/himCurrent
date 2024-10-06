@@ -8,7 +8,7 @@ export const environment = {
   //  apiUrl: "http://him.him-ma.org/api",
 
      publicUrl: "http://him-ma.site",
-     apiUrl: "http://him-ma.site/api",
+     apiUrl: "https://him-ma.site/api",
 
   //  publicUrl: "http://bsnu.msa-bns.org",
   //  apiUrl: "http://bsnu.msa-bns.org/api",

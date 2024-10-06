@@ -36,11 +36,11 @@
                             <a permission="application_edit" href="#" [routerLink]="['/adminision/application/', item.id]" style="margin: 5px"><i
                   class="fa fa-edit btn btn-warning btn-sm material-shadow"></i></a>
 
-                            <a href="#" [routerLink]="['/adminision/application/show/', item.id]" style="margin: 5px"><i
+                            <a   *ngIf="user.role_id !=22"  href="#" [routerLink]="['/adminision/application/show/', item.id]" style="margin: 5px"><i
                   class="fa fa-desktop btn btn-success btn-sm material-shadow"></i></a>
 
 
-                  <button color="warn" class="btn btn-danger btn-sm material-shadow" (click)="destroy(item.id)">
+                  <button color="warn" *ngIf="user.role_id !=22" class="btn btn-danger btn-sm material-shadow" (click)="destroy(item.id)">
                     <i class="fa fa-trash"></i>
                   </button>
 
