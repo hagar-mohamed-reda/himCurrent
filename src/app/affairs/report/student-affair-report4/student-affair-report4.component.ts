@@ -64,6 +64,7 @@ export class StudentAffairReport4Component implements OnInit {
   }
 
   loadSections() {
+    this.sections=[]
       this.applicationSettingService.sections(this.filter).subscribe((res: any) => {
         this.sections = res;
       })
@@ -102,6 +103,7 @@ export class StudentAffairReport4Component implements OnInit {
     this.systemSetting.getSystemSetting().subscribe((res: any)=>{
       this.currentTerm = res['current_term'];
     });
+    // this.loadSections();
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     this.terms = Cache.get(TermService.TERPM_PREFIX); 
