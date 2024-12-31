@@ -1,30 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { CourseService } from 'src/app/academic/services/course.service';
 import { AcademicYearService } from 'src/app/account/services/academic-year.service';
 import { DivisionService } from 'src/app/account/services/division.service';
 import { LevelService } from 'src/app/account/services/level.service';
 import { TermService } from 'src/app/account/services/term.service';
 import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
+import { SystemSettingService } from 'src/app/core/services/system-setting.service';
 import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 import { Request } from 'src/app/shared/request';
 import { GlobalService } from 'src/app/shared/services/global.service';
-import { CourseService } from '../../services/course.service';
-
+// import { CourseService } from '../../services/course.service';
 @Component({
-  selector: 'app-academic-report-daily',
-  templateUrl: './academic-report-daily.component.html',
-  styleUrls: ['./academic-report-daily.component.scss']
+  selector: 'app-cover-signs',
+  templateUrl: './cover-signs.component.html',
+  styleUrls: ['./cover-signs.component.scss']
 })
-export class AcademicReportDailyComponent implements OnInit {
-
+export class CoverSignsComponent implements OnInit {
   filter: any = {};
   $: any = $;
   applicationService: any = ApplicationSettingService;
   levels: any = [];
-  level_id:any;
-
   divisions: any = [];
   courses: any = [];
   groups: any = [];
@@ -34,6 +32,7 @@ export class AcademicReportDailyComponent implements OnInit {
   doc: any = document;
   terms: any = [];
   data:any = [];
+  level_id:any;
   division_id:any;
   term_id:any;
 
@@ -59,20 +58,15 @@ export class AcademicReportDailyComponent implements OnInit {
       });
 
 }
-ishidden=false
+
 load() {
-  this.ishidden=true
   console.log(this.filter);
 
-  if (!Helper.validator(this.filter, ['year_id'])) {
+  if (!Helper.validator(this.filter, ['division_id'])) {
     return Message.error(Helper.trans('please choose all filters'));
   }else{
-   
-    this.globalService.loadHtml("academic/academic-report-daily", this.filter).subscribe((res) => {
-      
-
+    this.globalService.loadHtml("affair/cover2", this.filter).subscribe((res) => {
       $('#reportContent').html(res);
-      this.ishidden=false
     });
   }
 

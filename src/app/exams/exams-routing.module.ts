@@ -6,6 +6,9 @@ import { ManageRoomsMapComponent } from './components/manage-rooms-map/manage-ro
 import { ManageSeatingRoomsReportComponent } from './components/manage-seating-rooms-report/manage-seating-rooms-report.component';
 import { PrintSeatingNumbersComponent } from './components/print-seating-numbers/print-seating-numbers.component';
 import { PrintSignsReportsComponent } from './components/print-signs-reports/print-signs-reports.component';
+import { CoverSignsComponent } from './components/cover-signs/cover-signs.component';
+import { CoverWallComponent } from './components/cover-wall/cover-wall.component';
+
 import { PrintStudentsReportComponent } from './components/print-students-report/print-students-report.component';
 import { PrintWallsReportsComponent } from './components/print-walls-reports/print-walls-reports.component';
 import { RegisterExamsScheduleComponent } from './components/register-exams-schedule/register-exams-schedule.component';
@@ -51,6 +54,14 @@ const routes: Routes = [
   {
     path: 'print-walls-reports',
     component: PrintWallsReportsComponent
+  },
+  {
+    path: 'cover-wall',
+    component: CoverWallComponent
+  },
+  {
+    path: 'cover-sign',
+    component: CoverSignsComponent
   },
   {
     path: 'print-signs-reports',

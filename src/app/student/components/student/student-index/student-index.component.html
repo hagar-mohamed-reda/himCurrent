@@ -156,6 +156,14 @@
                             <td>{{ item.notes }}</td>
                         </tr>
                         <tr>
+                            <th> إضافة بواسطة </th>
+                            <td>{{ item?.created_by }}</td>
+                        </tr>
+                        <tr>
+                            <th> تعديل بواسطة </th>
+                            <td>{{ item?.updated_by }}</td>
+                        </tr>
+                        <tr>
                             <th>لقاح كورونا</th>
 
                             <td><input (click)='corona(item.id)' type="checkbox" class="custom-control-input" id="customSwitch{{item.id}}" [checked]="item.iscorona == 1"></td>

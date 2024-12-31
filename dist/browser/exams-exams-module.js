@@ -319,6 +319,269 @@ var CommissionsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/exams/components/cover-signs/cover-signs.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/exams/components/cover-signs/cover-signs.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div permission=\"print_signs_reports\" class=\"container\">\n  <div class=\"w3-block w3-row\">\n      <div class=\"w3-white material-shadow safe-box w3-block\">\n          <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\n              طباعة كشوف توقيعات الطلاب\n          </div>\n          <div class=\"border-bottom-dashed\"></div>\n          <br>\n\n          <div class=\"\">\n\n              <div class=\"\">\n                  <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n\n                      <div class=\"custom-panel-body table-responsive w3-padding\">\n\n                          <div class=\"row\">\n\n                              <div class=\"col-lg-3 col-md-4\">\n                                  <div class=\"form-group\">\n                                      <label for=\"\">{{ \"level\" | trans }}</label>\n                                      <select id=\"level_id\" name=\"filter.level_id\" class=\"form-control\" [(ngModel)]=\"filter.level_id\">\n                                      <option value=\"\">الكل</option>\n                                      <option *ngFor=\"let item of levels\" value=\"{{ item.id }}\">{{item.name}}</option>\n                                      </select>\n                                  </div>\n                              </div>\n                              <div class=\"col-lg-3 col-md-4\">\n                                  <div class=\"form-group\">\n                                      <label for=\"\">{{ \"term\" | trans }}</label>\n                                      <select id=\"term_id\" name=\"filter.term_id\" class=\"form-control\" [(ngModel)]=\"filter.term_id\">\n                                      <option value=\"\">الكل</option>\n                                      <option *ngFor=\"let item of terms\" value=\"{{ item.id }}\">{{item.name}}</option>\n                                      </select>\n                                  </div>\n                            </div>\n                              <div class=\"col-lg-3 col-md-4\">\n                                    <div class=\"form-group\">\n                                        <label for=\"\">{{ \"division\" | trans }}</label>\n                                        <select id=\"division_id\" name=\"filter.division_id\" class=\"form-control\" [(ngModel)]=\"filter.division_id\">\n                                        <option value=\"\">الكل</option>\n                                        <option *ngFor=\"let item of divisions\" value=\"{{ item.id }}\">{{item.name}}</option>\n                                        </select>\n                                    </div>\n                              </div>\n\n                              <div class=\"col-lg-3 col-md-4\">\n                                  <div class=\"form-group\">\n                                      <label for=\"\">{{ \"course\" | trans }}</label>\n                                      <select name=\"filter.course_id\" class=\"form-control\" [(ngModel)]=\"filter.course_id\">\n                                      <option value=\"\">الكل</option>\n                                      <!-- |level:level_id|term:term_id|division:division_id|year:year_id -->\n                                      <option *ngFor=\"let item of courses|level:level_id|term:term_id|division:division_id\" value=\"{{ item.course_id }}\">{{item.course_name}}</option>\n                                      </select>\n                                  </div>\n                              </div>\n      \n                              <div class=\"col-lg-3 col-md-4\">\n                                <div class=\"form-group\">\n                                    <label for=\"\"> النماذج</label>\n                                    <select name=\"filter.model_id\" class=\"form-control\" [(ngModel)]=\"filter.model_id\">\n                                    <option value=\"1\">نماذج اسئلة </option>\n                                    <!-- |level:level_id|term:term_id|division:division_id|year:year_id -->\n                                    <option value=\"2\">نماذج اجابة  </option>\n                                                                   \n                                  </select>\n                                </div>\n                            </div>\n    \n                              <div class=\"col-lg-3 col-md-3\" style=\"padding: 15px!important;\">\n                                  <button  class=\"btn btn-default w3-round\" (click)=\"load()\">{{ \"search\" | trans }}</button>\n                                  <button  class=\"btn btn-default w3-round\" (click)=\"printContent()\">{{ \"print\" | trans }}</button>\n                                  <button  class=\"btn btn-default w3-round\" (click)=\"exportExcel()\">{{ \"excel\" | trans }}</button>\n                              </div>\n\n\n                          </div>\n\n                      </div>\n                  </div>\n              </div>\n              <div class=\"\">\n                  <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\" id=\"printable\">\n\n                      <div dir=\"rtl\" class=\"custom-panel-body table-responsive w3-padding\" id=\"reportContent\">\n\n\n                      </div>\n                  </div>\n              </div>\n\n\n\n          </div>\n\n\n      </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/exams/components/cover-signs/cover-signs.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/exams/components/cover-signs/cover-signs.component.scss ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2V4YW1zL2NvbXBvbmVudHMvY292ZXItc2lnbnMvY292ZXItc2lnbnMuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/exams/components/cover-signs/cover-signs.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/exams/components/cover-signs/cover-signs.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: CoverSignsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoverSignsComponent", function() { return CoverSignsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var src_app_academic_services_course_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/academic/services/course.service */ "./src/app/academic/services/course.service.ts");
+/* harmony import */ var src_app_account_services_academic_year_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/account/services/academic-year.service */ "./src/app/account/services/academic-year.service.ts");
+/* harmony import */ var src_app_account_services_division_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/account/services/division.service */ "./src/app/account/services/division.service.ts");
+/* harmony import */ var src_app_account_services_level_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/account/services/level.service */ "./src/app/account/services/level.service.ts");
+/* harmony import */ var src_app_account_services_term_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/account/services/term.service */ "./src/app/account/services/term.service.ts");
+/* harmony import */ var src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var src_app_shared_cache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var src_app_shared_request__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/shared/request */ "./src/app/shared/request.ts");
+/* harmony import */ var src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/shared/services/global.service */ "./src/app/shared/services/global.service.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { CourseService } from '../../services/course.service';
+var CoverSignsComponent = /** @class */ (function () {
+    function CoverSignsComponent(courseService, academicService, termService, titleService, globalService, applicationSettingService) {
+        var _this = this;
+        this.courseService = courseService;
+        this.academicService = academicService;
+        this.termService = termService;
+        this.titleService = titleService;
+        this.globalService = globalService;
+        this.applicationSettingService = applicationSettingService;
+        this.filter = {};
+        this.$ = $;
+        this.applicationService = src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_8__["ApplicationSettingService"];
+        this.levels = [];
+        this.divisions = [];
+        this.courses = [];
+        this.groups = [];
+        this.sections = [];
+        this.academicYears = [];
+        this.filter_search = {};
+        this.doc = document;
+        this.terms = [];
+        this.data = [];
+        this.groups = this.applicationSettingService.groups().subscribe(function (res) {
+            _this.groups = res;
+        });
+        this.courses = this.courseService.getopenCourses().subscribe(function (res) {
+            _this.courses = res;
+        });
+        this.titleService.setTitle("HIM" + " - " + src_app_shared_helper__WEBPACK_IMPORTED_MODULE_10__["Helper"].trans('print result'));
+        this.applicationSettingService.queueRequests();
+        var self = this;
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].fire(false, function () {
+        });
+    }
+    CoverSignsComponent.prototype.load = function () {
+        console.log(this.filter);
+        if (!src_app_shared_helper__WEBPACK_IMPORTED_MODULE_10__["Helper"].validator(this.filter, ['division_id'])) {
+            return src_app_shared_message__WEBPACK_IMPORTED_MODULE_11__["Message"].error(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_10__["Helper"].trans('please choose all filters'));
+        }
+        else {
+            this.globalService.loadHtml("affair/cover2", this.filter).subscribe(function (res) {
+                $('#reportContent').html(res);
+            });
+        }
+    };
+    CoverSignsComponent.prototype.getSections = function () {
+        var _this = this;
+        this.sections = this.applicationSettingService.sections(this.filter).subscribe(function (res) {
+            _this.sections = res;
+        });
+    };
+    CoverSignsComponent.prototype.excel = function () {
+        this.doc.exportExcel();
+    };
+    CoverSignsComponent.prototype.printContent = function () {
+        this.doc.printJs();
+    };
+    CoverSignsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        $('#division_id').on('change', function () {
+            _this.division_id = $('#division_id').val();
+        });
+        $('#term_id').on('change', function () {
+            _this.term_id = $('#term_id').val();
+        });
+        $('#level_id').on('change', function () {
+            _this.level_id = $('#level_id').val();
+        });
+        this.levels = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_9__["Cache"].get(src_app_account_services_level_service__WEBPACK_IMPORTED_MODULE_6__["LevelService"].LEVEL_PREFIX);
+        this.divisions = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_9__["Cache"].get(src_app_account_services_division_service__WEBPACK_IMPORTED_MODULE_5__["DivisionService"].DIVISION_PREFIX);
+        this.terms = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_9__["Cache"].get(src_app_account_services_term_service__WEBPACK_IMPORTED_MODULE_7__["TermService"].TERPM_PREFIX);
+    };
+    CoverSignsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-cover-signs',
+            template: __webpack_require__(/*! ./cover-signs.component.html */ "./src/app/exams/components/cover-signs/cover-signs.component.html"),
+            styles: [__webpack_require__(/*! ./cover-signs.component.scss */ "./src/app/exams/components/cover-signs/cover-signs.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_academic_services_course_service__WEBPACK_IMPORTED_MODULE_3__["CourseService"],
+            src_app_account_services_academic_year_service__WEBPACK_IMPORTED_MODULE_4__["AcademicYearService"],
+            src_app_account_services_term_service__WEBPACK_IMPORTED_MODULE_7__["TermService"],
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["Title"],
+            src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_13__["GlobalService"],
+            src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_8__["ApplicationSettingService"]])
+    ], CoverSignsComponent);
+    return CoverSignsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/exams/components/cover-wall/cover-wall.component.html":
+/*!***********************************************************************!*\
+  !*** ./src/app/exams/components/cover-wall/cover-wall.component.html ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div permission=\"print_walls_reports\" class=\"container\">\n    <div class=\"w3-block w3-row\">\n        <div class=\"w3-white material-shadow safe-box w3-block\">\n            <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\n                طباعة كشوف الحائط\n            </div>\n            <div class=\"border-bottom-dashed\"></div>\n            <br>\n\n            <div class=\"\">\n\n                <div class=\"\">\n                    <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n\n                        <div class=\"custom-panel-body table-responsive w3-padding\">\n\n                            <div class=\"row\">\n                                <div class=\"col-lg-3 col-md-3\">\n                                    <div class=\"form-group\">\n                                        <label>{{ \"level\" | trans }}</label>\n                                        <select id=\"level_id\" class=\"form-control\" name=\"level_id\"\n                                            [(ngModel)]=\"filter.level_id\">\n                                            <option value=\"\">المستوي</option>\n                                            <option *ngFor=\"let item of levels\" value=\"{{ item.id }}\">{{ item.name }}\n                                            </option>\n                                        </select>\n                                    </div>\n                                </div>\n                                <div class=\"col-lg-3 col-md-3\">\n                                    <div class=\"form-group\">\n                                        <label for=\"\">{{ \"division\" | trans }}</label>\n                                        <select class=\"form-control input-sm course_id\"\n                                            [(ngModel)]=\"filter.division_id\">\n                                            <option value=\"\">الشعبة</option>\n                                            <option *ngFor=\"let item of divisions\" value=\"{{ item.id }}\">{{item.name}}\n                                            </option>\n                                        </select>\n                                    </div>\n                                </div>\n                                <div class=\"col-lg-3 col-md-3\">\n                                    <div class=\"form-group\">\n                                        <label>اللجنة</label>\n                                        <select class=\"form-control\" [(ngModel)]=\"filter.commission_id\">\n                                            <option value=\"\">اللجنة</option>\n                                            <option\n                                                *ngFor=\"let item of commissionsGet|division:division_id|level:level_id\"\n                                                value=\"{{ item.id }}\">{{ item.name }}</option>\n                                        </select>\n                                    </div>\n                                </div>\n                                <div class=\"col-lg-3 col-md-3\">\n                                    <div class=\"form-group\">\n                                        <label for=\"\">{{ \"academic year\" | trans }}</label>\n                                        <select name=\"filter.year_id\" class=\"form-control\" [(ngModel)]=\"filter.year_id\">\n                                            <option value=\"\">الكل</option>\n                                            <option *ngFor=\"let item of applicationService.ACADEMIC_YEARS\"\n                                                value=\"{{ item.id }}\">{{item.name}}</option>\n                                        </select>\n                                    </div>\n                                </div>\n                                <div class=\"col-lg-3 col-md-3\">\n                                    <button class=\"btn btn-default w3-round\" (click)=\"load()\">{{ \"search\" | trans\n                                        }}</button>\n                                    <button style=\"margin: 0 5px;\" class=\"btn btn-default w3-round\"\n                                        (click)=\"printContent()\">{{ \"print\" | trans }}</button>\n                                    <button class=\"btn btn-default w3-round\" (click)=\"excel()\">{{ \"excel\" | trans\n                                        }}</button>\n\n                                </div>\n\n\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n                <div class=\"\">\n                    <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\"\n                        id=\"printable\">\n\n                        <div dir=\"rtl\" class=\"custom-panel-body table-responsive w3-padding\" id=\"reportContent\">\n\n\n                        </div>\n                    </div>\n                </div>\n\n\n\n            </div>\n\n\n        </div>\n    </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/exams/components/cover-wall/cover-wall.component.scss":
+/*!***********************************************************************!*\
+  !*** ./src/app/exams/components/cover-wall/cover-wall.component.scss ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2V4YW1zL2NvbXBvbmVudHMvY292ZXItd2FsbC9jb3Zlci13YWxsLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/exams/components/cover-wall/cover-wall.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/exams/components/cover-wall/cover-wall.component.ts ***!
+  \*********************************************************************/
+/*! exports provided: CoverWallComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoverWallComponent", function() { return CoverWallComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_shared_cache__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var src_app_shared_request__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/request */ "./src/app/shared/request.ts");
+/* harmony import */ var src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/services/global.service */ "./src/app/shared/services/global.service.ts");
+/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../account/services/level.service */ "./src/app/account/services/level.service.ts");
+/* harmony import */ var src_app_account_services_division_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/account/services/division.service */ "./src/app/account/services/division.service.ts");
+
+
+
+
+
+
+
+
+
+
+var CoverWallComponent = /** @class */ (function () {
+    function CoverWallComponent(globalService, applicationSettingService) {
+        this.globalService = globalService;
+        this.applicationSettingService = applicationSettingService;
+        this.filter = {};
+        this.$ = $;
+        this.applicationService = _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationSettingService"];
+        this.levels = [];
+        this.divisions = [];
+        this.academicYears = [];
+        this.doc = document;
+        this.prevTheaters = [];
+        this.applicationSettingService.queueRequests();
+        var self = this;
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_5__["Request"].fire(false, function () {
+        });
+    }
+    CoverWallComponent.prototype.load = function () {
+        if (!src_app_shared_helper__WEBPACK_IMPORTED_MODULE_3__["Helper"].validator(this.filter, ['level_id', 'division_id'])) {
+            return src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].error(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_3__["Helper"].trans('please choose all filters'));
+        }
+        this.globalService.loadHtml("affair/cover1", this.filter).subscribe(function (res) {
+            $('#reportContent').html(res);
+        });
+    };
+    CoverWallComponent.prototype.printContent = function () {
+        this.doc.printJs();
+    };
+    CoverWallComponent.prototype.excel = function () {
+        this.doc.exportExcel();
+    };
+    CoverWallComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.levels = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_2__["Cache"].get(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX);
+        this.divisions = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_2__["Cache"].get(src_app_account_services_division_service__WEBPACK_IMPORTED_MODULE_9__["DivisionService"].DIVISION_PREFIX);
+        this.applicationSettingService.commissions().subscribe(function (res) {
+            _this.commissionsGet = res;
+        });
+        // this.applicationSettingService.theaters().subscribe((res: any) => {
+        //   this.prevTheaters = res;
+        // })
+    };
+    CoverWallComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-cover-wall',
+            template: __webpack_require__(/*! ./cover-wall.component.html */ "./src/app/exams/components/cover-wall/cover-wall.component.html"),
+            styles: [__webpack_require__(/*! ./cover-wall.component.scss */ "./src/app/exams/components/cover-wall/cover-wall.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_6__["GlobalService"],
+            _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationSettingService"]])
+    ], CoverWallComponent);
+    return CoverWallComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/exams/components/manage-rooms-map/manage-rooms-map.component.html":
 /*!***********************************************************************************!*\
   !*** ./src/app/exams/components/manage-rooms-map/manage-rooms-map.component.html ***!
@@ -854,7 +1117,7 @@ var PrintSignsReportsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div permission=\"print_students_report\" class=\"w3-block\">\r\n\r\n    <div class=\"row\">\r\n\r\n        <div class=\"col-lg-3 w3-white material-shadow safe-box\">\r\n            <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\r\n                {{ \"print students report\" | trans }}\r\n            </div>\r\n            <div class=\"border-bottom-dashed\"></div>\r\n            <br>\r\n            <div class=\"custom-panel w3-display-container w3-round \">\r\n\r\n                <div class=\"custom-panel-body table-responsive w3-padding w3-center\">\r\n                    <a href=\"#\" [routerLink]=\"['/exams/print-walls-reports']\" role=\"button\" class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n                        <b>{{ \"print walls reports\" | trans }}</b>\r\n                        <a href=\"#\" class=\"pull-left\">\r\n                            <i class=\"fa fa-newspaper-o\"></i>\r\n                        </a>\r\n                    </a>\r\n                    <a href=\"#\" [routerLink]=\"['/exams/print-signs-reports']\" role=\"button\" class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n                        <b>{{ \"print signs reports\" | trans }}</b>\r\n                        <a href=\"#\" class=\"pull-left\">\r\n                            <i class=\"fa fa-newspaper-o\"></i>\r\n                        </a>\r\n                    </a>\r\n                    <!-- <a href=\"#\" [routerLink]=\"['/exams/print-year-score']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print year score\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" [routerLink]=\"['/exams/print-scientific-test-report']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print scientific test report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" [routerLink]=\"['/exams/print-attendance-report']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print attendance report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-check-square\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" [routerLink]=\"['/affairs/students/create']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print rooms map\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-users\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/required_documents' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"print_seating_numbers_lists\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-address-card-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/application_required' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"absences_report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-check-square\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/settings' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"monitoring_report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/report/report1' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"print_research_report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a> -->\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-9 student-affair-container  \" style=\"overflow: auto;\">\r\n            <div class=\"table-responsive w3-padding\">\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<div permission=\"print_students_report\" class=\"w3-block\">\r\n\r\n    <div class=\"row\">\r\n\r\n        <div class=\"col-lg-3 w3-white material-shadow safe-box\">\r\n            <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\r\n                {{ \"print students report\" | trans }}\r\n            </div>\r\n            <div class=\"border-bottom-dashed\"></div>\r\n            <br>\r\n            <div class=\"custom-panel w3-display-container w3-round \">\r\n\r\n                <div class=\"custom-panel-body table-responsive w3-padding w3-center\">\r\n                    <a href=\"#\" [routerLink]=\"['/exams/print-walls-reports']\" role=\"button\" class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n                        <b>{{ \"print walls reports\" | trans }}</b>\r\n                        <a href=\"#\" class=\"pull-left\">\r\n                            <i class=\"fa fa-newspaper-o\"></i>\r\n                        </a>\r\n                    </a>\r\n                    <a href=\"#\" [routerLink]=\"['/exams/print-signs-reports']\" role=\"button\" class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n                        <b>{{ \"print signs reports\" | trans }}</b>\r\n                        <a href=\"#\" class=\"pull-left\">\r\n                            <i class=\"fa fa-newspaper-o\"></i>\r\n                        </a>\r\n                    </a>\r\n                    <a href=\"#\" [routerLink]=\"['/exams/cover-sign']\" role=\"button\" class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n                      <b> غلاف التوقيعات</b>\r\n                      <a href=\"#\" class=\"pull-left\">\r\n                          <i class=\"fa fa-newspaper-o\"></i>\r\n                      </a>\r\n                  </a>\r\n                  <a href=\"#\" [routerLink]=\"['/exams/cover-wall']\" role=\"button\" class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n                    <b>غلاف الحائط</b>\r\n                    <a href=\"#\" class=\"pull-left\">\r\n                        <i class=\"fa fa-newspaper-o\"></i>\r\n                    </a>\r\n                </a>\r\n                    <!-- <a href=\"#\" [routerLink]=\"['/exams/print-year-score']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print year score\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" [routerLink]=\"['/exams/print-scientific-test-report']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print scientific test report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" [routerLink]=\"['/exams/print-attendance-report']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print attendance report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-check-square\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" [routerLink]=\"['/affairs/students/create']\" role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\" [queryParams]=\"{col: 'col-lg-12'}\">\r\n            <b>{{ \"print rooms map\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-users\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/required_documents' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"print_seating_numbers_lists\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-address-card-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/application_required' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"absences_report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-check-square\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/settings' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"monitoring_report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a>\r\n          <a href=\"#\" routerLink='/affairs/report/report1' role=\"button\"\r\n            class=\"btn-margin-bottom btn btn-default w3-block small-shadow\">\r\n            <b>{{ \"print_research_report\" | trans }}</b>\r\n            <a href=\"#\" class=\"pull-left\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </a>\r\n          </a> -->\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-9 student-affair-container  \" style=\"overflow: auto;\">\r\n            <div class=\"table-responsive w3-padding\">\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1610,14 +1873,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_manage_seating_rooms_report_manage_seating_rooms_report_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/manage-seating-rooms-report/manage-seating-rooms-report.component */ "./src/app/exams/components/manage-seating-rooms-report/manage-seating-rooms-report.component.ts");
 /* harmony import */ var _components_print_seating_numbers_print_seating_numbers_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/print-seating-numbers/print-seating-numbers.component */ "./src/app/exams/components/print-seating-numbers/print-seating-numbers.component.ts");
 /* harmony import */ var _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/print-signs-reports/print-signs-reports.component */ "./src/app/exams/components/print-signs-reports/print-signs-reports.component.ts");
-/* harmony import */ var _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/print-students-report/print-students-report.component */ "./src/app/exams/components/print-students-report/print-students-report.component.ts");
-/* harmony import */ var _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/print-walls-reports/print-walls-reports.component */ "./src/app/exams/components/print-walls-reports/print-walls-reports.component.ts");
-/* harmony import */ var _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/register-exams-schedule/register-exams-schedule.component */ "./src/app/exams/components/register-exams-schedule/register-exams-schedule.component.ts");
-/* harmony import */ var _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/theaters/theaters.component */ "./src/app/exams/components/theaters/theaters.component.ts");
-/* harmony import */ var _exams_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./exams.component */ "./src/app/exams/exams.component.ts");
-/* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
-/* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
-/* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+/* harmony import */ var _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/cover-signs/cover-signs.component */ "./src/app/exams/components/cover-signs/cover-signs.component.ts");
+/* harmony import */ var _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/cover-wall/cover-wall.component */ "./src/app/exams/components/cover-wall/cover-wall.component.ts");
+/* harmony import */ var _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/print-students-report/print-students-report.component */ "./src/app/exams/components/print-students-report/print-students-report.component.ts");
+/* harmony import */ var _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/print-walls-reports/print-walls-reports.component */ "./src/app/exams/components/print-walls-reports/print-walls-reports.component.ts");
+/* harmony import */ var _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/register-exams-schedule/register-exams-schedule.component */ "./src/app/exams/components/register-exams-schedule/register-exams-schedule.component.ts");
+/* harmony import */ var _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/theaters/theaters.component */ "./src/app/exams/components/theaters/theaters.component.ts");
+/* harmony import */ var _exams_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./exams.component */ "./src/app/exams/exams.component.ts");
+/* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
+/* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
+/* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+
+
 
 
 
@@ -1638,11 +1905,11 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        component: _exams_component__WEBPACK_IMPORTED_MODULE_13__["ExamsComponent"]
+        component: _exams_component__WEBPACK_IMPORTED_MODULE_15__["ExamsComponent"]
     },
     {
         path: 'register-exams-schedule',
-        component: _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_11__["RegisterExamsScheduleComponent"]
+        component: _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_13__["RegisterExamsScheduleComponent"]
     },
     {
         path: 'print-seating-numbers',
@@ -1650,7 +1917,7 @@ var routes = [
     },
     {
         path: 'print-students-report',
-        component: _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_9__["PrintStudentsReportComponent"]
+        component: _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_11__["PrintStudentsReportComponent"]
     },
     {
         path: 'manage-rooms-map',
@@ -1662,7 +1929,7 @@ var routes = [
     },
     {
         path: 'theaters',
-        component: _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_12__["TheatersComponent"]
+        component: _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_14__["TheatersComponent"]
     },
     {
         path: 'commissions',
@@ -1670,7 +1937,15 @@ var routes = [
     },
     {
         path: 'print-walls-reports',
-        component: _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_10__["PrintWallsReportsComponent"]
+        component: _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_12__["PrintWallsReportsComponent"]
+    },
+    {
+        path: 'cover-wall',
+        component: _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_10__["CoverWallComponent"]
+    },
+    {
+        path: 'cover-sign',
+        component: _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_9__["CoverSignsComponent"]
     },
     {
         path: 'print-signs-reports',
@@ -1682,15 +1957,15 @@ var routes = [
     },
     {
         path: 'set-numbers-null',
-        component: _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_14__["SetNumbersNullComponent"]
+        component: _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_16__["SetNumbersNullComponent"]
     },
     {
         path: 'set-numbers',
-        component: _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_16__["SetNumbersComponent"]
+        component: _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_18__["SetNumbersComponent"]
     },
     {
         path: 'students-rooms-manage-report',
-        component: _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_15__["StudentsRoomsManageReportComponent"]
+        component: _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_17__["StudentsRoomsManageReportComponent"]
     },
     {
         path: '**',
@@ -1795,10 +2070,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_commissions_commissions_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/commissions/commissions.component */ "./src/app/exams/components/commissions/commissions.component.ts");
 /* harmony import */ var _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/print-walls-reports/print-walls-reports.component */ "./src/app/exams/components/print-walls-reports/print-walls-reports.component.ts");
 /* harmony import */ var _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/print-signs-reports/print-signs-reports.component */ "./src/app/exams/components/print-signs-reports/print-signs-reports.component.ts");
-/* harmony import */ var _components_add_seating_numbers_add_seating_numbers_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/add-seating-numbers/add-seating-numbers.component */ "./src/app/exams/components/add-seating-numbers/add-seating-numbers.component.ts");
-/* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
-/* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
-/* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+/* harmony import */ var _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/cover-wall/cover-wall.component */ "./src/app/exams/components/cover-wall/cover-wall.component.ts");
+/* harmony import */ var _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/cover-signs/cover-signs.component */ "./src/app/exams/components/cover-signs/cover-signs.component.ts");
+/* harmony import */ var _components_add_seating_numbers_add_seating_numbers_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/add-seating-numbers/add-seating-numbers.component */ "./src/app/exams/components/add-seating-numbers/add-seating-numbers.component.ts");
+/* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
+/* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
+/* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+
+
 
 
 
@@ -1823,7 +2102,7 @@ var ExamsModule = /** @class */ (function () {
     }
     ExamsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_components_manage_rooms_map_manage_rooms_map_component__WEBPACK_IMPORTED_MODULE_4__["ManageRoomsMapComponent"], _components_manage_seating_rooms_report_manage_seating_rooms_report_component__WEBPACK_IMPORTED_MODULE_5__["ManageSeatingRoomsReportComponent"], _components_print_seating_numbers_print_seating_numbers_component__WEBPACK_IMPORTED_MODULE_6__["PrintSeatingNumbersComponent"], _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_7__["PrintStudentsReportComponent"], _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_8__["RegisterExamsScheduleComponent"], _exams_component__WEBPACK_IMPORTED_MODULE_9__["ExamsComponent"], _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_11__["TheatersComponent"], _components_commissions_commissions_component__WEBPACK_IMPORTED_MODULE_12__["CommissionsComponent"], _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__["PrintWallsReportsComponent"], _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_14__["PrintSignsReportsComponent"], _components_add_seating_numbers_add_seating_numbers_component__WEBPACK_IMPORTED_MODULE_15__["AddSeatingNumbers"], _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_16__["SetNumbersNullComponent"], _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_17__["StudentsRoomsManageReportComponent"], _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_18__["SetNumbersComponent"]],
+            declarations: [_components_manage_rooms_map_manage_rooms_map_component__WEBPACK_IMPORTED_MODULE_4__["ManageRoomsMapComponent"], _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_15__["CoverWallComponent"], _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_16__["CoverSignsComponent"], _components_manage_seating_rooms_report_manage_seating_rooms_report_component__WEBPACK_IMPORTED_MODULE_5__["ManageSeatingRoomsReportComponent"], _components_print_seating_numbers_print_seating_numbers_component__WEBPACK_IMPORTED_MODULE_6__["PrintSeatingNumbersComponent"], _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_7__["PrintStudentsReportComponent"], _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_8__["RegisterExamsScheduleComponent"], _exams_component__WEBPACK_IMPORTED_MODULE_9__["ExamsComponent"], _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_11__["TheatersComponent"], _components_commissions_commissions_component__WEBPACK_IMPORTED_MODULE_12__["CommissionsComponent"], _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__["PrintWallsReportsComponent"], _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_14__["PrintSignsReportsComponent"], _components_add_seating_numbers_add_seating_numbers_component__WEBPACK_IMPORTED_MODULE_17__["AddSeatingNumbers"], _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_18__["SetNumbersNullComponent"], _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_19__["StudentsRoomsManageReportComponent"], _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_20__["SetNumbersComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _exams_routing_module__WEBPACK_IMPORTED_MODULE_3__["ExamsRoutingModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_10__["SharedModule"]

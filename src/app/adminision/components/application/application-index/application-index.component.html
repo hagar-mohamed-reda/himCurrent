@@ -87,6 +87,14 @@
                                 <th>{{ "notes" | trans }}</th>
                                 <td>{{ item.notes }}</td>
                             </tr>
+                            <tr>
+                                <th> إضافة بواسطة </th>
+                                <td>{{ item?.created_by }}</td>
+                            </tr>
+                            <tr>
+                                <th> تعديل بواسطة </th>
+                                <td>{{ item?.updated_by }}</td>
+                            </tr>
                         </table>
 
                     </div>

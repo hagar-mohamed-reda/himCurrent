@@ -46,9 +46,19 @@
                           </select>
                                 </div>
                             </div>
-
                             <div class="col-lg-3 col-md-3">
-                                <button class="btn btn-default w3-round" (click)="load()">{{ "search" | trans }}</button>
+                                <div class="form-group">
+                                    <label>الحالة </label>
+                                    <select class="form-control" [(ngModel)]="filter.military_number_code">
+                                        <option value=""> الكل </option>
+                                    <option value="1">حصلوا على قرار تاجيل</option>
+                                    <option value="2">لم يحصلو على قرار تاجيل</option>
+
+                            </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3">
+                                <button *ngIf="isShow==false" class="btn btn-default w3-round" (click)="load()">{{ "search" | trans }}</button>
                                 <button style="margin: 0 5px;" class="btn btn-default w3-round" (click)="printContent()">{{ "print" | trans }}</button>
                                 <button class="btn btn-default w3-round">{{ "excel" | trans }}</button>
 

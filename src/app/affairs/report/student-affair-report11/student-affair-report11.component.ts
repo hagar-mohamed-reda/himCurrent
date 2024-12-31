@@ -33,14 +33,17 @@ export class StudentAffairReport11Component implements OnInit {
 
 
     }
-
+isShow=false
   load() {
     if (!Helper.validator(this.filter, ['level_id', 'academic_year_id'])) {
       return Message.error(Helper.trans('please choose all filters'));
     }
+    this.isShow=true
 
     this.globalService.loadHtml("affair/report11", this.filter).subscribe((res) => {
       $('#reportContent').html(res);
+      this.isShow=false
+
     });
   }
 
