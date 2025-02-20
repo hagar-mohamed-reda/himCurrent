@@ -159,7 +159,7 @@ const routes: Routes = [
       {
         path: "efada",
         canActivate: [AuthGuestService],
-        data: { can: Auth.can("control") },
+        data: { can: Auth.can("efada-student") },
         component: EfadaComponent,
       }, {
         path: "stud-reason",
