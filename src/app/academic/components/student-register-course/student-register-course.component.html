@@ -128,6 +128,9 @@
                                                 <td>
                                                     <b>{{ "الجهه"  }}</b> : {{ student.governmental_entity }}
                                                 </td>
+                                                <td>
+                                                    {{check_project_grad}}
+                                                </td>
                                             </tr>
                                     </table>
                                     <div *ngIf="student.case_constraint_excuse!=null&&student.case_constraint_excuse.length>0" style="font-weight: 600; color: rgb(159, 25, 25);"> 

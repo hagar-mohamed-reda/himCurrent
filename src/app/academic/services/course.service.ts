@@ -92,4 +92,7 @@ export class CourseService {
     return this.http.post('academic/register_courses/update?api_token=' + Auth.getApiToken(), data);
   }
 
+  public graduate_project_check(data) {
+    return this.http.get('academic/graduate_project_check?api_token=' + Auth.getApiToken()+'&student_id='+data);
+  }
 }

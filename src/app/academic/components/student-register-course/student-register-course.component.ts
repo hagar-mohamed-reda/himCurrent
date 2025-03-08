@@ -400,6 +400,20 @@ export class StudentRegisterCourseComponent implements OnInit {
       }
     });
   }
+  check_project_grad:any=''
+  graduate_project_check(){
+    this.check_project_grad=""
+    this.courseService.graduate_project_check(this.student_id).subscribe((res: any) => {
+      this.check_project_grad=""
+      if(res.checked==1){
+        this.check_project_grad="مشروع التخرج"
+      }
+      else{
+        this.check_project_grad="";
+      }
+      
+    });
+  }
   updateRegisterCourses() {
     if (!this.student.id)
       return Message.error(Helper.trans('select student first'));
@@ -576,6 +590,7 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.searchKey = student.name;
       this.student_id = student.id;
       this.loadStudentInfo(student.id);
+      
     }
     this.counter=4;
 
@@ -585,6 +600,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   loadStudentInfo(id) {
     this.academicSettingService.getStudentInfo(id).subscribe((res: any) => {
       this.student = res;
+      this.graduate_project_check();
       this.loadData();
     });
   }
