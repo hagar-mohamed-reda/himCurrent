@@ -41,7 +41,9 @@ export class AcademicSettingService {
   public getStudentInfo(id) {
     return this.http.get('academic/get_student_academic?api_token=' + Auth.getApiToken() + "&student_id=" + id);
   }
-
+  public getStudentWithCourses(id) {
+    return this.http.get('academic/get_student_courses_inregister?api_token=' + Auth.getApiToken() + "&student_id=" + id);
+  }
   public getAcademicPaymentSettings(){
     return this.http.get('academic/payment_settings?api_token=' + Auth.getApiToken());
   }

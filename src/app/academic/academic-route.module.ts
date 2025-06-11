@@ -50,6 +50,10 @@ import { GpacalcComponent } from './components/gpacalc/gpacalc.component';
 import { ReportStatusStudentsComponent } from './components/report-status-students/report-status-students.component';
 import { ReportStatusCourseStudComponent } from './components/report-status-course-stud/report-status-course-stud.component';
 import { EfadaComponent } from './components/efada/efada.component';
+import { HourdetailComponent } from './components/hourdetail/hourdetail.component';
+import { ArmyreportComponent } from './components/armyreport/armyreport.component';
+
+
 import { StudReasonComponent } from './components/stud-reason/stud-reason.component';
 import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
 import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
@@ -161,7 +165,21 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("efada-student") },
         component: EfadaComponent,
-      }, {
+      },
+      {
+        path: "hourdetail",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: HourdetailComponent,
+      },
+      {
+        path: "armyreport",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: ArmyreportComponent,
+      },
+       
+       {
         path: "stud-reason",
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control") },

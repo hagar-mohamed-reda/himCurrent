@@ -88,8 +88,10 @@ export class StudentRegisterCourseComponent implements OnInit {
     })
     $('.groupFilter').val(id)
   }
-
+  displaycourses='none'
   getStudentRegisterCourse() {
+    // this.displaycourses='block'
+      this.getStudentWithCourses()
     this.globalService.loadHtml("affair/report20", this.student_id).subscribe((res) => {
       $('#reportContent1').html(res);
     });
@@ -596,9 +598,16 @@ export class StudentRegisterCourseComponent implements OnInit {
 
     this.studentSearchDialogShow = false;
   }
-
+  getStudentWithCourses() {
+    this.academicSettingService.getStudentWithCourses(this.student_id).subscribe((res: any) => {
+      debugger
+      this.student.academic_document= res["academic_document"];
+      
+    });
+  }
   loadStudentInfo(id) {
     this.academicSettingService.getStudentInfo(id).subscribe((res: any) => {
+      debugger
       this.student = res;
       this.graduate_project_check();
       this.loadData();
