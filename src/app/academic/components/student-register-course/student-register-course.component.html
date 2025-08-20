@@ -152,7 +152,7 @@
                         <!-- setting panel -->
                         <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
                             <div class="custom-panel-body table-responsive">
-                                <button mat-raised-button color="primary" (click)="performUpdateRegisterCourses()" [disabled]="isSubmitted || !canRegister()" style="margin: 5px">
+                                <button mat-raised-button color="primary" (click)="performUpdateRegisterCourses()" [disabled]="isSubmitted || !canRegister()||isAvailable" style="margin: 5px">
                                 <i *ngIf="isSubmitted" class="fa fa-spin fa-spinner"></i>
                                 <span *ngIf="!isSubmitted">{{ "save changes" | trans}} </span>
                             </button>

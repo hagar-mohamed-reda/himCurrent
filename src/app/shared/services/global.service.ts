@@ -36,12 +36,21 @@ export class GlobalService {
    *
    */
   loadHtml(url, data: any = {}) {
+    debugger
     //let headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     data.api_token = Auth.getApiToken();
     const headers = new HttpHeaders({
       'Content-Type': 'text/plain; charset=utf-8'
     });
     return this.http.get<string>(url, { headers: headers, params: data, responseType: 'text' as 'json' });
+  }
+  loadHtmlwithoutToken(url ) {
+    debugger
+    //let headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+     const headers = new HttpHeaders({
+      'Content-Type': 'text/plain; charset=utf-8'
+    });
+    return this.http.get<string>(url, { headers: headers, responseType: 'text' as 'json' });
   }
   loadHtml4(url, data: any  ) {
     //let headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');

@@ -181,7 +181,18 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-
+                  <a [routerLink]="['/academic/customcert']" role="button"  *ngIf="user.role_id !=9"class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b> طباعه الشهاده   </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                     <a [routerLink]="['/academic/sefenatiga']" role="button"  *ngIf="user.role_id !=9"class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>    تقرير الفصل الدراسي الصيفي   </b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
                 </div>
             </div>
         </div>

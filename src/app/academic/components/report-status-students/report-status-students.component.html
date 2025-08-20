@@ -53,7 +53,17 @@
                       </select>
                                 </div>
                             </div>
+  <div class="col-lg-2  ">
+                                <div class="form-group">
+                                    <label for="">  النوع </label>
+                                    <select class="form-control" [(ngModel)]="filter.type">
+                           <option value="">  الكل</option>
+                          <option value="1"> ذكر </option>
+                          <option value="2"> انثي</option>
 
+                      </select>
+                                </div>
+                            </div>
                             <div class="col-lg-3 col-md-3" style="margin-top:25px">
                                 <button class="btn btn-default w3-round" (click)="load()">
                                                           <i *ngIf="isSubmitted1==false" class="fa fa-spin fa-spinner"></i>

@@ -58,6 +58,8 @@ import { StudReasonComponent } from './components/stud-reason/stud-reason.compon
 import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
 import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
 import { CourseStudLevelComponent } from './components/course-stud-level/course-stud-level.component';
+import { CustomcertComponent } from './components/customcert/customcert.component';
+import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.component';
 
 const routes: Routes = [
   // {
@@ -206,6 +208,19 @@ const routes: Routes = [
         data: { can: Auth.can("control") },
         component: OneStudenResultComponent,
       },
+       {
+        path: "customcert",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: CustomcertComponent,
+      },
+      {
+        path: "sefenatiga",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: SefenatigaComponent,
+      },
+      
       {
         path: "students-results",
         canActivate: [AuthGuestService],

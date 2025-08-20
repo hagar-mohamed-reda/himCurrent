@@ -152,6 +152,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   loadAvailableCourses() {
+    this.isAvailable=true
     this.courses ={}
     let data = {
       student_id: this.searchData.student_id
@@ -159,6 +160,7 @@ export class StudentRegisterCourseComponent implements OnInit {
     this.courseService.getAvailableCourses(data).subscribe((res) => {
       this.toHashTable(res, this.availableCourses);
       this.courses = res;
+       this.isAvailable=false
       //
       this.loadLevels();
       //
@@ -316,7 +318,7 @@ export class StudentRegisterCourseComponent implements OnInit {
 
   pass2="556677"
   valepa2
-
+isAvailable:boolean=true
   removeCourse(course) {
     let self = this;
     Message.confirm(Helper.trans('are you sure'), () => {

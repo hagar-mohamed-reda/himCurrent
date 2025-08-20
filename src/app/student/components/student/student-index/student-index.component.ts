@@ -384,7 +384,7 @@ change2(event, cor ) {
      console.log("sss"+this.totalpay)
   }else{
      event.target.checked = false;
-     this.display4 = 'block';
+    //  this.display4 = 'block';
  this.valepa2=""
   }
   }

@@ -68,13 +68,15 @@ import { StudReasonComponent } from './components/stud-reason/stud-reason.compon
 import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
 import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.component';
 import { CourseStudLevelComponent } from './components/course-stud-level/course-stud-level.component';
+import { CustomcertComponent } from './components/customcert/customcert.component';
+import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.component';
 
 @NgModule({
   declarations: [
     MinistryCumulativeReportComponent,EfadaComponent,StudReasonComponent,CourseStudLevelComponent,
-    ReportStatusStudentsComponent,RegisdiffComponent,ArmyreportComponent,
+    ReportStatusStudentsComponent,RegisdiffComponent,ArmyreportComponent,CustomcertComponent,
     ReportStatusCourseStudComponent,
-    Allgrdlevel2Component,GraduationGovComponent,
+    Allgrdlevel2Component,GraduationGovComponent,SefenatigaComponent,
     GraduationReportComponent,SettingresultComponent,
     StudentGraduationResultComponent,
     AcademicComponent,
