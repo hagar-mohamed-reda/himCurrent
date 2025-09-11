@@ -97,6 +97,8 @@ export class CustomcertComponent implements OnInit {
     });
   }
   ngOnInit() {
+           this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+
     $('#myForm input').on('change', () => {
       var t = $('input[name=radioName]:checked', '#myForm').val();
       console.log(t);
@@ -593,7 +595,7 @@ isAvailable:boolean=true
       this.searchData.student_id = student.id;
       this.searchKey = student.name;
       this.student_id = student.id;
-      this.loadStudentInfo(student.id);
+      // this.loadStudentInfo(student.id);
       
     }
     this.counter=4;
@@ -612,6 +614,7 @@ isAvailable:boolean=true
     this.academicSettingService.getStudentInfo(id).subscribe((res: any) => {
       debugger
       this.student = res;
+
           this.isSubmittedPrint=false
 
       // this.graduate_project_check();
@@ -689,14 +692,16 @@ isAvailable:boolean=true
     this.display10="block"
 
   }
-    datecert: string = '';
+    datecert:any;
 isSubmittedPrintafter:boolean=false
    load() {
     this.isSubmittedPrintafter=false
     // Check if a date has been selected
-    if ( this.student.id) {
+    if ( this.student_id) {
+      let formattedDate =``
       // Create a Date object from the input string (yyyy-mm-dd)
-      const date = new Date(this.datecert);
+      if(this.datecert){
+         const date = new Date(this.datecert);
 
       // Extract day, month, and year
       const day = date.getDate();
@@ -704,11 +709,13 @@ isSubmittedPrintafter:boolean=false
       const year = date.getFullYear();
 
       // Format the date string as 'dd-m-yyyy'
-      const formattedDate = `${day}-${month}-${year}`;
+        formattedDate = `${day}-${month}-${year}`;
+       }
+     
 
       // Call your service with the formatted date
       this.globalService.loadHtmlwithoutToken(
-        "academic/graduation/certificate/ar/custom/" + this.student.id + "?date=" + formattedDate
+        "academic/graduation/certificate/ar/custom/" + this.student_id + "?date=" + formattedDate+"&type="+this.filter.type+"&level="+this.filter.level_id
       ).subscribe((res) => {
 
         $('#reportContent').html(res);
