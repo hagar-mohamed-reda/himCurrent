@@ -15,7 +15,7 @@ import { Message } from 'src/app/shared/message';
 export class RoleIndexComponent implements OnInit {
 
   public doc: any = AppModule.doc;
-
+displaylic="none"
   // Resources list
   public resources: any[] = null;
   public updateMode = false;

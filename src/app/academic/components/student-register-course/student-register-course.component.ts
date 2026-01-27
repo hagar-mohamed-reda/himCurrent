@@ -49,6 +49,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   groups: any =[];
   user: any;
   x: any = 0;
+  notedisplay="none"
   //
   public searchKey: string;
   public studentSearchDialogShow = false;
@@ -111,11 +112,8 @@ export class StudentRegisterCourseComponent implements OnInit {
     }, 500);
 
     this.loadAcademicSetting();
-    this.applicationSettingService.commissions().subscribe((res) => {
-      console.log(res);
-
-      this.commissionsGet = res;
-    })
+    this.commissionsGet=[]
+    
     this.applicationSettingService.maxSetNumber().subscribe((res) => {
       this.maxSetNumber = res;
     })
@@ -127,7 +125,22 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.doc.Swal.fire({title: message});
     }
   }
+  commissionsGetbefore:any
+getcommision(){
+   this.commissionsGet=[]
+      this.commissionsGetbefore=[]
 
+    this.applicationSettingService.commissions().subscribe((res) => {
+      console.log(res);
+      this.commissionsGetbefore=res
+      console.log( this.commissionsGetbefore.length)
+      this.commissionsGet = this.commissionsGetbefore.filter(x =>
+        x.division_id == this.student.division.id &&
+        x.level_id == this.student.level.id
+      );
+      
+    })
+}
   calculateAge(dateString: any): number {
     const today = new Date();
    let birthdate = new Date(dateString);
@@ -405,17 +418,27 @@ isAvailable:boolean=true
     });
   }
   check_project_grad:any=''
+  grad_gpa:any=''
   graduate_project_check(){
     this.check_project_grad=""
+    this.grad_gpa=""
     this.courseService.graduate_project_check(this.student_id).subscribe((res: any) => {
       this.check_project_grad=""
       if(res.checked==1){
         this.check_project_grad="مشروع التخرج"
+     
       }
       else{
         this.check_project_grad="";
+        this.grad_gpa=""
       }
-      
+         if(res.grad_gpa==true){
+           this.grad_gpa="ناجح مشروع تخرج"
+        }
+        else{
+                     this.grad_gpa="راسب مشروع تخرج"
+
+        }
     });
   }
   updateRegisterCourses() {
@@ -462,12 +485,12 @@ isAvailable:boolean=true
   }
 
   printRegisterCourses() {
-    let url1 = environment.publicUrl + "/academic/register-course-student-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
-    let url2 = environment.publicUrl + "/academic/register-course-user-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
+    let url1 = environment.apiUrl + "/academic/register-course-student-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
+    let url2 = environment.apiUrl + "/academic/register-course-user-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
     Helper.openWindow(url1);
     Helper.openWindow(url2);
     if((this.student.gpa <= 2.3)){
-      let url3 = environment.publicUrl + "/academic/register-course-prevent-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
+      let url3 = environment.apiUrl + "/academic/register-course-prevent-print/" + this.student.id + "?api_token=" + Auth.getApiToken();
       Helper.openWindow(url3);
     }
   }
@@ -607,11 +630,24 @@ isAvailable:boolean=true
       
     });
   }
+  displaylic="none"
   loadStudentInfo(id) {
+      this.student={}
+        this.courses ={}
+       this.registerCourses = new HashTable();
+       this.isSelected = true;
+     this.check_project_grad=""
+    this.grad_gpa=""
+    this.levels=[]
+    this.commissionsGet=[]
+    this.commissionsGetbefore=[]
     this.academicSettingService.getStudentInfo(id).subscribe((res: any) => {
       debugger
       this.student = res;
       this.graduate_project_check();
+      if(this.student.id){
+       this.getcommision()
+      }
       this.loadData();
     });
   }
@@ -685,5 +721,34 @@ isAvailable:boolean=true
     this.resonsss=arr
     this.display10="block"
 
+  }
+  addNote(){
+     if(this.student){
+       this. noteparm=""
+          this.notedisplay="block"
+
+    }else{
+       Message.error(' الرجاء اختيار طالب ');
+
+    }
+  }
+  noteparm=""
+  dateNote
+  addNotetoApi(){
+       var objectSend = {  student_id:this.student.id, notes : this.noteparm,note_date :this.dateNote };
+
+     this.studentService.create_note(this.student.id,this.noteparm,this.dateNote, objectSend).subscribe((res: any) => {
+      if (res.status == 1) {
+               Message.success(' تم اضافة الملاحظة ');
+                         this.notedisplay="none"
+
+      }
+     });
+
+  }
+
+  closeNote(){
+    this.noteparm=""
+     this.notedisplay="none"
   }
 }

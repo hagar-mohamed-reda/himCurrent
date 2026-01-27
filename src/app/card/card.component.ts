@@ -24,8 +24,8 @@ export class CardComponent implements OnInit {
   availableCards = new HashTable();
 
   isExportSubmitted = false;
-
-  //
+displaylic="none"
+  //display10
   public searchKey: string;
   public studentSearchDialogShow = false;
   public studentSearchDialogLoader = false;

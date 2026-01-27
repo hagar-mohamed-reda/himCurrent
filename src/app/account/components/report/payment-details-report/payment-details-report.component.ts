@@ -31,6 +31,7 @@ export class PaymentDetailsReportComponent implements OnInit {
   academicYears: any = [];
   academicYearExpenses: any = [];
   counter: any;
+  displaylic="none"
   //
   selectedLevels = new HashTable();
   selectedDivisions = new HashTable();

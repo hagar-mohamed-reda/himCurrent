@@ -140,7 +140,7 @@
                           " class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed" [(ngModel)]="application.qualification_types_id">
                           <ng-container
                             *ngFor="
-                              let item of applicationSettings.QUALIFICATION_TYPES
+                              let item of QualificationTypes
                             "
                           >
 
@@ -614,7 +614,7 @@
 
                           <option
                             *ngFor="
-                              let item of applicationSettings.NATIONALITIES
+                              let item of  Nationalities
                             "
                             value="{{ item.id }}"
                           >

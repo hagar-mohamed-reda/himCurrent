@@ -36,7 +36,8 @@ export class StudentShowComponent implements OnInit {
 
   @Input() studentData: any = null;
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute) {
+  constructor(private studentService: StudentService, private route: ActivatedRoute,  public applicationSettingService :ApplicationSettingService
+) {
 
     if (this.studentData) {
       this.loadApplication(this.studentData.id);
@@ -48,8 +49,26 @@ export class StudentShowComponent implements OnInit {
         }
       });
     }
+    this.getNationalities()
+     this.getQualificationTypes() 
   }
+  QualificationTypes=[]
+  getQualificationTypes() {
+     this.applicationSettingService.getQualificationTypes().subscribe((res: any) => {
 
+        this.QualificationTypes = res;
+        
+      });
+   }
+
+ Nationalities=[]
+  getNationalities() {
+     this.applicationSettingService.getNationalities().subscribe((res: any) => {
+
+        this.Nationalities = res;
+        
+      });
+   }
   loadApplication(id) {
     this.studentService.load(id).subscribe((res: any) => {
       this.student = res;

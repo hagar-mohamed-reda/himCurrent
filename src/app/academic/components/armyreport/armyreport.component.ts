@@ -46,7 +46,13 @@ export class ArmyreportComponent implements OnInit {
     isSubmitted=false
     load() {
       this.isSubmitted=true
-
+       if (this.filter.start_date) {
+          this.filter.start_date = this.formatDate(this.filter.start_date);
+        }
+      
+        if (this.filter.end_date) {
+          this.filter.end_date = this.formatDate(this.filter.end_date);
+        }
       this.globalService.loadHtml("affair/report43", this.filter).subscribe((res) => {
         $('#reportContent').html(res);
         this.isSubmitted=false
@@ -56,7 +62,15 @@ export class ArmyreportComponent implements OnInit {
 
       })
     }
-   
+   formatDate(date: any): string {
+      const d = new Date(date);
+      const year = d.getFullYear();
+      const month = ('0' + (d.getMonth() + 1)).slice(-2);
+      const day = ('0' + d.getDate()).slice(-2);
+    
+      return `${year}-${month}-${day}`;
+    }
+
     printcert(){
 
     }
@@ -158,6 +172,6 @@ export class ArmyreportComponent implements OnInit {
     excel() {
       this.doc.exportExcel();
     }
-    
+    displaylic="none"
   //'الطلبة'
   }

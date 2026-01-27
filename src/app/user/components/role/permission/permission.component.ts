@@ -9,7 +9,7 @@ import { RoleService } from '../../../services/role.service';
   styleUrls: ['./permission.component.scss']
 })
 export class PermissionComponent implements OnInit, OnChanges {
-
+displaylic="none"
   @Input() role: any = {};
   @Input() updateMode: any = false;
   @Input() loadResources: any = false;

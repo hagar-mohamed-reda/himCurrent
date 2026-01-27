@@ -13,7 +13,7 @@ export class SafeSettingComponent implements OnInit {
 
   public doc: any = AppModule.doc;
   @Input() safeObject: any;
-
+displaylic="none"
 
   constructor(private studentAccountService: StudentAccountService) { }
 

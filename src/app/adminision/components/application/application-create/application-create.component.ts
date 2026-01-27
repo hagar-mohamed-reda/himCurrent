@@ -78,6 +78,7 @@ export class ApplicationCreateComponent implements OnInit {
     private globalService : GlobalService,
     private service:UserProfileService
     ) {
+      this.getQualificationTypes()
     this.applicationSettingService.queueRequests();
     Request.fire(false, () => {
       this.setDefaultYear();
@@ -93,14 +94,23 @@ export class ApplicationCreateComponent implements OnInit {
       this.setDefaultYear();
       this.application.registeration_date = new Date().toISOString().substring(0, 10);
     }
-
+      this.getNationalities() 
     this.route.queryParams.subscribe((params) => {
       let col = params['col'];
       if (col)
         this.col = col;
     });
   }
+ 
+  QualificationTypes:any=[]
+getQualificationTypes() {
+     this.applicationSettingService.getQualificationTypes().subscribe((res: any) => {
+       
 
+        this.QualificationTypes = res;
+       
+      });
+   }
   setDefaultYear() {
     this.application.academic_years_id = 11;
     this.application.nationality_id=1
@@ -125,7 +135,14 @@ isdis=false
         }
       });
    }
- 
+   Nationalities=[]
+  getNationalities() {
+     this.applicationSettingService.getNationalities().subscribe((res: any) => {
+
+        this.Nationalities = res;
+        
+      });
+   }
   loadApplication(id) {
     this.applicationService.load(id).subscribe((res: any) => {
       this.application = res;
@@ -224,16 +241,16 @@ isdis=false
 
     return valid;
   }
-
+ 
   calculatePercent() {
     var percent = 0;
     var total = 0;
     var total2 = 0;
 
-
+ 
 
     console.log('in percent func');
-    this.applicationSettings.QUALIFICATION_TYPES.forEach((element: any) => {
+    this.QualificationTypes.forEach((element: any) => {
       if (this.application.qualification_types_id == element.id) {
         total = element.grade;
         total2 = element.maxgrade;

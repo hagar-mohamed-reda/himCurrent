@@ -6,6 +6,7 @@ import { Request } from 'src/app/shared/request';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { ApplicationSettingService } from '../../../adminision/services/application-setting.service';
 import { LevelService } from '../../../account/services/level.service';
+import { TermService } from 'src/app/account/services/term.service';
 
 @Component({
   selector: 'app-student-affair-report5',
@@ -21,7 +22,7 @@ export class StudentAffairReport5Component implements OnInit {
   divisions: any = [];
   academicYears: any = [];
   doc: any = document;
-
+terms: any = [];
   constructor(
     private globalService: GlobalService,
     private applicationSettingService: ApplicationSettingService) {
@@ -51,5 +52,7 @@ export class StudentAffairReport5Component implements OnInit {
 
   ngOnInit() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+        this.terms = Cache.get(TermService.TERPM_PREFIX);
+    
   }
 }

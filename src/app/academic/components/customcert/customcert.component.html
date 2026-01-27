@@ -93,6 +93,11 @@
                                     <span *ngIf="!isSubmittedPrint"  (click)="load()" >اظهر الشهاده</span>
           <span *ngIf="isSubmittedPrint" class="fa fa-spin fa-spinner" ></span>
                                   </button>
+
+                                    <button   mat-raised-button color="primary" class="w3-margin-left w3-red"> <i class="fa fa-send-o" ></i>     
+                                    <span *ngIf="!isSubmittedPrint" (click)="loadResult();" >   بيان التقديرات</span>
+          <span *ngIf="isSubmittedPrint" class="fa fa-spin fa-spinner" ></span>
+                                  </button>
                                <button *ngIf="isSubmittedPrintafter"  mat-raised-button color="primary" class="w3-margin-left w3-red"> <i class="fa fa-send-o" ></i>     
                                     <span    (click)="printContent()" >طباعة الشهاده</span>
                                    </button>     
@@ -106,6 +111,7 @@
 
 
                     </div>
+                     
                 </div>
             </div>
 
@@ -376,3 +382,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+ 

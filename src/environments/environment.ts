@@ -7,8 +7,16 @@ export const environment = {
   //  publicUrl: "http://him.him-ma.org",
   //  apiUrl: "http://him.him-ma.org/api",
 
-     publicUrl: "http://him-ma.site",
-     apiUrl: "https://him-ma.site/api",
+    //  publicUrl: "http://him-ma.site",
+    //  apiUrl: "https://him-ma.site/api",
+    new:false,
+
+      publicUrl: "http://app.him-eg.com",
+     apiUrl: "https://app.him-eg.com/api",
+      // publicUrl: "https://him-eg.com/",
+    //  apiUrl: "https://him-eg.com/api",
+
+
 
   //  publicUrl: "http://bsnu.msa-bns.org",
   //  apiUrl: "http://bsnu.msa-bns.org/api",

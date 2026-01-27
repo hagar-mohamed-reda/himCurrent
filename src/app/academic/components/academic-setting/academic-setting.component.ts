@@ -12,7 +12,7 @@ import { AcademicSettingService } from '../../services/academic-setting.service'
   styleUrls: ['./academic-setting.component.scss']
 })
 export class AcademicSettingComponent implements OnInit {
-
+displaylic="none"
   $: any = $;
   settings = [];
   levels = [];

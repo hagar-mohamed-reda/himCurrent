@@ -189,7 +189,7 @@
                                             <td>
                                                 <select readonly (change)="watchLevel()" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="student.qualification_types_id">
                                                     <ng-container
-                                                        *ngFor="let item of studentSettings.QUALIFICATION_TYPES">
+                                                        *ngFor="let item of  QualificationTypes">
                                                         <option
                                                             *ngIf="item.qualification_id == student.qualification_id && item.academic_year_id == student.academic_years_id"
                                                             value="{{ item.id }}">{{ item.name }}</option>
@@ -447,7 +447,7 @@
                                             <th>{{ "nationality" | trans }}</th>
                                             <td>
                                                 <select readonly class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="student.nationality_id">
-                                                    <option *ngFor="let item of studentSettings.NATIONALITIES"
+                                                    <option *ngFor="let item of Nationalities"
                                                         value="{{ item.id }}">{{ item.name }}</option>
                                                 </select>
                                             </td>

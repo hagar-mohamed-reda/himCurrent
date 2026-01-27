@@ -85,7 +85,9 @@ export class Report21Component implements OnInit {
   printContent() {
     this.doc.printJs();
   }
-  excel(){}
+  excel() {
+      this.doc.exportExcel();
+    }
 
   ngOnInit() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);

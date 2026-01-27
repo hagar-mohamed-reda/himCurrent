@@ -128,8 +128,20 @@
                                                 <td>
                                                     <b>{{ "الجهه"  }}</b> : {{ student.governmental_entity }}
                                                 </td>
-                                                <td>
+                                                
+                                               
+                                            </tr>
+                                            <tr>
+                                             <td *ngIf=" student?.years_in_current_level ">
+                                                        <b>{{ " كام سنه في المستوي  "  }}
+                                                            {{ student.level? student.level.name : '' }}
+                                                        </b> : {{ student.years_in_current_level }}
+                                                    </td>
+                                                     <td *ngIf="check_project_grad">
                                                     {{check_project_grad}}
+                                                </td>
+                                                 <td *ngIf="grad_gpa">
+                                                    {{ grad_gpa}}
                                                 </td>
                                             </tr>
                                     </table>
@@ -166,8 +178,8 @@
                             </button>
                                 <!-- <button *ngIf="student.set_number == null && isSelected && canRegister()" mat-raised-button color="primary" class="w3-purple" [disabled]="!canRegister()" (click)="addSeatingNumber(student.id)" style="margin: 5px">
                 <span>{{ "add_seating_number" | trans}} </span>
-              </button> -->
-                                <button [disabled]="!canRegister() || !isSelected" type="button" mat-raised-button color="primary" class="w3-purple" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" style="margin: 5px"><span>{{ "add or edit seating number"
+              </button> --> 
+                                <button (click)="getcommision()" [disabled]="!canRegister() || !isSelected" type="button" mat-raised-button color="primary" class="w3-purple" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" style="margin: 5px"><span>{{ "add or edit seating number"
                                     |
                                     trans}} </span></button>
 
@@ -178,6 +190,9 @@
                             </button> -->
                                 <button mat-raised-button color="primary" class="w3-purple" (click)="printNumber(student.id)" style="margin: 5px">
                                 <span>طباعة رقم جلوس</span>
+                            </button>
+                            <button mat-raised-button color="primary" class="w3-purple" (click)="addNote()" style="margin: 5px">
+                                <span> اضافة ملاحظه    </span>
                             </button>
                                 <!-- <button mat-raised-button color="primary" class="w3-purple" (click)="efada()" style="margin: 5px">
                                 <span> افادة الطالب    </span>
@@ -667,4 +682,43 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayLic}" style="background-color: rgba(90,90,90,0.5);">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="    margin-top: 250px;">
+            <div class="modal-header" style="background-color:#b10d0d;">
+              <p style="color: white;font-size: 20px;"> تنبية</p>
+            </div>
+            <div class="modal-body">
+                <h3 style="color: #b10d0d;"> هذه النسخة غير مرخصة </h3>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal" tabindex="-1" [ngStyle]="{'display':notedisplay}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ملاحظات</h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+         <label for="exampleFormControlTextarea1" class="form-label">اكتب الملاحظة</label>
+          <textarea class="form-control" [(ngModel)]="noteparm" id="exampleFormControlTextarea1" rows="3"></textarea>
+         <label for="fordate" class="form-label"> التاريخ  </label>
+
+          <input type="date" class="form-control" [(ngModel)]="dateNote"  >
+
+<br>
+      </div>
+      <div class="modal-footer"style="text-align: right;">
+        <button type="button" (click)="addNotetoApi()" class="btn btn-primary">حفظ</button>
+        <button type="button" (click)="closeNote()" class="btn btn-secondary" data-bs-dismiss="modal">غلق</button>
+        
+      </div>
+    </div>
+  </div>
 </div>

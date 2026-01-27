@@ -729,4 +729,21 @@ isSubmittedPrintafter:boolean=false
   printContent() {
       Helper.print();
   }
+  display444="none"
+ loadResult() {
+  const url = `${environment.apiUrl}/academic/students/success-statement/${this.student_id}?api_token=${Auth.getApiToken()}`;
+
+  // Configure small popup window
+  const width = 800;
+  const height = 600;
+  const left = (window.innerWidth - width) / 2;
+  const top = (window.innerHeight - height) / 2;
+
+  window.open(
+    url,
+    'SuccessStatement', // window name
+    `width=${width},height=${height},top=${top},left=${left},resizable=no,scrollbars=yes,status=no`
+  );
+}
+
 }

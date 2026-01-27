@@ -40,7 +40,7 @@ paymony=0;
   public students: any = [];
   public isStudentSayed = false;
   public updateStudent: any;
-
+displaylic="none"
   public selectedServices = new HashTable<any, any>();
   public safeAlerter: SafeAlerter;
   disco=0

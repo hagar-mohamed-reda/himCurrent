@@ -21,7 +21,7 @@ import { UserProfileService } from 'src/app/user-profile/user-profile.service';
   styleUrls: ['./student-create.component.scss']
 })
 export class StudentCreateComponent implements OnInit {
-
+displaylic="none"
   public doc: any = AppModule.doc;
   /**
    * application object
@@ -63,7 +63,8 @@ export class StudentCreateComponent implements OnInit {
 
   public col = "col-lg-10 col-md-10 col-sm-12";
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute , private globalService : GlobalService, private service:UserProfileService) {
+  constructor(  private applicationSettingService : ApplicationSettingService,
+private studentService: StudentService, private route: ActivatedRoute , private globalService : GlobalService, private service:UserProfileService) {
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       !Auth.can('student_edit')? exit() : '';
@@ -72,7 +73,8 @@ export class StudentCreateComponent implements OnInit {
     } else {
       !Auth.can('student_add')? exit() : '';
     }
-
+this.getNationalities()
+this.getQualificationTypes()
     this.route.queryParams.subscribe((params) => {
       let col = params['col'];
       if (col)
@@ -122,6 +124,24 @@ export class StudentCreateComponent implements OnInit {
 
     // set gender
   }
+   Nationalities=[]
+  getNationalities() {
+     this.applicationSettingService.getNationalities().subscribe((res: any) => {
+
+        this.Nationalities = res;
+        
+      });
+   }
+ QualificationTypes=[]
+  getQualificationTypes() {
+     this.applicationSettingService.getQualificationTypes().subscribe((res: any) => {
+
+        this.QualificationTypes = res;
+        
+      });
+   }
+
+   
   calculateAge() {
     if (!this.application.birthdate)
       return 0;

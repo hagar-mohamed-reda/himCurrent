@@ -24,7 +24,7 @@ export class SettingsComponent implements OnInit {
   valuesHash = new HashTable();
   terms: any = [];
   term_id: any;
-
+displaylic="none"
   isSubmitted = false;
   password: any = null;
   level_id: any = null;

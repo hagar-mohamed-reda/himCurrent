@@ -60,6 +60,8 @@ import { GradeEnahnceComponent } from './components/grade-enahnce/grade-enahnce.
 import { CourseStudLevelComponent } from './components/course-stud-level/course-stud-level.component';
 import { CustomcertComponent } from './components/customcert/customcert.component';
 import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.component';
+import { AcademicDetailReportComponent } from './components/academic-detail-report/academic-detail-report.component';
+import { AcademicNoteComponent } from './components/academic-note/academic-note.component';
 
 const routes: Routes = [
   // {
@@ -417,6 +419,30 @@ const routes: Routes = [
           ]),
         },
         component: AcademicReportDailyComponent,
+      },
+      {
+        path: "academic-detail-report",
+        canActivate: [AuthGuestService],
+        data: {
+          can: Auth.canOr([
+            "course_read",
+            "course_category_read",
+            "degree_map_read",
+          ]),
+        },
+        component: AcademicDetailReportComponent,
+      },
+       {
+        path: "academic-note",
+        canActivate: [AuthGuestService],
+        data: {
+          can: Auth.canOr([
+            "course_read",
+            "course_category_read",
+            "degree_map_read",
+          ]),
+        },
+        component: AcademicNoteComponent,
       },
       {
         path: "academic-new",

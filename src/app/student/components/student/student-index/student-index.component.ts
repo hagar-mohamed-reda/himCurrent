@@ -364,6 +364,7 @@ this.file=files[0];
 counter2=1
 priceMatrial
 totalbook=0
+displayLic="none"
 totalBook_Mat=0
 idsmat=[];
 change2(event, cor ) {

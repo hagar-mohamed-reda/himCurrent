@@ -3,13 +3,23 @@
         <img src="/assets/img/logo.png" alt="" style="width: 90px">
         <br>
         <a href="#" class="w3-text-gray"><b>  {{ env.business_name }}  </b></a>
+        <br>
+        <!-- <h2 style=" color: #07d0d0;font-weight: bold;"   >اهلا بك فى اللائحة الجديدة </h2> -->
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body material-shadow w3-animate-zoom">
-        <p class="login-box-msg"><b>{{ 'login with account' | trans }}</b></p>
+        <p  class="login-box-msg"><b>{{ 'login with account' | trans }}</b>
+    
+            <span *ngIf="env.new==true">
+
+                            <br>اهلا بك فى اللائحة الجديدة 
+
+            </span>
+
+        </p>
 
         <div class="form-group has-feedback">
-            <input type="email" class="form-control" [(ngModel)]="userAuth.email" placeholder="{{ 'email' | trans }}">
+            <input type="email" class="form-control" [(ngModel)]="userAuth .email" placeholder="{{ 'email' | trans }}">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">

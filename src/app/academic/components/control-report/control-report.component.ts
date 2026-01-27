@@ -32,6 +32,7 @@ export class ControlReportComponent implements OnInit {
   password = null;
   searchCourseKey = null;
   currentPage = 1;
+displaylic="none"
 
   levels: any = [];
   divisions: any = [];

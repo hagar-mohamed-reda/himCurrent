@@ -18,7 +18,7 @@ import { CourseService } from '../../services/course.service';
   styleUrls: ['./academic-report-daily.component.scss']
 })
 export class AcademicReportDailyComponent implements OnInit {
-
+displaylic="none"
   filter: any = {};
   $: any = $;
   applicationService: any = ApplicationSettingService;

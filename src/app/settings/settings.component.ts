@@ -7,7 +7,7 @@ import { Auth } from '../shared/auth';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
+displaylic="none"
   public auth: any = Auth;
   constructor() { }
 

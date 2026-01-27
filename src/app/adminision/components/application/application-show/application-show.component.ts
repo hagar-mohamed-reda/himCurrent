@@ -33,7 +33,8 @@ export class ApplicationShowComponent implements OnInit {
 
   public currentError: string;
  
-  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) { 
+  constructor(private applicationService: ApplicationService, private route: ActivatedRoute,    private applicationSettingService: ApplicationSettingService,
+) { 
     
     this.route.params.subscribe((params) => {
       const id = params['id'];
@@ -41,6 +42,8 @@ export class ApplicationShowComponent implements OnInit {
         this.loadApplication(id); 
       }
     });
+    this.getNationalities()
+    this.getQualificationTypes()
   }
 
   loadApplication(id) {
@@ -51,7 +54,23 @@ export class ApplicationShowComponent implements OnInit {
       this.setLevel();
     });
   }
- 
+  Nationalities=[]
+  getNationalities() {
+     this.applicationSettingService.getNationalities().subscribe((res: any) => {
+
+        this.Nationalities = res;
+        
+      });
+   }
+   QualificationTypes=[]
+   getQualificationTypes() {
+     this.applicationSettingService.getQualificationTypes().subscribe((res: any) => {
+       
+
+        this.QualificationTypes = res;
+       
+      });
+   }
   toggle(selector) {
     if (selector) {
       this.doc.jquery('.application-panel').slideUp(500);

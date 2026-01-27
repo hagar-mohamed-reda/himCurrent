@@ -30,7 +30,7 @@ export class CardExportReportComponent implements OnInit {
   cardtypes: any = [];
   selectedPayment: any = {};
   isSearching: boolean = false;
-
+displaylic="none"
   //
   selectedLevels = new HashTable();
   selectedDivisions = new HashTable();

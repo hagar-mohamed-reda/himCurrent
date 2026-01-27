@@ -43,8 +43,8 @@ export class ApplicationSettingService {
     if (ApplicationSettingService.CASE_CONSTRAINTS.length <= 0)
       Request.addToQueue({ observer: this.getCaseConstraints(), action: (res) => { ApplicationSettingService.CASE_CONSTRAINTS = res; } });
 
-    if (ApplicationSettingService.NATIONALITIES.length <= 0)
-      Request.addToQueue({ observer: this.getNationalities(), action: (res) => { ApplicationSettingService.NATIONALITIES = res; } });
+    // if (ApplicationSettingService.NATIONALITIES.length <= 0)
+    //   Request.addToQueue({ observer: this.getNationalities(), action: (res) => { ApplicationSettingService.NATIONALITIES = res; } });
 
     if (ApplicationSettingService.ACADEMIC_YEARS.length <= 0)
       Request.addToQueue({ observer: this.getAcademicYears(), action: (res) => { ApplicationSettingService.ACADEMIC_YEARS = res; } });

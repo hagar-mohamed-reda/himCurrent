@@ -20,9 +20,10 @@ import { AddSeatingNumbers } from './components/add-seating-numbers/add-seating-
 import { SetNumbersNullComponent } from './components/set-numbers-null/set-numbers-null.component';
 import { StudentsRoomsManageReportComponent } from './components/students-rooms-manage-report/students-rooms-manage-report.component';
 import { SetNumbersComponent } from './components/set-numbers/set-numbers.component';
+import { PrintStudentsNationalNumbersComponent } from './components/print-students-national-numbers/print-students-national-numbers.component';
 
 @NgModule({
-  declarations: [ManageRoomsMapComponent,CoverWallComponent,CoverSignsComponent, ManageSeatingRoomsReportComponent, PrintSeatingNumbersComponent, PrintStudentsReportComponent, RegisterExamsScheduleComponent, ExamsComponent, TheatersComponent, CommissionsComponent, PrintWallsReportsComponent, PrintSignsReportsComponent, AddSeatingNumbers, SetNumbersNullComponent, StudentsRoomsManageReportComponent, SetNumbersComponent],
+  declarations: [ManageRoomsMapComponent,PrintStudentsNationalNumbersComponent,CoverWallComponent,CoverSignsComponent, ManageSeatingRoomsReportComponent, PrintSeatingNumbersComponent, PrintStudentsReportComponent, RegisterExamsScheduleComponent, ExamsComponent, TheatersComponent, CommissionsComponent, PrintWallsReportsComponent, PrintSignsReportsComponent, AddSeatingNumbers, SetNumbersNullComponent, StudentsRoomsManageReportComponent, SetNumbersComponent],
   imports: [
     CommonModule,
     ExamsRoutingModule, SharedModule

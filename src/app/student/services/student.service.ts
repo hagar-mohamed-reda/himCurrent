@@ -68,4 +68,8 @@ export class StudentService {
   public addSetNumber(id, objectSend) {
     return this.http.post('students/store_student_set_number?api_token=' + Auth.getApiToken() + "&student_id=" + id, objectSend);
   }
+  // + "&student_id=" + id+ "&notes =" + note+ "&note_date =" + note_date
+  public create_note(id,note, note_date,noteData) {
+    return this.http.post('student_notes/store?api_token=' + Auth.getApiToken() ,noteData);
+  }
 }

@@ -10,6 +10,7 @@ export class ControlAndResultsComponent implements OnInit {
 
   constructor(private service:UserProfileService) { }
 user:any={}
+displaylic="none"
   ngOnInit() {
     this.loadProfile()
   }

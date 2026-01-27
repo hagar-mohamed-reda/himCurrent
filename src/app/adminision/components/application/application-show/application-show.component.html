@@ -215,7 +215,7 @@
                             (change)="watchLevel()"
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                             [(ngModel)]="application.qualification_types_id">
-                              <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
+                              <ng-container *ngFor="let item of QualificationTypes">
                                   <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
                               </ng-container>
                               
@@ -467,7 +467,7 @@
                               <select readonly 
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                               [(ngModel)]="application.nationality_id">
-                                <option *ngFor="let item of applicationSettings.NATIONALITIES" value="{{ item.id }}">{{ item.name }}</option>
+                                <option *ngFor="let item of Nationalities" value="{{ item.id }}">{{ item.name }}</option>
                               </select>  
                             </td>
                           </tr> 

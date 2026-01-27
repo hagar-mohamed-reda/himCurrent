@@ -47,7 +47,7 @@ import { AuthModule } from './auth/auth.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { StudentsResultsComponent } from './students-results/students-results.component';
 import { BookserviceComponent } from './bookservice/bookservice.component';
-@NgModule({
+ @NgModule({
   declarations: [	
     LayoutComponent,
     AuthComponent,
@@ -56,7 +56,8 @@ import { BookserviceComponent } from './bookservice/bookservice.component';
     UserProfileComponent,
     SystemLabelComponent,
     StudentsResultsComponent,
-      BookserviceComponent
+      BookserviceComponent 
+       
    ],
   imports: [
     NgxPaginationModule,

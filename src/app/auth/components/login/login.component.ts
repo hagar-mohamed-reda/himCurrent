@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.doc.jquery('body').addClass('login-background');
+    
     this.route.queryParams.subscribe((params) => {
       // noinspection TsLint
     });

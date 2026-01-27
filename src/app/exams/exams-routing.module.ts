@@ -8,6 +8,7 @@ import { PrintSeatingNumbersComponent } from './components/print-seating-numbers
 import { PrintSignsReportsComponent } from './components/print-signs-reports/print-signs-reports.component';
 import { CoverSignsComponent } from './components/cover-signs/cover-signs.component';
 import { CoverWallComponent } from './components/cover-wall/cover-wall.component';
+import { PrintStudentsNationalNumbersComponent } from './components/print-students-national-numbers/print-students-national-numbers.component';
 
 import { PrintStudentsReportComponent } from './components/print-students-report/print-students-report.component';
 import { PrintWallsReportsComponent } from './components/print-walls-reports/print-walls-reports.component';
@@ -83,6 +84,12 @@ const routes: Routes = [
     path: 'students-rooms-manage-report',
     component: StudentsRoomsManageReportComponent
   },
+
+  {
+    path: 'print-students-national-numbers',
+    component: PrintStudentsNationalNumbersComponent
+  },
+  
   {
     path: '**',
     redirectTo: '/',

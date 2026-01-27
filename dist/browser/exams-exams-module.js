@@ -1110,6 +1110,119 @@ var PrintSignsReportsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.html":
+/*!*****************************************************************************************************************!*\
+  !*** ./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.html ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"w3-block w3-row\">\n  <div class=\"w3-white material-shadow safe-box w3-block\">\n      <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\n         طباعه وتوقيع الارقام القومية\n      </div>\n      <div class=\"border-bottom-dashed\"></div>\n      <br>\n\n      <div class=\"\">\n\n          <div class=\"\">\n              <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n\n                  <div class=\"custom-panel-body table-responsive w3-padding\">\n\n                      <div id=\"form\" class=\"row\">\n                         <div class=\"col-lg-2 col-md-2\">\n                                <div class=\"form-group\">\n                                    <label for=\"\">{{ \"academic year\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.year_id\">\n                  <option value=\"\">{{ \"academic year\" | trans }}</option>\n            <option *ngFor=\"let item of applicationService.ACADEMIC_YEARS\" value=\"{{ item.id }}\">{{item.name}}</option>\n          </select>\n                                </div>\n                            </div>\n\n                        <div class=\"col-lg-2 col-md-2\">\n                          <div class=\"form-group\">\n                              <label for=\"\">{{ \"level\" | trans }}</label>\n                              <select class=\"form-control\" id=\"level_id\" name=\"filter.level_id\" [(ngModel)]=\"filter.level_id\">\n                        <option value=\"\">الكل</option>\n                  <option *ngFor=\"let item of levels\" value=\"{{ item.id }}\">{{item.name}}</option>\n                </select>\n                          </div>\n                      </div>\n                          <div class=\"col-lg-2 col-md-2\">\n                              <div class=\"form-group\">\n                                  <label for=\"\">{{ \"division\" | trans }}</label>\n                                  <select class=\"form-control\" id=\"division_id\" name=\"filter.division_id\" id=\"division_id\" [(ngModel)]=\"filter.division_id\">\n                            <option value=\"\">الكل</option>\n                      <option *ngFor=\"let item of divisions\" value=\"{{ item.id }}\">{{item.name}}</option>\n                    </select>\n                              </div>\n                          </div>\n                          <div class=\"col-lg-2 col-md-2\">\n                          <div class=\"form-group\">\n                            <label>اللجنة</label>\n                            <select class=\"form-control\" name=\"filter.commission_id\" [(ngModel)]=\"filter.commission_id\">\n                            <option value=\"\">الكل</option>\n              <option *ngFor=\"let item of commissions\"  value=\"{{ item.id }}\">{{ item.name }}</option>\n            </select>\n                        </div>\n                      </div>\n                       \n                          <!-- <div class=\"col-lg-4 col-md-4\">\n                              <div class=\"form-group\">\n                                  <label for=\"\">الترم</label>\n                                  <select class=\"form-control\" [(ngModel)]=\"filter.term_id\">\n                          <option value=\"\">الترم</option>\n                    <option *ngFor=\"let item of terms\" value=\"{{ item.id }}\">{{item.name}}</option>\n                  </select>\n                              </div>\n                          </div> -->\n                          <!-- <div class=\"col-lg-4 col-md-4\">\n                              <div class=\"form-group\">\n                                  <label for=\"\">السنة الدراسية</label>\n                                  <select class=\"form-control\" [(ngModel)]=\"filter.year_id\">\n                        <option value=\"\">السنة الدراسية</option>\n                  <option *ngFor=\"let item of applicationService.ACADEMIC_YEARS\" value=\"{{ item.id }}\">{{item.name}}</option>\n                </select>\n                              </div>\n                          </div> -->\n                          <div class=\"col-lg-4 col-md-4\">\n                              <button class=\"btn btn-default w3-round\" (click)=\"load()\">{{ \"search\" | trans }}</button>\n                              <button style=\"margin: 0 5px;\" class=\"btn btn-default w3-round\" (click)=\"printContent()\">{{ \"print\" | trans }}</button>\n                              <button class=\"btn btn-default w3-round\" (click)=\"excel()\">{{ \"excel\" | trans }}</button>\n                          </div>\n\n\n                      </div>\n\n                  </div>\n              </div>\n          </div>\n          <div class=\"\">\n              <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\" id=\"printable\">\n\n                  <div dir=\"rtl\" class=\"custom-panel-body table-responsive w3-padding\" id=\"reportContent\">\n\n\n                  </div>\n              </div>\n          </div>\n\n\n\n      </div>\n\n\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.scss":
+/*!*****************************************************************************************************************!*\
+  !*** ./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.scss ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#form {\n  display: flex;\n  align-items: center;\n}\n\n/*# sourceMappingURL=students-rooms-manage-report.component.css.map */\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZXhhbXMvY29tcG9uZW50cy9wcmludC1zdHVkZW50cy1uYXRpb25hbC1udW1iZXJzL0Q6XFxQcm9qZWN0XFxzcGhpbmtzXFxIaW0yMzIwMjNmcm9udGVuZFxcSGltMjMyMDIzZnJvbnRlbmQvc3JjXFxhcHBcXGV4YW1zXFxjb21wb25lbnRzXFxwcmludC1zdHVkZW50cy1uYXRpb25hbC1udW1iZXJzXFxwcmludC1zdHVkZW50cy1uYXRpb25hbC1udW1iZXJzLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9leGFtcy9jb21wb25lbnRzL3ByaW50LXN0dWRlbnRzLW5hdGlvbmFsLW51bWJlcnMvcHJpbnQtc3R1ZGVudHMtbmF0aW9uYWwtbnVtYmVycy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUdFLGFBQUE7RUFHUSxtQkFBQTtBQ0NWOztBRENBLHFFQUFBIiwiZmlsZSI6InNyYy9hcHAvZXhhbXMvY29tcG9uZW50cy9wcmludC1zdHVkZW50cy1uYXRpb25hbC1udW1iZXJzL3ByaW50LXN0dWRlbnRzLW5hdGlvbmFsLW51bWJlcnMuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjZm9ybSB7XHJcbiAgZGlzcGxheTogLXdlYmtpdC1ib3g7XHJcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICAtd2Via2l0LWJveC1hbGlnbjogY2VudGVyO1xyXG4gICAgICAtbXMtZmxleC1hbGlnbjogY2VudGVyO1xyXG4gICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG4vKiMgc291cmNlTWFwcGluZ1VSTD1zdHVkZW50cy1yb29tcy1tYW5hZ2UtcmVwb3J0LmNvbXBvbmVudC5jc3MubWFwICovIiwiI2Zvcm0ge1xuICBkaXNwbGF5OiAtd2Via2l0LWJveDtcbiAgZGlzcGxheTogLW1zLWZsZXhib3g7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIC13ZWJraXQtYm94LWFsaWduOiBjZW50ZXI7XG4gIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi8qIyBzb3VyY2VNYXBwaW5nVVJMPXN0dWRlbnRzLXJvb21zLW1hbmFnZS1yZXBvcnQuY29tcG9uZW50LmNzcy5tYXAgKi8iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.ts":
+/*!***************************************************************************************************************!*\
+  !*** ./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.ts ***!
+  \***************************************************************************************************************/
+/*! exports provided: PrintStudentsNationalNumbersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PrintStudentsNationalNumbersComponent", function() { return PrintStudentsNationalNumbersComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var src_app_account_services_division_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/account/services/division.service */ "./src/app/account/services/division.service.ts");
+/* harmony import */ var src_app_account_services_level_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/account/services/level.service */ "./src/app/account/services/level.service.ts");
+/* harmony import */ var src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var src_app_shared_cache__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/services/global.service */ "./src/app/shared/services/global.service.ts");
+
+
+
+
+
+
+
+
+
+
+var PrintStudentsNationalNumbersComponent = /** @class */ (function () {
+    function PrintStudentsNationalNumbersComponent(titleService, globalService, applicationSettingService) {
+        // this.titleService.setTitle("HIM"+ " - " + Helper.trans('students_rooms_manage_report'))
+        //     this.applicationSettingService.queueRequests();
+        //   var self = this;
+        //   Request.fire(false, () => {
+        //   });
+        this.titleService = titleService;
+        this.globalService = globalService;
+        this.applicationSettingService = applicationSettingService;
+        this.filter = {};
+        this.$ = $;
+        this.applicationService = src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationSettingService"];
+        this.levels = [];
+        this.divisions = [];
+        this.academicYears = [];
+        this.filter_search = {};
+        this.doc = document;
+        this.commissions = [];
+    }
+    PrintStudentsNationalNumbersComponent.prototype.load = function () {
+        if (!src_app_shared_helper__WEBPACK_IMPORTED_MODULE_7__["Helper"].validator(this.filter, ['level_id', 'division_id'])) {
+            return src_app_shared_message__WEBPACK_IMPORTED_MODULE_8__["Message"].error(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_7__["Helper"].trans('please choose all filters'));
+        }
+        else {
+            this.globalService.loadHtml("affair/report47", this.filter).subscribe(function (res) {
+                $('#reportContent').html(res);
+            });
+        }
+    };
+    PrintStudentsNationalNumbersComponent.prototype.excel = function () {
+        this.doc.exportExcel();
+    };
+    PrintStudentsNationalNumbersComponent.prototype.printContent = function () {
+        this.doc.printJs();
+    };
+    PrintStudentsNationalNumbersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.levels = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_6__["Cache"].get(src_app_account_services_level_service__WEBPACK_IMPORTED_MODULE_4__["LevelService"].LEVEL_PREFIX);
+        this.divisions = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_6__["Cache"].get(src_app_account_services_division_service__WEBPACK_IMPORTED_MODULE_3__["DivisionService"].DIVISION_PREFIX);
+        this.applicationSettingService.commissions().subscribe(function (res) {
+            _this.commissions = res;
+        });
+    };
+    PrintStudentsNationalNumbersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-print-students-national-numbers',
+            template: __webpack_require__(/*! ./print-students-national-numbers.component.html */ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.html"),
+            styles: [__webpack_require__(/*! ./print-students-national-numbers.component.scss */ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["Title"],
+            src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_9__["GlobalService"],
+            src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationSettingService"]])
+    ], PrintStudentsNationalNumbersComponent);
+    return PrintStudentsNationalNumbersComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/exams/components/print-students-report/print-students-report.component.html":
 /*!*********************************************************************************************!*\
   !*** ./src/app/exams/components/print-students-report/print-students-report.component.html ***!
@@ -1875,14 +1988,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/print-signs-reports/print-signs-reports.component */ "./src/app/exams/components/print-signs-reports/print-signs-reports.component.ts");
 /* harmony import */ var _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/cover-signs/cover-signs.component */ "./src/app/exams/components/cover-signs/cover-signs.component.ts");
 /* harmony import */ var _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/cover-wall/cover-wall.component */ "./src/app/exams/components/cover-wall/cover-wall.component.ts");
-/* harmony import */ var _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/print-students-report/print-students-report.component */ "./src/app/exams/components/print-students-report/print-students-report.component.ts");
-/* harmony import */ var _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/print-walls-reports/print-walls-reports.component */ "./src/app/exams/components/print-walls-reports/print-walls-reports.component.ts");
-/* harmony import */ var _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/register-exams-schedule/register-exams-schedule.component */ "./src/app/exams/components/register-exams-schedule/register-exams-schedule.component.ts");
-/* harmony import */ var _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/theaters/theaters.component */ "./src/app/exams/components/theaters/theaters.component.ts");
-/* harmony import */ var _exams_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./exams.component */ "./src/app/exams/exams.component.ts");
-/* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
-/* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
-/* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+/* harmony import */ var _components_print_students_national_numbers_print_students_national_numbers_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/print-students-national-numbers/print-students-national-numbers.component */ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.ts");
+/* harmony import */ var _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/print-students-report/print-students-report.component */ "./src/app/exams/components/print-students-report/print-students-report.component.ts");
+/* harmony import */ var _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/print-walls-reports/print-walls-reports.component */ "./src/app/exams/components/print-walls-reports/print-walls-reports.component.ts");
+/* harmony import */ var _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/register-exams-schedule/register-exams-schedule.component */ "./src/app/exams/components/register-exams-schedule/register-exams-schedule.component.ts");
+/* harmony import */ var _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/theaters/theaters.component */ "./src/app/exams/components/theaters/theaters.component.ts");
+/* harmony import */ var _exams_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./exams.component */ "./src/app/exams/exams.component.ts");
+/* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
+/* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
+/* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+
 
 
 
@@ -1905,11 +2020,11 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        component: _exams_component__WEBPACK_IMPORTED_MODULE_15__["ExamsComponent"]
+        component: _exams_component__WEBPACK_IMPORTED_MODULE_16__["ExamsComponent"]
     },
     {
         path: 'register-exams-schedule',
-        component: _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_13__["RegisterExamsScheduleComponent"]
+        component: _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_14__["RegisterExamsScheduleComponent"]
     },
     {
         path: 'print-seating-numbers',
@@ -1917,7 +2032,7 @@ var routes = [
     },
     {
         path: 'print-students-report',
-        component: _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_11__["PrintStudentsReportComponent"]
+        component: _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_12__["PrintStudentsReportComponent"]
     },
     {
         path: 'manage-rooms-map',
@@ -1929,7 +2044,7 @@ var routes = [
     },
     {
         path: 'theaters',
-        component: _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_14__["TheatersComponent"]
+        component: _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_15__["TheatersComponent"]
     },
     {
         path: 'commissions',
@@ -1937,7 +2052,7 @@ var routes = [
     },
     {
         path: 'print-walls-reports',
-        component: _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_12__["PrintWallsReportsComponent"]
+        component: _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__["PrintWallsReportsComponent"]
     },
     {
         path: 'cover-wall',
@@ -1957,15 +2072,19 @@ var routes = [
     },
     {
         path: 'set-numbers-null',
-        component: _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_16__["SetNumbersNullComponent"]
+        component: _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_17__["SetNumbersNullComponent"]
     },
     {
         path: 'set-numbers',
-        component: _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_18__["SetNumbersComponent"]
+        component: _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_19__["SetNumbersComponent"]
     },
     {
         path: 'students-rooms-manage-report',
-        component: _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_17__["StudentsRoomsManageReportComponent"]
+        component: _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_18__["StudentsRoomsManageReportComponent"]
+    },
+    {
+        path: 'print-students-national-numbers',
+        component: _components_print_students_national_numbers_print_students_national_numbers_component__WEBPACK_IMPORTED_MODULE_11__["PrintStudentsNationalNumbersComponent"]
     },
     {
         path: '**',
@@ -2076,6 +2195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/set-numbers-null/set-numbers-null.component */ "./src/app/exams/components/set-numbers-null/set-numbers-null.component.ts");
 /* harmony import */ var _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/students-rooms-manage-report/students-rooms-manage-report.component */ "./src/app/exams/components/students-rooms-manage-report/students-rooms-manage-report.component.ts");
 /* harmony import */ var _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/set-numbers/set-numbers.component */ "./src/app/exams/components/set-numbers/set-numbers.component.ts");
+/* harmony import */ var _components_print_students_national_numbers_print_students_national_numbers_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/print-students-national-numbers/print-students-national-numbers.component */ "./src/app/exams/components/print-students-national-numbers/print-students-national-numbers.component.ts");
+
 
 
 
@@ -2102,7 +2223,7 @@ var ExamsModule = /** @class */ (function () {
     }
     ExamsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_components_manage_rooms_map_manage_rooms_map_component__WEBPACK_IMPORTED_MODULE_4__["ManageRoomsMapComponent"], _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_15__["CoverWallComponent"], _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_16__["CoverSignsComponent"], _components_manage_seating_rooms_report_manage_seating_rooms_report_component__WEBPACK_IMPORTED_MODULE_5__["ManageSeatingRoomsReportComponent"], _components_print_seating_numbers_print_seating_numbers_component__WEBPACK_IMPORTED_MODULE_6__["PrintSeatingNumbersComponent"], _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_7__["PrintStudentsReportComponent"], _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_8__["RegisterExamsScheduleComponent"], _exams_component__WEBPACK_IMPORTED_MODULE_9__["ExamsComponent"], _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_11__["TheatersComponent"], _components_commissions_commissions_component__WEBPACK_IMPORTED_MODULE_12__["CommissionsComponent"], _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__["PrintWallsReportsComponent"], _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_14__["PrintSignsReportsComponent"], _components_add_seating_numbers_add_seating_numbers_component__WEBPACK_IMPORTED_MODULE_17__["AddSeatingNumbers"], _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_18__["SetNumbersNullComponent"], _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_19__["StudentsRoomsManageReportComponent"], _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_20__["SetNumbersComponent"]],
+            declarations: [_components_manage_rooms_map_manage_rooms_map_component__WEBPACK_IMPORTED_MODULE_4__["ManageRoomsMapComponent"], _components_print_students_national_numbers_print_students_national_numbers_component__WEBPACK_IMPORTED_MODULE_21__["PrintStudentsNationalNumbersComponent"], _components_cover_wall_cover_wall_component__WEBPACK_IMPORTED_MODULE_15__["CoverWallComponent"], _components_cover_signs_cover_signs_component__WEBPACK_IMPORTED_MODULE_16__["CoverSignsComponent"], _components_manage_seating_rooms_report_manage_seating_rooms_report_component__WEBPACK_IMPORTED_MODULE_5__["ManageSeatingRoomsReportComponent"], _components_print_seating_numbers_print_seating_numbers_component__WEBPACK_IMPORTED_MODULE_6__["PrintSeatingNumbersComponent"], _components_print_students_report_print_students_report_component__WEBPACK_IMPORTED_MODULE_7__["PrintStudentsReportComponent"], _components_register_exams_schedule_register_exams_schedule_component__WEBPACK_IMPORTED_MODULE_8__["RegisterExamsScheduleComponent"], _exams_component__WEBPACK_IMPORTED_MODULE_9__["ExamsComponent"], _components_theaters_theaters_component__WEBPACK_IMPORTED_MODULE_11__["TheatersComponent"], _components_commissions_commissions_component__WEBPACK_IMPORTED_MODULE_12__["CommissionsComponent"], _components_print_walls_reports_print_walls_reports_component__WEBPACK_IMPORTED_MODULE_13__["PrintWallsReportsComponent"], _components_print_signs_reports_print_signs_reports_component__WEBPACK_IMPORTED_MODULE_14__["PrintSignsReportsComponent"], _components_add_seating_numbers_add_seating_numbers_component__WEBPACK_IMPORTED_MODULE_17__["AddSeatingNumbers"], _components_set_numbers_null_set_numbers_null_component__WEBPACK_IMPORTED_MODULE_18__["SetNumbersNullComponent"], _components_students_rooms_manage_report_students_rooms_manage_report_component__WEBPACK_IMPORTED_MODULE_19__["StudentsRoomsManageReportComponent"], _components_set_numbers_set_numbers_component__WEBPACK_IMPORTED_MODULE_20__["SetNumbersComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _exams_routing_module__WEBPACK_IMPORTED_MODULE_3__["ExamsRoutingModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_10__["SharedModule"]
