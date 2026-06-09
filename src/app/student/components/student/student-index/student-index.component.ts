@@ -646,7 +646,7 @@ print2(){
       <body onload="window.print();" >
       <section style="padding:15px;border:2px solid black; border-radius:10px; height:100vh" >
       <div style='display:flex;justify-content:space-between'>
-      <img style="width:100px" src="http://him-ma.site/logo.png">
+      <img style="width:100px" src="http://app.him-eg.com/logo.png">
       <h5 style="text-align: center;">المعهد العالى للادارة
       <br>
       بالمحلة الكبرى
@@ -687,7 +687,7 @@ print2(){
       <body onload="window.print();" >
       <section style="padding:15px;border:2px solid black; border-radius:10px; height:100vh" >
       <div style='display:flex;justify-content:space-between'>
-      <img style="width:100px" src="http://him-ma.site/logo.png">
+      <img style="width:100px" src="http://app.him-eg.com/logo.png">
       <h5 style="text-align: center;">المعهد العالى للادارة
       <br>
       بالمحلة الكبرى
@@ -725,7 +725,7 @@ print2(){
       <body onload="window.print();" >
       <section style="padding:15px;border:2px solid black; border-radius:10px; height:100vh" >
       <div style='display:flex;justify-content:space-between'>
-      <img style="width:100px" src="http://him-ma.site/logo.png">
+      <img style="width:100px" src="http://app.him-eg.com/logo.png">
       <h5 style="text-align: center;">المعهد العالى للادارة
       <br>
       بالمحلة الكبرى
@@ -778,7 +778,7 @@ print2(){
         <body onload="window.print();" >
         <section style="padding:15px;border:2px solid black; border-radius:10px; height:100vh" >
         <div style='display:flex;justify-content:space-between'>
-        <img style="width:100px" src="http://him-ma.site/logo.png">
+        <img style="width:100px" src="http://app.him-eg.com/logo.png">
         <h5 style="text-align: center;">المعهد العالى للادارة
         <br>
         بالمحلة الكبرى
@@ -817,7 +817,7 @@ print2(){
         <body onload="window.print();" >
         <section style="padding:15px;border:2px solid black; border-radius:10px; height:100vh" >
         <div style='display:flex;justify-content:space-between'>
-        <img style="width:100px" src="http://him-ma.site/logo.png">
+        <img style="width:100px" src="http://app.him-eg.com/logo.png">
         <h5 style="text-align: center;">المعهد العالى للادارة
         <br>
         بالمحلة الكبرى
@@ -854,7 +854,7 @@ print2(){
       <body onload="window.print();" >
       <section style="padding:15px;border:2px solid black; border-radius:10px; height:100vh" >
       <div style='display:flex;justify-content:space-between'>
-      <img style="width:100px" src="http://him-ma.site/logo.png">
+      <img style="width:100px" src="http://app.him-eg.com/logo.png">
       <h5 style="text-align: center;">المعهد العالى للادارة
       <br>
       بالمحلة الكبرى

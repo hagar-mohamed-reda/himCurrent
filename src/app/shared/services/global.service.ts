@@ -36,7 +36,7 @@ export class GlobalService {
    *
    */
   loadHtml(url, data: any = {}) {
-    debugger
+     
     //let headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     data.api_token = Auth.getApiToken();
     const headers = new HttpHeaders({

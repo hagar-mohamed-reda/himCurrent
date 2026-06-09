@@ -31,7 +31,7 @@ paymony=0;
   totalPayments : number = 0;
   public studentSearchId;
   public availableServices: any;
-
+  group_num: any;
   public studentSearchDialogShow = false;
   public studentSearchDialogLoader = false;
   public showStudentInstallment = false;
@@ -336,7 +336,8 @@ if(this.mode==1){
      "discount":this.disco,
      "payment_price": this.paymony,
      "date":this.datemodify,
-     "serial":this.seriel
+     "serial":this.seriel,
+     "group_num":this.group_num ?this.group_num:0
 
 }
 }else if(this.mode==2){
@@ -346,8 +347,8 @@ if(this.mode==1){
      "discount":this.disco,
      "payment_price": this.paymony,
      "date":this.datemodify,
-     "book_serial":this.book_serial
-
+     "book_serial":this.book_serial,
+"group_num":this.group_num ?this.group_num:0
 }
 }else{
   this.formData={
@@ -356,7 +357,7 @@ if(this.mode==1){
      "discount":this.disco,
      "payment_price": this.paymony,
      "date":this.datemodify,
-
+"group_num":this.group_num ?this.group_num:0
 }
 }
 
@@ -451,7 +452,9 @@ noteCon
 showconfirm1(){
 
    let formdata={
-    "student_id":this.StudIDD
+    
+    "student_id":this.StudIDD,
+    "group_num":this.group_num ?this.group_num:0
   }
   this.globalService.get('account/student_expense_detail',formdata).subscribe( (res: any) => {
      this.confirmList=res["data"]
@@ -511,7 +514,7 @@ Postconfirm1(){
    "date": this.dateConfirm ,
    "wz_serial":this.wz_serial,
    "in_serial":this.in_serial,
-
+    "group_num":this.group_num ?this.group_num:0,
     "payment_ids":this.itemids.toString(),
     "payment_type":"academic_year_expense",
 
@@ -546,7 +549,7 @@ showRecitConfirm(){
    "in_serial":this.in_serial,
    "payment_ids":this.itemids.toString(),
    "payment_type":"academic_year_expense",
-
+"group_num":this.group_num ?this.group_num:0,
    "notes_in":this.noteCon,
    "notes_wz":this.noteMin,
 "discount_value":this.DisHim,

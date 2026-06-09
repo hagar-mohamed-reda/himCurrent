@@ -21,7 +21,7 @@
                             <div class="col-lg-2 col-md-3">
                                 <div class="form-group">
                                     <label>{{ "level" | trans }}</label>
-                                    <select id="level_id" class="form-control" name="level_id" [(ngModel)]="filter.level_id">
+                                    <select id="level_id" (ngModelChange)="onselect('level', $event)" class="form-control" name="level_id" [(ngModel)]="filter.level_id">
                           <option value="">المستوي</option>
                   <option *ngFor="let item of levels"  value="{{ item.id }}">{{ item.name }}</option>
                 </select>
@@ -30,7 +30,7 @@
                             <div class="col-lg-2 col-md-3">
                                 <div class="form-group">
                                     <label for="">{{ "division" | trans }}</label>
-                                    <select class="form-control input-sm course_id" [(ngModel)]="filter.division_id">
+                                    <select class="form-control input-sm course_id"  (ngModelChange)="onselect('division', $event)" [(ngModel)]="filter.division_id">
                               <option value="">الشعبة</option>
                             <option *ngFor="let item of divisions" value="{{ item.id }}">{{item.name}}</option>
                         </select>

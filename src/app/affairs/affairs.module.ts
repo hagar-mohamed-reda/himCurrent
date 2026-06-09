@@ -27,10 +27,11 @@ import { StudlatexamComponent } from "./studlatexam/studlatexam.component";
 import { ReportstatustagnedComponent } from "./report/reportstatustagned/reportstatustagned.component";
 import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.component";
 import { DeliverComponent } from './report/deliver/deliver.component';
-
+import { RemovestdComponent } from "./report/removestd/removestd.component";
+ 
 @NgModule({
   declarations: [
-    AffairsComponent,
+    AffairsComponent,RemovestdComponent,
     StudentAffairReport1Component,ReportstatustagnedComponent,GradeStatmentComponent,
     StudentAffairReport2Component,
     StudentAffairReport3Component,

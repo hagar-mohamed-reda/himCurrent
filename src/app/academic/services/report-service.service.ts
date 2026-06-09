@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth } from 'src/app/shared/auth';
 
@@ -50,6 +50,15 @@ export class ReportServiceService {
       {
       return this.http.get('academic/report/get-all_students-result/level1/level2?api_token=' + Auth.getApiToken()+"&"+this.$.param(data));
       }
+       public getAllStudentsResultLevel1andlevel2NewFromMomaher(data)
+      {
+        const headers = new HttpHeaders({
+              'Content-Type': 'text/plain; charset=utf-8'
+            });
+      // return this.http.get();
+      return this.http.get<string>('academic/report/getAllStudentsResultLevel1andlevel2NewFromMomaher?api_token=' + Auth.getApiToken()+"&"+this.$.param(data), { headers: headers, params: data, responseType: 'text' as 'json' });
+  
+    }
       public getAllStudentsResultLevel2(data)
       {
       return this.http.get('academic/report/get-all_students-result/level2?api_token=' + Auth.getApiToken()+"&"+this.$.param(data));

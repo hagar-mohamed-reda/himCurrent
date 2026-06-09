@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
  import { Title } from '@angular/platform-browser';
 import { HashTable } from 'angular-hashtable';
 import { AcademicYearService } from 'src/app/account/services/academic-year.service';
@@ -13,11 +13,11 @@ import { GlobalService } from 'src/app/shared/services/global.service';
 import { environment } from 'src/environments/environment';
 import { Cache } from 'src/app/shared/cache';
 @Component({
-  selector: 'app-armyreport',
-  templateUrl: './armyreport.component.html',
-  styleUrls: ['./armyreport.component.scss']
+  selector: 'app-projects-grad',
+  templateUrl: './projects-grad.component.html',
+  styleUrls: ['./projects-grad.component.scss']
 })
-export class ArmyreportComponent implements OnInit {
+export class ProjectsGradComponent implements OnInit {
   public studentSettings = ApplicationSettingService;
 
     filter: any = {};
@@ -43,31 +43,12 @@ export class ArmyreportComponent implements OnInit {
         //   });
         this.afterImport = () => {
           this.$('#importExcelModal').modal('hide');
-          this.load();
-        };
+         };
     }
 
     afterImport: any;
     isSubmitted=false
-    load() {
-      this.isSubmitted=true
-       if (this.filter.start_date) {
-          this.filter.start_date = this.formatDate(this.filter.start_date);
-        }
-
-        if (this.filter.end_date) {
-          this.filter.end_date = this.formatDate(this.filter.end_date);
-        }
-      // this.filter.case_constraint_id = this.case_constraint_id2.toString();
-      this.globalService.loadHtml("affair/report43", this.filter).subscribe((res) => {
-        $('#reportContent').html(res);
-        this.isSubmitted=false
-
-      }, error => {
-        this.isSubmitted=false
-
-      })
-    }
+    
    formatDate(date: any): string {
       const d = new Date(date);
       const year = d.getFullYear();
@@ -85,8 +66,7 @@ export class ArmyreportComponent implements OnInit {
         // this.levels = Cache.get(LevelService.LEVEL_PREFIX);
         // this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
       //   this.terms = Cache.get(TermService.TERPM_PREFIX);
-       this.levels = Cache.get(LevelService.LEVEL_PREFIX);
-
+ 
       }
 
       printcertif(){
@@ -132,42 +112,7 @@ export class ArmyreportComponent implements OnInit {
   start_number: any;
   level_id: any;
   
-    sendNumber(){
-      $('#beforeLoading').hide();
-      $('#buttonLoading').show();
-      var objectSend = {level_id: this.level_id , start_number: this.start_number};
-      console.log(objectSend)
-      if(this.level_id == undefined || this.start_number == undefined){
-        $('#alertNumber').slideDown(300);
-        $('#beforeLoading').show();
-      $('#buttonLoading').hide();
-        setTimeout(() => {
-          $('#alertNumber').slideUp(1000);
-        }, 1000);
-      } else {
-        this.applicationSettingService.makeNumber(objectSend).subscribe((res)=>{
-          if(res == 1){
-            $('#alertNumberSuccess').slideDown(300);
-            $('#beforeLoading').show();
-      $('#buttonLoading').hide();
-        setTimeout(() => {
-          $('#alertNumberSuccess').slideUp(1000);
-          $('#closeNumber').trigger('click');
-          this.level_id = '';
-          this.start_number = '';
-
-        }, 1000);
-          } else {
-            $('#alertNumber').slideDown(300);
-            $('#beforeLoading').show();
-      $('#buttonLoading').hide();
-        setTimeout(() => {
-          $('#alertNumber').slideUp(1000);
-        }, 1000);
-          }
-        })
-      }
-    }
+ 
     print() {
       Helper.print();
     }

@@ -14,6 +14,15 @@
           <div class="col-lg-12">
             <table class="table">
               <tr>
+                <td>{{ "user"| trans }} </td>
+                <td>
+                  <select [(ngModel)]="doctor.user_id" class="form-control">
+                    <option [ngValue]="null">-- {{ "without user" | trans }} --</option>
+                    <option *ngFor="let item of availableUsers()" value="{{ item.id }}">{{ item.name }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <td>{{ "name"| trans }} *</td>
                 <td>
                   <input type="text"   [(ngModel)]="doctor.name" class="form-control"    >
@@ -65,6 +74,14 @@
                 <td>
                   <select class="form-control select2 level-select" multiple   >
                     <option *ngFor="let item of levels" value="{{ item.id }}" >{{ item.name }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ "divisions"| trans }} </td>
+                <td>
+                  <select class="form-control select2 division-select" multiple>
+                    <option *ngFor="let item of divisions" value="{{ item.id }}">{{ item.name }}</option>
                   </select>
                 </td>
               </tr>

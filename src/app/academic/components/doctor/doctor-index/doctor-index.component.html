@@ -26,10 +26,12 @@
                     <th>{{ "name" | trans }}</th>
                     <th>{{ "phone" | trans }}</th>
                     <th>{{ "username" | trans }}</th>
+                    <th>{{ "user name" | trans }}</th>
                     <th>{{ "gender" | trans }}</th>
                     <th>{{ "levels" | trans }}</th>
+                    <th>{{ "divisions" | trans }}</th>
                     <th>{{ "active" | trans }}</th>
-                    <th>{{ "description" | trans }}</th>
+                    <!-- <th>{{ "description" | trans }}</th> -->
                     <th></th>
                   </tr>
                 </thead>
@@ -39,13 +41,15 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.phone }}</td>
                     <td>{{ item.username }}</td>
+                    <td>{{ item.user_name || (item.user && item.user.name) || userName(item.user_id) }}</td>
                     <td>{{ item.gender | trans }}</td>
                     <td>{{ item.level_names }}</td>
+                    <td>{{ item.division_names }}</td>
                     <td>
                       <i *ngIf="item.active" class="fa fa-check-square w3-text-green" ></i>
                       <i *ngIf="!item.active" class="fa fa-check-square w3-text-red" ></i>
                     </td>
-                    <td>{{ item.description }}</td>
+                    <!-- <td>{{ item.description }}</td> -->
                     <td>
                       <div style="width: 100px" >
                         <i class="fa fa-edit w3-text-orange btn" (click)="showUpdateDoctorForm(item)" ></i>
@@ -64,4 +68,4 @@
 </div>
 
 
-<app-doctor-form [doctor]="doctor" [updateView]="updateView" ></app-doctor-form>
+<app-doctor-form [doctor]="doctor" [doctors]="doctors" [updateView]="updateView" ></app-doctor-form>

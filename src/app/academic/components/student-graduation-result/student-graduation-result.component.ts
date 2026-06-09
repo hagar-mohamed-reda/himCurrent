@@ -11,6 +11,7 @@ import { Request } from 'src/app/shared/request';
 import { AcademicSettingService } from '../../services/academic-setting.service';
 import { CourseService } from '../../services/course.service';
 import { ReportServiceService } from '../../services/report-service.service';
+import { GlobalService } from 'src/app/shared/services/global.service';
 @Component({
   selector: 'app-student-graduation-result',
   templateUrl: './student-graduation-result.component.html',
@@ -59,7 +60,8 @@ export class StudentGraduationResultComponent implements OnInit {
     private courseService: CourseService,
     private studentAcountService: StudentAccountService,
     private academicSettingService: AcademicSettingService,
-    private reportService: ReportServiceService,
+    private reportService: ReportServiceService,        private globalService: GlobalService,
+    
     private applicationSetting: ApplicationSettingService) {
       this.preSettings();
     }
@@ -107,13 +109,26 @@ export class StudentGraduationResultComponent implements OnInit {
     this.searchData.pageNumber=this.pageNumber;
 
     this.isSubmitted = true;
-    this.reportService.GetAllStudentsResultLevel1level2(this.searchData).subscribe((res) => {
-
-      this.responses = res["arrayPush"];
-      this.ttotal=res["taotalCount"];      // this.prePagniation();
-      this.isSubmitted = true;
+    // this.reportService.GetAllStudentsResultLevel1level2(this.searchData).subscribe((res) => {
+    this.reportService.getAllStudentsResultLevel1andlevel2NewFromMomaher(this.searchData).subscribe((res) => {
+ $('#reportContent').html(res);
+      // this.responses = res["arrayPush"];
+      // this.ttotal=res["taotalCount"];      // this.prePagniation();
+      this.isSubmitted = false;
     });
   }
+   load() {
+      this.isSubmitted=true
+
+      this.globalService.loadHtml("academic/report/getAllStudentsResultLevel1andlevel2NewFromMomaher", this.filter).subscribe((res) => {
+        $('#reportContent').html(res);
+        this.isSubmitted=false
+
+      }, error => {
+        this.isSubmitted=false
+
+      })
+    }
   arrnumberpage:any[]=[]
   numberPages :any
   pageNumber=1

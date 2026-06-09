@@ -35,7 +35,9 @@ import { AuthGuestService } from "../shared/middlewares/auth-guest.service";
 import { Auth } from "../shared/auth";
 import { GradeStatmentComponent } from "./report/grade-statment/grade-statment.component";
 import { DeliverComponent } from "./report/deliver/deliver.component";
-
+import { RemovestdComponent } from "./report/removestd/removestd.component";
+ 
+ 
 const routes: Routes = [
   {
     path: "",
@@ -164,7 +166,12 @@ const routes: Routes = [
         path: "report/service",
         component: ServiceComponent,
       },
-
+{
+        path: "report/removestd",
+        component: RemovestdComponent,
+      },
+     
+      
     ],
   },
 

@@ -72,10 +72,11 @@ import { CustomcertComponent } from './components/customcert/customcert.componen
 import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.component';
 import { AcademicDetailReportComponent } from './components//academic-detail-report/academic-detail-report.component';
 import { AcademicNoteComponent } from './components/academic-note/academic-note.component';
+import { ProjectsGradComponent } from './components/projects-grad/projects-grad.component';
 
 @NgModule({
   declarations: [
-    MinistryCumulativeReportComponent,EfadaComponent,StudReasonComponent,CourseStudLevelComponent,AcademicNoteComponent,
+    MinistryCumulativeReportComponent,ProjectsGradComponent,EfadaComponent,StudReasonComponent,CourseStudLevelComponent,AcademicNoteComponent,
     ReportStatusStudentsComponent,RegisdiffComponent,ArmyreportComponent,CustomcertComponent,AcademicDetailReportComponent,
     ReportStatusCourseStudComponent,
     Allgrdlevel2Component,GraduationGovComponent,SefenatigaComponent,

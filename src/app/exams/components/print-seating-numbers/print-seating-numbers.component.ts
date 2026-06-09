@@ -63,12 +63,33 @@ export class PrintSeatingNumbersComponent implements OnInit {
     setTimeout(() => {
       this.$('.select2').select2();
     }, 500);
-    this.applicationSettingService.commissions().subscribe((res)=>{
-      this.commissionsGet = res;
-    })
+    this.applicationSettingService.commissions().subscribe(res => {
+    this.commissionsGetbefore = res;
+  });
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     this.terms = Cache.get(TermService.TERPM_PREFIX);
 
   }
+  commissionsGetbefore:any;
+ 
+onselect(type: string, value: any) {
 
+  if (type === 'level') {
+    this.filter.level_id = value;
+    this.filter.division_id = null; // reset division
+  }
+
+  if (type === 'division') {
+    this.filter.division_id = value;
+  }
+
+   if (this.filter.level_id != null && this.filter.division_id != null) {
+     
+
+      this.commissionsGet = this.commissionsGetbefore.filter(x =>
+        x.division_id == this.filter.division_id &&
+        x.level_id == this.filter.level_id
+      );
+   }
+}
 }

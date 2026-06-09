@@ -288,6 +288,7 @@ export class ApplicationSettingService {
   }
   public commissions() {
     return this.http.get('account/commissions?api_token=' + Auth.getApiToken());
+    // +'&level_id='+level_id+'&division_id='+division_id
   }
   public maxSetNumber() {
     return this.http.get('account/max_set_number?api_token=' + Auth.getApiToken());

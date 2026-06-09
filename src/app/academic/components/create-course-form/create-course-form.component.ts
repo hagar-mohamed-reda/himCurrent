@@ -77,15 +77,17 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     this.loadServices();
   }
 
-  ngOnChanges() {
-    setTimeout(() => {
-      this.$('.select2').select2();
-    }, 500);
-  }
+  // ngOnChanges() {
+  //   setTimeout(() => {
+  //     this.$('.select2').select2();
+  //   }, 500);
+  // }
 
   loadCourses() {
     this.courseService.get().subscribe((res) => {
       this.courses = res;
+          this.$('#courseFormModal').modal('hide');
+
     });
   }
 
@@ -94,8 +96,21 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
       this.services = res;
     });
   }
+ngOnChanges() {
+  setTimeout(() => {
+    this.$('.select2').select2();
 
+    if (this.course && this.course.prerequsites) {
+      let selectedValues: string[] = this.course.prerequsites
+        .split(',')
+        .map((x: string) => x.trim());
 
+      this.$('.prerequsited')
+        .val(selectedValues)
+        .trigger('change');
+    }
+  }, 500);
+}
   validate() {
     let valid = true;
     this.requiredFields.forEach(element => {
@@ -105,18 +120,21 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     return valid;
   }
 
-  send() {
-    if (!this.validate()) {
-      return Message.error(Helper.trans('fill all required data'));
-    }
-    this.course.prerequsites = this.$('.prerequsited').val();
-
-    if (this.course.id) {
-      this.update();
-    } else {
-      this.save();
-    }
+send() {
+  if (!this.validate()) {
+    return Message.error(Helper.trans('fill all required data'));
   }
+
+  let selectedValues = this.$('.prerequsited').val();
+
+  this.course.prerequsites = selectedValues ? selectedValues : [];
+
+  if (this.course.id) {
+    this.update();
+  } else {
+    this.save();
+  }
+}
 
   save() {
     this.isSubmitted= true;
@@ -135,20 +153,68 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     });
   }
 
-  update() {
-    this.isSubmitted= true;
-    this.courseService.update(this.course).subscribe((res: any) => {
-      if (res.status == 1) {
-        Message.success(res.message);
-      }
-      else {
-        Message.error(res.message);
-      }
-      this.isSubmitted = false;
+  // update() {
+  //   this.isSubmitted= true;
+  //   this.courseService.update(this.course).subscribe((res: any) => {
+  //     if (res.status == 1) {
+  //       Message.success(res.message);
+  //         setTimeout(() => {
+  //       if (this.course && this.course.prerequsites) {
+
+  //         let selectedValues: string[] =
+  //           typeof this.course.prerequsites === 'string'
+  //           ? this.course.prerequsites.split(',').map((x: string) => x.trim())
+  //           : this.course.prerequsites;
+
+  //         this.$('.prerequsited')
+  //           .val(selectedValues)
+  //           .trigger('change');
+  //       }
+  //     }, 200);
+  //     }
+  //     else {
+  //       Message.error(res.message);
+  //     }
+  //     this.isSubmitted = false;
+  //     this.updateView();
+  //     this.loadCourses();
+  //   });
+  // }
+
+update() {
+  this.isSubmitted = true;
+
+  this.courseService.update(this.course).subscribe((res: any) => {
+
+    if (res.status == 1) {
+      Message.success(res.message);
+
+      let currentPrerequsites = this.course.prerequsites;
+
       this.updateView();
       this.loadCourses();
-    });
-  }
 
+      setTimeout(() => {
 
+        this.course.prerequsites = currentPrerequsites;
+
+        this.$('.prerequsited').select2();
+
+        this.$('.prerequsited')
+          .val(
+            Array.isArray(currentPrerequsites)
+              ? currentPrerequsites
+              : currentPrerequsites.split(',').map((x: string) => x.trim())
+          )
+          .trigger('change');
+
+      }, 500);
+
+    } else {
+      Message.error(res.message);
+    }
+ 
+    this.isSubmitted = false;
+  });
+}
 }

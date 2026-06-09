@@ -59,8 +59,31 @@
             <input class="form-control" [(ngModel)]="filter.end_date" type="date"  >
                               </div>
                           </div>
+ <div class="col-lg-2 col-md-2">
+                              <div class="form-group">
+                                  <label for=""> النوع</label>
+                                  <select   class="form-control"  [(ngModel)]="filter.gender">
+                                    <option value="">{{ "all" | trans }}</option>
+                                     <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
 
-                        
+                                    
+                                  </select>
+                              </div>
+                          </div>
+                          <!-- <div class="col-lg-2 col-md-2">
+                              <div class="form-group">
+                                  <label for="">{{ " نوع القيد : " }}</label>
+                                  <select multiple class="form-control" name="case_constraint_id" (ngModelChange)="onChange($event)" [(ngModel)]="case_constraint_id">
+                                    <option value="">{{ "all" | trans }}</option>
+                                    <option *ngFor="let item of studentSettings.CASE_CONSTRAINTS" [ngValue]="item.id">
+                                      {{ item.name }}
+                                    </option>
+                                  </select>
+                              </div>
+                          </div> -->
+
+
 
 
 
@@ -73,12 +96,13 @@
 
  
 
-                                  <button   (click)="load()" mat-raised-button color="primary" class="w3-margin-left w3-red"> <i class="fa fa-send-o" ></i>     
+                                  <button   (click)="load()" mat-raised-button color="primary" class="w3-margin-left w3-red"> <i class="fa fa-send-o" ></i>
                                     <span *ngIf="!isSubmitted" >{{ "save" | trans }}</span>
           <span *ngIf="isSubmitted" class="fa fa-spin fa-spinner" ></span>
                                   </button>
                                   <button style="margin: 0 5px;" class="btn btn-default w3-round" (click)="printContent()">{{ "print" | trans }}</button>
                               <button mat-raised-button color="primary" class="w3-margin-left w3-green" (click)="excel()"> <i class="fa fa-file-excel-o" ></i> {{ "excel" | trans }}</button>
+                              <button mat-raised-button color="primary" class="w3-margin-left w3-green" (click)="$('#importExcelModal').modal('show')"> <i class="fa fa-upload" ></i>  رفع ملف التربيه العسكرية</button>
 
                               </div>
                               <div class="custom-panel-body table-responsive w3-padding">
@@ -129,3 +153,5 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<app-import-excel [apiUrl]="'import-army-degree'" [action]="afterImport"></app-import-excel>

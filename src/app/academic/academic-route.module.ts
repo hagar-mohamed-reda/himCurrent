@@ -52,7 +52,7 @@ import { ReportStatusCourseStudComponent } from './components/report-status-cour
 import { EfadaComponent } from './components/efada/efada.component';
 import { HourdetailComponent } from './components/hourdetail/hourdetail.component';
 import { ArmyreportComponent } from './components/armyreport/armyreport.component';
-
+ 
 
 import { StudReasonComponent } from './components/stud-reason/stud-reason.component';
 import { RegisdiffComponent } from './components/regisdiff/regisdiff.component';
@@ -62,6 +62,7 @@ import { CustomcertComponent } from './components/customcert/customcert.componen
 import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.component';
 import { AcademicDetailReportComponent } from './components/academic-detail-report/academic-detail-report.component';
 import { AcademicNoteComponent } from './components/academic-note/academic-note.component';
+import { ProjectsGradComponent } from './components/projects-grad/projects-grad.component';
 
 const routes: Routes = [
   // {
@@ -181,6 +182,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control") },
         component: ArmyreportComponent,
+      },
+       {
+        path: "projects-grad",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: ProjectsGradComponent,
       },
        
        {

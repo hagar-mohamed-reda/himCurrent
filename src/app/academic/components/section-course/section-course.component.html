@@ -52,7 +52,7 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="">{{ "course" | trans }}</label>
-                                <select name="filter.course_id" class="form-control" [(ngModel)]="filter.course_id">
+                                <select name="filter_search.course_id" class="form-control" [(ngModel)]="filter_search.course_id">
                                     <option value="">الكل</option>
                                     <option *ngFor="let item of courses|level:level_id|term:term_id|division:division_id|year:year_id" value="{{ item.course_id }}">{{item.course_name}}</option>
                                 </select>
