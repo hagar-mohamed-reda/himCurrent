@@ -309,21 +309,31 @@
                                         <thead>
                                             <tr>
                                                 <th style="border: 1px solid black;text-align: center;">القيمة</th>
- 
+
                                                 <th style="border: 1px solid black;text-align: center">السنة</th>
- 
+
+                                                <th style="border: 1px solid black;text-align: center">إجراء</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let dis of safeObject.discounts" style="text-align: center;">
                                                 <td>{{dis.value}}</td>
-                                                
+
                                                 <td>{{dis.academic_year?.name}}</td>
 
- 
+                                                <td>
+                                                    <button permission="safe_discount"
+                                                        class="btn btn-danger btn-xs"
+                                                        [disabled]="dis.isCancelling"
+                                                        (click)="cancelDiscount(dis)">
+                                                        <i *ngIf="dis.isCancelling" class="fa fa-spin fa-spinner"></i>
+                                                        <span *ngIf="!dis.isCancelling">إلغاء الخصم</span>
+                                                    </button>
+                                                </td>
+
                                             </tr>
-                                             
+
                                         </tbody>
                                     </table>
 

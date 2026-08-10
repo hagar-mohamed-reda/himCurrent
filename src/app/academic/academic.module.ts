@@ -29,8 +29,11 @@ import { PublisherResultReportComponent } from './components/publisher-result-re
 import { ControlAndResultsComponent } from './components/control-and-results/control-and-results.component';
 import { AttendanceReportComponent } from './components/attendance-report/attendance-report.component';
 import { CoursesStatsComponent } from './components/courses-stats/courses-stats.component';
+import { ResultsDashboardComponent } from './components/results-dashboard/results-dashboard.component';
 import { MinistryCumulativeReportComponent } from './components/ministry-cumulative-report/ministry-cumulative-report.component';
 import { StudentResultsComponent } from './components/student-results/student-results.component';
+import { StudentCertMayJanComponent } from './components/student-cert-may-jan/student-cert-may-jan.component';
+
 import { PrerequsiteComponent } from './components/prerequsite/prerequsite.component';
 import { MedtermComponent } from './components/medterm/medterm.component';
 import { LevelsPipe } from './levels.pipe';
@@ -73,10 +76,11 @@ import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.componen
 import { AcademicDetailReportComponent } from './components//academic-detail-report/academic-detail-report.component';
 import { AcademicNoteComponent } from './components/academic-note/academic-note.component';
 import { ProjectsGradComponent } from './components/projects-grad/projects-grad.component';
+import { StudentAbcentComponent } from './components/student-abcent/student-abcent.component';
 
 @NgModule({
   declarations: [
-    MinistryCumulativeReportComponent,ProjectsGradComponent,EfadaComponent,StudReasonComponent,CourseStudLevelComponent,AcademicNoteComponent,
+    MinistryCumulativeReportComponent,StudentAbcentComponent,ProjectsGradComponent,EfadaComponent,StudReasonComponent,CourseStudLevelComponent,AcademicNoteComponent,
     ReportStatusStudentsComponent,RegisdiffComponent,ArmyreportComponent,CustomcertComponent,AcademicDetailReportComponent,
     ReportStatusCourseStudComponent,
     Allgrdlevel2Component,GraduationGovComponent,SefenatigaComponent,
@@ -110,7 +114,8 @@ import { ProjectsGradComponent } from './components/projects-grad/projects-grad.
     ControlAndResultsComponent,
     AttendanceReportComponent,
     CoursesStatsComponent,
-    StudentResultsComponent,
+    ResultsDashboardComponent,
+    StudentResultsComponent,StudentCertMayJanComponent,
     PrerequsiteComponent,
     MedtermComponent,
     LevelsPipe,

@@ -1,0 +1,513 @@
+<div class="container-fluid">
+    <div class="w3-block">
+        <div class="w3-white material-shadow safe-box">
+
+            <div class="safe-box-header w3-large" style="padding: 8px !important">
+                لوحة احصائيات النتائج
+            </div>
+            <div class="border-bottom-dashed"></div>
+            <br>
+
+            <!-- ====================== الفلاتر ====================== -->
+            <div class="custom-panel w3-display-container w3-round application-panel">
+                <div class="custom-panel-body w3-padding">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label>العام الدراسي <span class="w3-text-red">*</span></label>
+                                <select class="form-control" [(ngModel)]="filter.year_id">
+                                    <option value="">اختر العام الدراسي</option>
+                                    <option *ngFor="let item of applicationService.ACADEMIC_YEARS"
+                                        value="{{ item.id }}">{{ item.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <div class="form-group">
+                                <label>المستوى</label>
+                                <select class="form-control" [(ngModel)]="filter.level_id">
+                                    <option value="">كل المستويات</option>
+                                    <option *ngFor="let item of levels" value="{{ item.id }}">{{ item.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                            <div class="form-group">
+                                <label>التخصص</label>
+                                <select class="form-control" [(ngModel)]="filter.division_id">
+                                    <option value="">كل التخصصات</option>
+                                    <option *ngFor="let item of divisions" value="{{ item.id }}">{{ item.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                            <div class="form-group">
+                                <label>الفصل الدراسي</label>
+                                <select class="form-control" [(ngModel)]="filter.term_id">
+                                    <option value="">كل الفصول</option>
+                                    <option *ngFor="let item of terms" value="{{ item.id }}">{{ item.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <label style="display:block">&nbsp;</label>
+                            <button mat-raised-button color="primary" [disabled]="isLoading" (click)="load()">
+                                <i *ngIf="isLoading" class="fa fa-spin fa-spinner"></i>
+                                <span *ngIf="!isLoading"><i class="fa fa-bar-chart"></i> عرض الاحصائيات</span>
+                            </button>
+                            <button *ngIf="data" mat-raised-button class="w3-black w3-margin-left" (click)="print()">
+                                <i class="fa fa-print"></i> طباعة نماذج التقييم
+                            </button>
+                            <div *ngIf="data" style="font-size:11px;color:#6b7280;margin-top:6px">
+                                الطباعة تُخرج نموذج «نتائج تقييم الطلاب» لكل مقرر
+                                (<b>{{ courses.length }}</b> نموذج / صفحة)، وتتبع الفلاتر أعلاه وخانة البحث بالأسفل.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoading" class="w3-center w3-padding-64">
+                <i class="fa fa-spin fa-spinner fa-3x w3-text-indigo"></i>
+                <p style="margin-top:15px">جاري تجميع الاحصائيات ...</p>
+            </div>
+
+            <!-- ====================== التقرير ====================== -->
+            <div id="printable" *ngIf="data && !isLoading">
+
+                <!--
+                    وسم <style> يُحقن هنا وقت التشغيل من results-dashboard.styles.ts
+                    لان printJS يطبع محتوى هذا العنصر فقط و لا يحمّل ستايلات الكومبوننت.
+                -->
+                <div class="rd-wrap" *ngIf="!printMode">
+
+                    <!-- ---------- ترويسة ---------- -->
+                    <div class="rd-head">
+                        <div style="width:110px">
+                            <img src="/assets/img/logo.png" alt="" style="width:80px">
+                        </div>
+                        <div class="rd-title" style="flex:1">
+                            <h2>احصائيات نتائج العام الجامعي</h2>
+                            <div class="rd-sub">تقرير احصائي معتمد لوحدة ضمان الجودة</div>
+                        </div>
+                        <div class="rd-org" style="width:200px">
+                            {{ settings.ministry_name }}<br>
+                            {{ settings.institute_name }}
+                        </div>
+                    </div>
+
+                    <div class="rd-chips">
+                        <span class="rd-chip">العام الدراسي: {{ data.year?.name }}</span>
+                        <span class="rd-chip">الفصل: {{ termName }}</span>
+                        <span class="rd-chip">المستوى: {{ levelName }}</span>
+                        <span class="rd-chip">التخصص: {{ divisionName }}</span>
+                        <span class="rd-chip">تاريخ الاصدار: {{ today | date:'yyyy-MM-dd' }}</span>
+                    </div>
+
+                    <!-- ---------- كروت المؤشرات ---------- -->
+                    <div class="rd-cards">
+                        <div class="rd-card rd-card-blue">
+                            <div class="rd-card-label">عدد الطلاب المقيدين</div>
+                            <div class="rd-card-value" style="color:#1d4ed8">{{ overall.students }}</div>
+                            <div class="rd-card-note">بعد استبعاد المنسحبين و الموقوف قيدهم</div>
+                        </div>
+                        <div class="rd-card rd-card-green">
+                            <div class="rd-card-label">نسبة النجاح - {{ mainBucketLabel }}</div>
+                            <div class="rd-card-value" style="color:#15803d">{{ mainBucket.passRate }}%</div>
+                            <div class="rd-card-note">{{ mainBucket.passed }} من {{ mainBucket.students }} طالب</div>
+                        </div>
+                        <div class="rd-card rd-card-red">
+                            <div class="rd-card-label">نسبة الرسوب - {{ mainBucketLabel }}</div>
+                            <div class="rd-card-value" style="color:#b91c1c">{{ mainBucket.failRate }}%</div>
+                            <div class="rd-card-note">{{ mainBucket.failed }} طالب معدله أقل من {{ data.passGpa }}</div>
+                        </div>
+                        <div class="rd-card rd-card-amber">
+                            <div class="rd-card-label">حالات عدم حضور الامتحان النهائي</div>
+                            <div class="rd-card-value" style="color:#b45309">{{ grandTotals.notAttended }}</div>
+                            <div class="rd-card-note">
+                                غائب {{ grandTotals.absent }} / محروم {{ grandTotals.deprived }} / منسحب {{ grandTotals.withdrawn }}
+                                <br>محسوبة بعدد تسجيلات المقررات لا بعدد الطلاب
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ---------- الرسوم البيانية ---------- -->
+                    <div class="rd-panels">
+
+                        <div class="rd-panel">
+                            <h4>نسبة الرسوب حسب الفصل الدراسي</h4>
+                            <div class="rd-chart">
+                                <div class="rd-bar-col" *ngFor="let b of shownBuckets">
+                                    <div class="rd-bar-val" [style.color]="'#b91c1c'">{{ overall[b.key].failRate }}%</div>
+                                    <div class="rd-bar"
+                                        [style.height.%]="overall[b.key].failRate > 0 ? (overall[b.key].failRate > 100 ? 100 : overall[b.key].failRate) : 2"
+                                        [style.background]="'#dc2626'"></div>
+                                    <div class="rd-bar-lbl">{{ b.label }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rd-panel">
+                            <h4>نسبة النجاح حسب الفصل الدراسي</h4>
+                            <div class="rd-chart">
+                                <div class="rd-bar-col" *ngFor="let b of shownBuckets">
+                                    <div class="rd-bar-val" [style.color]="rateColor(overall[b.key].passRate)">{{ overall[b.key].passRate }}%</div>
+                                    <div class="rd-bar"
+                                        [style.height.%]="overall[b.key].passRate > 0 ? (overall[b.key].passRate > 100 ? 100 : overall[b.key].passRate) : 2"
+                                        [style.background]="rateColor(overall[b.key].passRate)"></div>
+                                    <div class="rd-bar-lbl">{{ b.label }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rd-panel">
+                            <h4>توزيع تقديرات الناجحين</h4>
+                            <div class="rd-chart">
+                                <div class="rd-bar-col" *ngFor="let row of data.gradeDistribution; index as i">
+                                    <div class="rd-bar-val">{{ row.percent }}%</div>
+                                    <div class="rd-bar"
+                                        [style.height.%]="barHeight(row, data.gradeDistribution)"
+                                        [style.background]="gradeColor(i, data.gradeDistribution.length)"></div>
+                                    <div class="rd-bar-lbl">{{ row.label }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rd-panel">
+                            <h4>التوزيع العام للتقديرات</h4>
+                            <div class="rd-chart">
+                                <div class="rd-bar-col" *ngFor="let row of data.arabicDistribution; index as i">
+                                    <div class="rd-bar-val">{{ row.percent }}%</div>
+                                    <div class="rd-bar"
+                                        [style.height.%]="barHeight(row, data.arabicDistribution)"
+                                        [style.background]="row.label == 'راسب' ? '#dc2626' : gradeColor(i, data.arabicDistribution.length)"></div>
+                                    <div class="rd-bar-lbl">{{ row.label }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ---------- ملخص المستويات و التخصصات ---------- -->
+                    <div class="rd-sec">أولاً: نسب النجاح و الرسوب لكل مستوى في كل تخصص</div>
+
+                    <div class="rd-scroll">
+                        <table class="rd-table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:35px">م</th>
+                                    <th rowspan="2">المستوى</th>
+                                    <th rowspan="2">التخصص</th>
+                                    <th rowspan="2">عدد الطلاب</th>
+                                    <th colspan="3" *ngFor="let b of shownBuckets">{{ b.label }}</th>
+                                </tr>
+                                <tr class="rd-sub-head">
+                                    <ng-container *ngFor="let b of shownBuckets">
+                                        <th>ناجح</th><th>راسب</th><th>% الرسوب</th>
+                                    </ng-container>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of data.byLevelDivision; index as i">
+                                    <td>{{ i + 1 }}</td>
+                                    <td class="rd-name">{{ row.level_name }}</td>
+                                    <td class="rd-name">{{ row.division_name }}</td>
+                                    <td><b>{{ row.students }}</b></td>
+
+                                    <ng-container *ngFor="let b of shownBuckets">
+                                        <td>{{ row[b.key].passed }}</td>
+                                        <td>{{ row[b.key].failed }}</td>
+                                        <td><span class="rd-pill" [style.background]="rateColor(row[b.key].passRate)">{{ row[b.key].failRate }}%</span></td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">الإجمالي</td>
+                                    <td>{{ overall.students }}</td>
+                                    <ng-container *ngFor="let b of shownBuckets">
+                                        <td>{{ overall[b.key].passed }}</td>
+                                        <td>{{ overall[b.key].failed }}</td>
+                                        <td>{{ overall[b.key].failRate }}%</td>
+                                    </ng-container>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- ---------- توزيع التقديرات ---------- -->
+                    <div class="rd-sec">ثانياً: توزيع تقديرات الناجحين</div>
+
+                    <table class="rd-table">
+                        <thead>
+                            <tr>
+                                <th>التقدير</th>
+                                <th *ngFor="let row of data.gradeDistribution">{{ row.label }}</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>عدد الطلاب</b></td>
+                                <td *ngFor="let row of data.gradeDistribution">{{ row.count }}</td>
+                                <td><b>{{ grandTotals.passed }}</b></td>
+                            </tr>
+                            <tr>
+                                <td><b>النسبة المئوية</b></td>
+                                <td *ngFor="let row of data.gradeDistribution">{{ row.percent }}%</td>
+                                <td><b>100%</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p style="font-size:11px;color:#6b7280;margin:-10px 0 16px">
+                        * التقديرات مقروءة من اللائحة الدراسية المسجلة في النظام، و تتغير تلقائياً لو تغيرت اللائحة.
+                    </p>
+
+                    <div class="rd-sec">ثالثاً: التوزيع العام للتقديرات</div>
+
+                    <table class="rd-table">
+                        <thead>
+                            <tr>
+                                <th>التقدير</th>
+                                <th *ngFor="let row of data.arabicDistribution">{{ row.label }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>عدد الطلاب</b></td>
+                                <td *ngFor="let row of data.arabicDistribution">{{ row.count }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>النسبة المئوية</b></td>
+                                <td *ngFor="let row of data.arabicDistribution">{{ row.percent }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- ---------- تفصيل المقررات ---------- -->
+                    <div class="rd-sec">رابعاً: احصائيات المقررات التفصيلية</div>
+
+                    <div class="row noExl" style="margin-bottom:10px">
+                        <div class="col-md-4 col-sm-6">
+                            <input class="form-control input-sm" placeholder="بحث باسم المقرر أو الكود"
+                                [(ngModel)]="courseSearch" (ngModelChange)="applyCourseFilter()">
+                        </div>
+                        <div class="col-md-5" style="padding-top:6px;font-size:12px;color:#6b7280">
+                            عدد المقررات المعروضة: <b>{{ courses.length }}</b> من {{ data.courses.length }}
+                        </div>
+                    </div>
+
+                    <div class="rd-scroll">
+                        <table class="rd-table">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" style="width:32px">م</th>
+                                    <th rowspan="2">الكود</th>
+                                    <th rowspan="2" style="min-width:170px">اسم المقرر</th>
+                                    <th rowspan="2">المستوى</th>
+                                    <th rowspan="2">التخصص</th>
+                                    <th rowspan="2">الفصل</th>
+                                    <th rowspan="2">سجلوا<br>المقرر</th>
+                                    <th rowspan="2">أدوا<br>الامتحان</th>
+                                    <th colspan="4">لم يحضروا الامتحان التحريري النهائي</th>
+                                    <th rowspan="2">ناجحون</th>
+                                    <th rowspan="2">% النجاح</th>
+                                    <th rowspan="2">راسبون</th>
+                                    <th rowspan="2">% الرسوب</th>
+                                    <th [attr.colspan]="data.gradeKeys.length">توزيع تقديرات الناجحين</th>
+                                </tr>
+                                <tr class="rd-sub-head">
+                                    <th>غائب</th>
+                                    <th>محروم</th>
+                                    <th>منسحب</th>
+                                    <th>الإجمالي</th>
+                                    <th *ngFor="let g of data.gradeKeys">{{ g }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of courses; index as i">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ c.code }}</td>
+                                    <td class="rd-name">{{ c.name }}</td>
+                                    <td>{{ c.level_name }}</td>
+                                    <td>{{ c.division_name }}</td>
+                                    <td>{{ termLabel(c.term_id) }}</td>
+                                    <td><b>{{ c.registered }}</b></td>
+                                    <td>{{ c.satExam }}</td>
+                                    <td>{{ c.absent }}</td>
+                                    <td>{{ c.deprived }}</td>
+                                    <td>{{ c.withdrawn }}</td>
+                                    <td>{{ c.notAttended }}</td>
+                                    <td>{{ c.passed }}</td>
+                                    <td><span class="rd-pill" [style.background]="rateColor(c.passRate)">{{ c.passRate }}%</span></td>
+                                    <td>{{ c.failed }}</td>
+                                    <td>{{ c.failRate }}%</td>
+                                    <td *ngFor="let g of data.gradeKeys">{{ c.grades[g] }}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">الإجمالي</td>
+                                    <td>{{ totals.registered }}</td>
+                                    <td>{{ totals.satExam }}</td>
+                                    <td>{{ totals.absent }}</td>
+                                    <td>{{ totals.deprived }}</td>
+                                    <td>{{ totals.withdrawn }}</td>
+                                    <td>{{ totals.notAttended }}</td>
+                                    <td>{{ totals.passed }}</td>
+                                    <td>{{ totals.passRate }}%</td>
+                                    <td>{{ totals.failed }}</td>
+                                    <td>{{ totals.failRate }}%</td>
+                                    <td *ngFor="let g of data.gradeKeys">{{ totals.grades[g] }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <p style="font-size:11px;color:#6b7280;margin-top:-8px">
+                        * نسبة النجاح و الرسوب محسوبة من مجموع الطلاب الذين أدوا الامتحان النهائي.<br>
+                        * الطلاب المنسحبون و الموقوف قيدهم و المفصولون مستبعدون من كل الأرقام أعلاه.<br>
+                        * حد النجاح المعتمد في المعدل: {{ data.passGpa }} فأكثر.
+                    </p>
+
+                    <!-- ---------- التوقيعات ---------- -->
+                    <div class="rd-sign">
+                        <div>
+                            <div>مدير وحدة ضمان الجودة</div>
+                            <div class="rd-sign-line"></div>
+                        </div>
+                        <div>
+                            <div>رئيس عام الامتحانات</div>
+                            <div class="rd-sign-line"></div>
+                        </div>
+                        <div>
+                            <div>عميد المعهد</div>
+                            <div style="margin-top:6px">{{ settings.dean }}</div>
+                            <div class="rd-sign-line"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ================================================================
+                     نموذج "نتائج تقييم الطلاب" - يظهر عند الطباعة فقط، نموذج لكل مقرر
+                     ================================================================ -->
+                <div class="rd-forms" *ngIf="printMode">
+                    <div class="rd-form" *ngFor="let c of courses">
+
+                        <table class="rd-form-tbl">
+                            <tr>
+                                <td class="rd-form-title" colspan="2">نتائج تقييم الطلاب</td>
+                            </tr>
+
+                            <tr>
+                                <td class="rd-form-lbl">اسم المقرر:</td>
+                                <td class="rd-form-val">{{ c.name }} <span class="rd-muted">({{ c.code }})</span></td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">المستوى / التخصص / الفصل:</td>
+                                <td class="rd-form-val">
+                                    {{ c.level_name }} &nbsp;–&nbsp; {{ c.division_name }} &nbsp;–&nbsp;
+                                    {{ termLabel(c.term_id) }} &nbsp;–&nbsp; {{ data.year?.name }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="rd-form-lbl">عدد الطلاب (الذين سجلوا المقرر):</td>
+                                <td class="rd-form-val">{{ c.registered }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">عدد الطلاب (الذين أنهوا المقرر/ أدوا الامتحان):</td>
+                                <td class="rd-form-val">{{ c.satExam }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">
+                                    عدد الطلاب الذين لم يحضروا الامتحان التحريري النهائي:<br>
+                                    (غائب – محروم - منسحب):
+                                </td>
+                                <td class="rd-form-val">
+                                    {{ c.notAttended }}
+                                    <div class="rd-muted">غائب {{ c.absent }} – محروم {{ c.deprived }} – منسحب {{ c.withdrawn }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">إجمالي عدد الناجحين:</td>
+                                <td class="rd-form-val">{{ c.passed }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">النسبة المئوية للنجاح (لمجموع الطلاب الذين أدوا الامتحان النهائي)</td>
+                                <td class="rd-form-val">{{ c.passRate }}% <span class="rd-muted">({{ c.passed }}/{{ c.satExam }})</span></td>
+                            </tr>
+                        </table>
+
+                        <table class="rd-form-tbl">
+                            <tr>
+                                <td class="rd-form-sub" [attr.colspan]="gradeKeysForPrint.length + 1">توزيع تقديرات الناجحين*</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">التقدير</td>
+                                <td class="rd-form-hd" *ngFor="let g of gradeKeysForPrint">{{ g }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">عدد الطلاب</td>
+                                <td class="rd-form-val" *ngFor="let g of gradeKeysForPrint">{{ c.grades[g] }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">النسبة المئوية</td>
+                                <td class="rd-form-val" *ngFor="let g of gradeKeysForPrint">{{ c.gradesPct[g] }}%</td>
+                            </tr>
+                        </table>
+
+                        <p class="rd-form-note">
+                            * في حالة اختلاف توزيع التقديرات عن النموذج الحالي يتم استبدالها بالتقديرات وفقاً للائحة
+                            الدراسية التي يتبعها المقرر
+                        </p>
+
+                        <table class="rd-form-tbl rd-form-tbl-alt">
+                            <tr>
+                                <td class="rd-form-lbl">التقدير</td>
+                                <td class="rd-form-hd" *ngFor="let a of arabicKeysForPrint">{{ a }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">عدد الطلاب</td>
+                                <td class="rd-form-val" *ngFor="let a of arabicKeysForPrint">{{ c.arabic[a] }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">النسبة المئوية</td>
+                                <td class="rd-form-val" *ngFor="let a of arabicKeysForPrint">{{ c.arabicPct[a] }}%</td>
+                            </tr>
+                        </table>
+
+                        <table class="rd-form-tbl">
+                            <tr>
+                                <td class="rd-form-lbl">إجمالي عدد الراسبين:</td>
+                                <td class="rd-form-val">{{ c.failed }}</td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-lbl">النسبة المئوية للرسوب (لمجموع الطلاب الذين أدوا الامتحان النهائي)</td>
+                                <td class="rd-form-val">{{ c.failRate }}% <span class="rd-muted">({{ c.failed }}/{{ c.satExam }})</span></td>
+                            </tr>
+                            <tr>
+                                <td class="rd-form-comment" colspan="2">
+                                    <span class="rd-form-hl">التعليق على نتائج الطلاب/تحليل أداء الطلاب (متضمناً العوامل
+                                        التي أثرت على النتائج إن وجدت)</span>،
+                                    <span class="rd-form-blue">والمقارنة بنتائج العام السابق</span>
+                                    <div class="rd-form-lines"><span></span><span></span><span></span><span></span></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

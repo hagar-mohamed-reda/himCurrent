@@ -121,6 +121,14 @@ export class StudentAccountService {
   }
 
   /**
+   * الغاء خصم منفَّذ و ارجاع قيمته كمديونية على الطالب
+   */
+  public cancelDiscount(id, cancelReason) {
+    return this.http.post('account/discounts/cancel/'+id+'?api_token='+Auth.getApiToken(),
+      { cancel_reason: cancelReason });
+  }
+
+  /**
    * create balance reset for student
    *
    * @param data of balance reset

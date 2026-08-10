@@ -11,6 +11,7 @@ import { Request } from 'src/app/shared/request';
 import { AcademicSettingService } from '../../services/academic-setting.service';
 import { CourseService } from '../../services/course.service';
 import { ReportServiceService } from '../../services/report-service.service';
+import { SystemSettingService } from 'src/app/core/services/system-setting.service';
 @Component({
   selector: 'app-student-results',
   templateUrl: './student-results.component.html',
@@ -59,13 +60,16 @@ export class StudentResultsComponent implements OnInit {
     private studentAcountService: StudentAccountService,
     private academicSettingService: AcademicSettingService,
     private reportService: ReportServiceService,
+    private systemSettingService: SystemSettingService,
     private applicationSetting: ApplicationSettingService) {
       this.preSettings();
     }
     
   ngOnInit() {
+    this.loadSettings2();
     this.terms = Cache.get(TermService.TERPM_PREFIX);
     this.loadSettings();
+   
    
   }
 
@@ -111,7 +115,7 @@ export class StudentResultsComponent implements OnInit {
   }
 
   login() {
-    debugger
+     
     let resultPassword: any = this.academicSetting.get(12);
     if (!resultPassword)
       return;
@@ -119,7 +123,12 @@ export class StudentResultsComponent implements OnInit {
       this.canShowResult = true;
     }
   }
-
+  setting:any={};
+loadSettings2() {
+    this.systemSettingService.getSystemSetting().subscribe((res: any)=>{
+      this.setting = res;
+    });
+  }
   searchAboutCourse() {
     let self = this;
     if (!this.searchCourseKey)

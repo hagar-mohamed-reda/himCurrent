@@ -18,12 +18,18 @@ export class StudentResultService {
   public get(data) {
     return this.http.get('academic/result/get?api_token=' + Auth.getApiToken()+"&"+this.$.param(data));
   }
-
+   
+ public graduationGet(data) {
+    return this.http.get('academic/students/graduation/get?api_token=' + Auth.getApiToken()+"&"+this.$.param(data));
+  }
   /**
    * store new service
    */
   public store(data: any) {
     return this.http.post('academic/result/update' + '?api_token=' + Auth.getApiToken(), data);
+  }
+  public graduationStore(data: any) {
+    return this.http.post('academic/students/graduation/update' + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**

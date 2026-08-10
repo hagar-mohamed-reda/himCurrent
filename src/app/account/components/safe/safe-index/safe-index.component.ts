@@ -226,6 +226,39 @@ StudIDD
   }
 
   /**
+   * الغاء خصم منفَّذ - يرجع قيمة الخصم كمديونية على الطالب.
+   * السبب اجباري لان العملية تُؤرشَف و تظهر في سجل الحركات.
+   */
+  cancelDiscount(discount) {
+    const reason = prompt('سبب إلغاء الخصم (' + discount.value + ' جنيه):');
+
+    // ضغط "إلغاء" في المربع يرجع null - لا نفعل شيئا
+    if (reason === null) return;
+
+    if (!reason.trim()) {
+      return Message.error('من فضلك اكتب سبب الإلغاء');
+    }
+
+    Message.confirm('سيتم إلغاء الخصم و إرجاع ' + discount.value + ' جنيه كمديونية على الطالب. متأكد؟', () => {
+      discount.isCancelling = true;
+
+      this.studentAcountService.cancelDiscount(discount.id, reason.trim()).subscribe((res: any) => {
+        discount.isCancelling = false;
+
+        if (res.status == 1) {
+          Message.success(res.message);
+          this.updateStudent();
+        } else {
+          Message.error(res.message);
+        }
+      }, () => {
+        discount.isCancelling = false;
+        Message.error('تعذر إلغاء الخصم');
+      });
+    });
+  }
+
+  /**
    * perform payment
    */
   performPay() {

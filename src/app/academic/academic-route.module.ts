@@ -26,8 +26,9 @@ import { PublisherResultReportComponent } from "./components/publisher-result-re
 import { ControlAndResultsComponent } from "./components/control-and-results/control-and-results.component";
 import { AttendanceReportComponent } from "./components/attendance-report/attendance-report.component";
 import { CoursesStatsComponent } from "./components/courses-stats/courses-stats.component";
+import { ResultsDashboardComponent } from "./components/results-dashboard/results-dashboard.component";
 import { MinistryCumulativeReportComponent } from "./components/ministry-cumulative-report/ministry-cumulative-report.component";
-import { StudentResultsComponent } from "./components/student-results/student-results.component";
+import {  StudentResultsComponent } from "./components/student-results/student-results.component";
 import { PrerequsiteComponent } from "./components/prerequsite/prerequsite.component";
 import { MedtermComponent } from "./components/medterm/medterm.component";
 import { FaildStudentComponent } from "./components/faild-student/faild-student.component";
@@ -63,6 +64,8 @@ import { SefenatigaComponent } from './components/sefenatiga/sefenatiga.componen
 import { AcademicDetailReportComponent } from './components/academic-detail-report/academic-detail-report.component';
 import { AcademicNoteComponent } from './components/academic-note/academic-note.component';
 import { ProjectsGradComponent } from './components/projects-grad/projects-grad.component';
+import { StudentAbcentComponent } from './components/student-abcent/student-abcent.component';
+import { StudentCertMayJanComponent } from './components/student-cert-may-jan/student-cert-may-jan.component'
 
 const routes: Routes = [
   // {
@@ -197,7 +200,15 @@ const routes: Routes = [
         component: StudReasonComponent,
       },
 
-      
+            
+       {
+        path: "student-abcent",
+        canActivate: [AuthGuestService],
+                data: { can: Auth.can("control") },
+
+         component: StudentAbcentComponent,
+      },
+
 
       {
         path: "report-status-students",
@@ -235,6 +246,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control") },
         component: StudentResultsComponent,
+      },
+      {
+        path: "student-cert-may-jan",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control") },
+        component: StudentCertMayJanComponent,
       },
       {
         path: "graduatuin-gov",
@@ -348,6 +365,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: { can: Auth.can("control_report") },
         component: CoursesStatsComponent,
+      },
+      {
+        path: "results-dashboard",
+        canActivate: [AuthGuestService],
+        data: { can: Auth.can("control_report") },
+        component: ResultsDashboardComponent,
       },
       {
         path: "result-transfer",

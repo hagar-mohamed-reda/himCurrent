@@ -23,11 +23,9 @@ export class StudentAffairStudentStatusComponent implements OnInit {
   $: any = $;
   doc: any = document;
   isSubmitted = false;
-  canShowResult = false;
   searchData: any = {};
   response: any = null;
   student: any = {};
-  password = null;
   searchCourseKey = null;
   currentPage = 1;
   filter: any = {};
@@ -45,8 +43,16 @@ export class StudentAffairStudentStatusComponent implements OnInit {
 
   selectedDivisions = new HashTable();
   selectedLevels = new HashTable();
-  academicSetting = new HashTable();
   selectedCourses = new HashTable();
+
+  // حالات القيد التي لا تُطبع لها نتيجة (منسحب لاسباب / وفاة / ايقاف قيد)
+  HIDDEN_CASE_IDS: any = [6, 7, 8];
+  // منسحب لاسباب / سحب ملف (متوفي) / سحب ملف
+  WITHDRAWN_IDS: any = [6, 9, 10];
+  // عذر بموافقة الوزارة عن العام الدراسي كله
+  YEAR_EXCUSE_IDS: any = [11, 14];
+  // عذر بموافقة الوزارة عن ترم بعينه
+  TERM_EXCUSE_IDS: any = { 1: 15, 2: 16 };
 
   //
   public searchKey: string;
@@ -79,10 +85,58 @@ export class StudentAffairStudentStatusComponent implements OnInit {
     if(! this.response) return []
     return this.response.registerCourses.filter(c => c.term_id == term)
   }
+
+  // بيانات الطالب الاساسية
+  get info() {
+    if (! this.response || ! this.response.studentInfo || ! this.response.studentInfo.length) return {}
+    return this.response.studentInfo[0]
+  }
+
+  // اعدادات المعهد (الاسم / العميد / اسماء الموقعين) القادمة من globale_settings
+  get settings() {
+    return (this.response && this.response.settings) ? this.response.settings : {}
+  }
+
+  // اعضاء لجنة الكنترول لمستوى الطالب - مخزنين كنص مفصول بفاصلة
+  get controlMembers() {
+    if (! this.settings.control_members) return []
+    return this.settings.control_members.split(/[،,]/)
+      .map(name => name.trim())
+      .filter(name => name.length > 0)
+  }
+
+  // الاعذار المعتمدة للطالب في العام المختار و التي تلغي نتيجة ترم معين
+  termExcuses(term) {
+    if (! this.response || ! this.response.caseConstraints) return []
+    return this.response.caseConstraints.filter(c =>
+      this.YEAR_EXCUSE_IDS.indexOf(+c.case_constraint_id) >= 0
+      || +c.case_constraint_id == this.TERM_EXCUSE_IDS[term]
+    )
+  }
+
+  isTermExcused(term) {
+    return this.termExcuses(term).length > 0
+  }
+
+  // حالات قيد لا تُطبع لها نتيجة اصلا
+  get isResultHidden() {
+    return this.HIDDEN_CASE_IDS.indexOf(+this.info.case_constraint_id) >= 0
+  }
+
+  get isWithdrawn() {
+    return this.WITHDRAWN_IDS.indexOf(+this.info.case_constraint_id) >= 0
+  }
+
+  canShowTerm(term) {
+    return ! this.isResultHidden && ! this.isTermExcused(term)
+  }
   getTermGpa(term){
-    if(! this.response) return 0
-    var gpa = this.response.student_gpa_fasly.filter(g => g.term_id == term)[0].gpa
-    return gpa
+    if(! this.response || ! this.response.student_gpa_fasly) return '0.00'
+    var row = this.response.student_gpa_fasly.filter(g => g.term_id == term)[0]
+    if (! row) return '0.00'
+    var gpa = parseFloat(row.gpa)
+    // القيمة قد تعود من قاعدة البيانات باعداد عشرية طويلة (2.0999999999999998)
+    return isNaN(gpa) ? '0.00' : gpa.toFixed(2)
   }
   getStdCode(){
     if(! this.response) return 0
@@ -96,12 +150,6 @@ export class StudentAffairStudentStatusComponent implements OnInit {
     }});
     Request.addToQueue({observer: this.applicationSetting.getDivisions(), action: (res: any)=>{
       this.divisions = res;
-    }});
-    Request.addToQueue({observer: this.academicSettingService.get(), action: (res: any)=>{
-      this.academicSetting = new HashTable();
-      res.forEach(element => {
-        this.academicSetting.put(element.id, element);
-      });
     }});
   }
   loadSettings() {
@@ -174,52 +222,8 @@ export class StudentAffairStudentStatusComponent implements OnInit {
     for(let i = 0; i < this.response.pages; i ++)
       this.response.pages_arr.push(i+1);
   }
-    //this.id_current = res.id;
-//   this.globalService.save({name: this.val, id: this.idStudent}).subscribe((res:any)=>{
-// })
-// this.doc.printJs();
-// <div class="control-message" *ngIf="!canShowResult">
-// <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
-// <div class="custom-panel-body table-responsive w3-padding w3-center">
-// <input class="w3-round-xxlarge w3-white w3-input border-gray search-input w3-center" 
-// style="width: 90%!important" type="password" 
-// placeholder="{{ 'enter password of result' | trans }}" [(ngModel)]="password">
-// <br>
-// <br>
-// <button class="btn w3-light-gray w3-round-xlarge" (click)="login()">{{ "show" | trans }}</button>
-// </div>
-// </div>
-// </div>
-
   print() {
-    var check = 0;
-    var array = this.student.payments;
-    for(let i = 0 ; i < array.length ; i++){
-      if(array[i].model_object.id == 16){
-        check = 1;
-      }
-    }
-    if(check == 1) {
-      Helper.print();
-    } else {
-      let password = prompt("يجب تسديد مبلغ الخدمة وقيمته 50 للأستثناء ادخل الرقم السري : ");
-      let resultPassword: any = this.academicSetting.get(13);
-      console.log(resultPassword);
-      
-      if (resultPassword.value == password) {
-        Helper.print();
-      } else {
-        alert('الرقم السري غير صحيح');
-      }
-    }
-  }
-  login() {
-    let resultPassword: any = this.academicSetting.get(13);
-    if (!resultPassword)
-      return;
-    if (this.password == resultPassword.value) {
-      this.canShowResult = true;
-    }
+    Helper.print();
   }
 
 

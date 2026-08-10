@@ -29,6 +29,12 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
+                    <a [routerLink]="['/academic/results-dashboard']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>لوحة احصائيات النتائج</b>
+                        <a class="pull-left">
+                            <i class="fa fa-bar-chart"></i>
+                        </a>
+                    </a>
                     <a [routerLink]="['/academic/student-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج طالب</b>
                         <a class="pull-left">
@@ -41,8 +47,15 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/students-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                   
+                      <a [routerLink]="['/academic/students-results']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج الطلاب</b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                     <a [routerLink]="['/academic/student-cert-may-jan']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>     ادراة بيانات التخرج</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>

@@ -36,6 +36,14 @@ export class ReportServiceService {
       }
       //END NEW API/////////////////////////////////////////////
 
+      /**
+       * احصائيات نتائج العام الدراسي (لوحة المعلومات)
+       */
+      public getResultsStatistics(data)
+      {
+      return this.http.get('academic/report/results-statistics?api_token=' + Auth.getApiToken()+"&"+this.$.param(data));
+      }
+
 
       public getWithTermAndYearStudents(data)
       {

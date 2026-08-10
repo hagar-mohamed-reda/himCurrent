@@ -1,0 +1,16 @@
+/*
+  ملاحظة: الستايل الخاص بالتقرير نفسه مكتوب داخل <style> جوه #printable في القالب،
+  لان printJS ينسخ محتوى العنصر فقط و لا يحمّل ستايلات الكومبوننت.
+  هنا فقط ستايل عناصر الشاشة التي لا تُطبع.
+*/
+
+.safe-box-header {
+  background: #1e3a8a;
+  color: #fff;
+  font-weight: 700;
+}
+
+label {
+  font-weight: 600;
+  font-size: 13px;
+}

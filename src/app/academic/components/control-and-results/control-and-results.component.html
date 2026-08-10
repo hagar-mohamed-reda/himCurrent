@@ -35,6 +35,12 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
+                    <a [routerLink]="['/academic/results-dashboard']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>لوحة احصائيات النتائج</b>
+                        <a class="pull-left">
+                            <i class="fa fa-bar-chart"></i>
+                        </a>
+                    </a>
 
                     <a [routerLink]="['/academic/report-status-students']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>   تقرير حالة الطلاب  </b>
@@ -57,6 +63,12 @@
                     </a>
                     <a [routerLink]="['/academic/students-results']" role="button" *ngIf="user.role_id !=9" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>طباعة نتائج الطلاب</b>
+                        <a class="pull-left">
+                            <i class="fa fa-newspaper-o"></i>
+                        </a>
+                    </a>
+                     <a [routerLink]="['/academic/student-cert-may-jan']" *ngIf="user.role_id !=9"role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                        <b>     ادراة بيانات التخرج</b>
                         <a class="pull-left">
                             <i class="fa fa-newspaper-o"></i>
                         </a>
