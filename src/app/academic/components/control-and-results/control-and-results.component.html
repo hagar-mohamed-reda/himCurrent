@@ -35,7 +35,7 @@
                             <i class="fa fa-newspaper-o"></i>
                         </a>
                     </a>
-                    <a [routerLink]="['/academic/results-dashboard']" *ngIf="user.role_id !=9" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+                    <a [routerLink]="['/academic/results-dashboard']" permission="results_dashboard" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
                         <b>لوحة احصائيات النتائج</b>
                         <a class="pull-left">
                             <i class="fa fa-bar-chart"></i>

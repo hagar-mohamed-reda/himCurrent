@@ -19,7 +19,7 @@
           <table class="table table-bordered" >
             <tr *ngFor="let row of excelRows index as i" class="{{ i == 0? 'w3-black' : '' }}" >
               <td  *ngFor="let col of row" >
-                {{ col }}
+                {{ cell(col) }}
               </td>
             </tr>
           </table>

@@ -369,7 +369,7 @@ const routes: Routes = [
       {
         path: "results-dashboard",
         canActivate: [AuthGuestService],
-        data: { can: Auth.can("control_report") },
+        data: { can: Auth.can("results_dashboard") },
         component: ResultsDashboardComponent,
       },
       {

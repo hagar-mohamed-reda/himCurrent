@@ -168,6 +168,8 @@ const routes: Routes = [
       },
 {
         path: "report/removestd",
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('student_affair_removestd')},
         component: RemovestdComponent,
       },
      

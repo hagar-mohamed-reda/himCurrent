@@ -83,27 +83,28 @@
                                 <div class="w3-dropdown-content w3-bar-block w3-border w3-text-black" style="position: fixed;">
                                     <a permission="student_register" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/student-register-course">{{ "student_register_course" |
                                       trans }}</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-report">{{ "academic_report" | trans }}</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-report-daily">التقرير اليومي للأرشاد</a>
-                                       <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-detail-report">     تقرير متابعة تسجيل المقررات</a>
-                                       <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-note">     تقرير بملاحظات الطلاب    </a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-report">{{ "academic_report" | trans }}</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-report-daily">التقرير اليومي للأرشاد</a>
+                                       <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-detail-report">     تقرير متابعة تسجيل المقررات</a>
+                                       <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-note">     تقرير بملاحظات الطلاب    </a>
 
                                     <!-- <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/academic-new">{{ "تسجيلا ارشاد الطلبه"  }}</a> -->
 
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/plan">{{ "academic_plan" | trans }}</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/termsefy">{{ "مواد التيرم الصيفى"  }}</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/studentsefy"> تقرير تسجيل الفصل الصيفى</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/plan">{{ "academic_plan" | trans }}</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/termsefy">{{ "مواد التيرم الصيفى"  }}</a>
+                                    <a permission="academic_setting" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/studentsefy"> تقرير تسجيل الفصل الصيفى</a>
 
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/group-course">الجروبات</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/section-course">السكاشن</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/students-manage-report">{{ "students_manage_report" | trans }}</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/sections-schedule">{{"sections schedule" | trans }}</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/group-course">الجروبات</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/section-course">السكاشن</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/students-manage-report">{{ "students_manage_report" | trans }}</a>
+                                    <a *ngIf="canAccessAcademicReports()" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/sections-schedule">{{"sections schedule" | trans }}</a>
                                     <a permission="academic_setting" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/setting">{{
                                       "academic_setting" | trans }}</a>
                                     <a permission="open_course" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/open-course">{{ "open_courses" | trans }}</a>
-                                    <a class="w3-bar-item w3-button w3-text-black" routerLink="/academic/available-courses-report">تقرير المقررات المتاحة</a>
+                                    <a permission="open_course" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/available-courses-report">تقرير المقررات المتاحة</a>
                                     <a permission="doctor_read" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/doctors">{{ "doctors" | trans }}</a>
                                     <a permission="control" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/control-and-results">الكنترول و النتائج</a>
+                                    <a permission="results_dashboard" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/results-dashboard">لوحة احصائيات النتائج</a>
                                     <!-- <a permission="control" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/student-result">{{ "control" | trans }}</a> -->
                                     <!-- <a permission="control_report" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/result-stats">احصائيات النتيجة</a> -->
                                     <!-- <a permission="control_report" class="w3-bar-item w3-button w3-text-black" routerLink="/academic/student-results">طباعة نتائج طالب</a> -->

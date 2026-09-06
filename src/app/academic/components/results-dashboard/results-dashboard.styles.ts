@@ -107,6 +107,9 @@ export const RESULTS_DASHBOARD_PRINT_CSS = `
 .rd-form-tbl-alt td { color: #c00000; }
 .rd-form-tbl-alt .rd-form-hd { color: #c00000; }
 
+.rd-form-warn { background: #fffbeb; color: #b45309; text-align: center;
+                font-weight: 700; font-size: 12px; }
+
 .rd-form-comment { height: 110px; vertical-align: top; font-size: 11px; font-weight: 700; }
 .rd-form-hl   { background: #ffff00; }
 .rd-form-blue { color: #0070c0; text-decoration: underline; }

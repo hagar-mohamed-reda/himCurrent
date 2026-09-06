@@ -299,6 +299,13 @@
                             <input class="form-control input-sm" placeholder="بحث باسم المقرر أو الكود"
                                 [(ngModel)]="courseSearch" (ngModelChange)="applyCourseFilter()">
                         </div>
+                        <div class="col-md-3 col-sm-6" style="padding-top:6px">
+                            <label style="font-weight:600;font-size:12px;cursor:pointer">
+                                <input type="checkbox" [(ngModel)]="hideUngraded"
+                                    (ngModelChange)="applyCourseFilter()">
+                                إخفاء المقررات التي لم تُرصد نتائجها
+                            </label>
+                        </div>
                         <div class="col-md-5" style="padding-top:6px;font-size:12px;color:#6b7280">
                             عدد المقررات المعروضة: <b>{{ courses.length }}</b> من {{ data.courses.length }}
                         </div>
@@ -315,6 +322,7 @@
                                     <th rowspan="2">التخصص</th>
                                     <th rowspan="2">الفصل</th>
                                     <th rowspan="2">سجلوا<br>المقرر</th>
+                                    <th rowspan="2">لم تُرصد<br>نتيجته</th>
                                     <th rowspan="2">أدوا<br>الامتحان</th>
                                     <th colspan="4">لم يحضروا الامتحان التحريري النهائي</th>
                                     <th rowspan="2">ناجحون</th>
@@ -340,6 +348,7 @@
                                     <td>{{ c.division_name }}</td>
                                     <td>{{ termLabel(c.term_id) }}</td>
                                     <td><b>{{ c.registered }}</b></td>
+                                    <td [style.color]="c.noResult > 0 ? '#b45309' : ''">{{ c.noResult }}</td>
                                     <td>{{ c.satExam }}</td>
                                     <td>{{ c.absent }}</td>
                                     <td>{{ c.deprived }}</td>
@@ -356,6 +365,7 @@
                                 <tr>
                                     <td colspan="6">الإجمالي</td>
                                     <td>{{ totals.registered }}</td>
+                                    <td>{{ totals.noResult }}</td>
                                     <td>{{ totals.satExam }}</td>
                                     <td>{{ totals.absent }}</td>
                                     <td>{{ totals.deprived }}</td>
@@ -419,9 +429,18 @@
                                 </td>
                             </tr>
 
+                            <tr *ngIf="c.satExam == 0">
+                                <td class="rd-form-warn" colspan="2">
+                                    لم تُرصد نتائج هذا المقرر بعد — عدد المسجلين بدون نتيجة: {{ c.noResult }}
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="rd-form-lbl">عدد الطلاب (الذين سجلوا المقرر):</td>
                                 <td class="rd-form-val">{{ c.registered }}</td>
+                            </tr>
+                            <tr *ngIf="c.noResult > 0">
+                                <td class="rd-form-lbl">منهم لم تُرصد نتيجته بعد:</td>
+                                <td class="rd-form-val">{{ c.noResult }}</td>
                             </tr>
                             <tr>
                                 <td class="rd-form-lbl">عدد الطلاب (الذين أنهوا المقرر/ أدوا الامتحان):</td>

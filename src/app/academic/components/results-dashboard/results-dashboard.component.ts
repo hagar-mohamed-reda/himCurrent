@@ -42,6 +42,10 @@ export class ResultsDashboardComponent implements OnInit {
   // بحث داخل جدول المقررات (لا يعيد الطلب للسيرفر) - الفصل صار ضمن فلاتر الاعلى
   courseSearch = '';
 
+  // اخفاء المقررات التي لم يرصد الكنترول نتائجها بعد،
+  // حتى لا تُطبع نماذج تقييم فارغة ضمن ملف الجودة
+  hideUngraded = false;
+
   // نتيجة الفلترة و مجاميعها محسوبة مسبقا - لا تُحسب داخل getter
   // لان القالب يقرأها عشرات المرات في كل دورة كشف تغيّر و عدد المقررات قد يتجاوز 400
   courses: any = [];
@@ -127,6 +131,10 @@ export class ResultsDashboardComponent implements OnInit {
 
     let rows = this.data.courses;
 
+    if (this.hideUngraded) {
+      rows = rows.filter(c => c.satExam > 0);
+    }
+
     if (this.courseSearch && this.courseSearch.trim()) {
       const key = this.courseSearch.trim();
       rows = rows.filter(c =>
@@ -140,7 +148,7 @@ export class ResultsDashboardComponent implements OnInit {
   }
 
   private buildTotals(rows) {
-    const fields = ['registered', 'satExam', 'absent', 'deprived', 'withdrawn', 'notAttended', 'passed', 'failed'];
+    const fields = ['registered', 'satExam', 'absent', 'deprived', 'withdrawn', 'notAttended', 'noResult', 'passed', 'failed'];
     const totals: any = { grades: {} };
 
     fields.forEach(field => {

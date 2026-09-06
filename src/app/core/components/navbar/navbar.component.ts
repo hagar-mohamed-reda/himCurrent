@@ -79,7 +79,7 @@ export class NavBarComponent implements OnInit {
   }
 
   canAccessStudentAffair() {
-    let permissions = ["application_add","applicattion_edit","application_remove","application_read","student_read","student_edit","student_add","student_remove","required_document_read","required_document_edit","required_document_add","required_document_remove","application_required","application_setting"];
+    let permissions = ["application_add","applicattion_edit","application_remove","application_read","student_read","student_edit","student_add","student_remove","required_document_read","required_document_edit","required_document_add","required_document_remove","application_required","application_setting","student_affair_removestd"];
     return Auth.canOr(permissions);
   }
 
@@ -113,7 +113,17 @@ export class NavBarComponent implements OnInit {
   }
 
   canAccessAcademic() {
-    let permissions = ["result_transfer","control_report","control","open_course","academic_setting","doctor_remove","doctor_add","doctor_edit","doctor_read","degree_map_remove","degree_map_add","degree_map_edit","degree_map_read","course_category_remove","course_category_add","course_category_edit","course_category_read","course_remove","course_add","course_edit","course_read","student_register"];
+    let permissions = ["result_transfer","control_report","control","results_dashboard","open_course","academic_setting","doctor_remove","doctor_add","doctor_edit","doctor_read","degree_map_remove","degree_map_add","degree_map_edit","degree_map_read","course_category_remove","course_category_add","course_category_edit","course_category_read","course_remove","course_add","course_edit","course_read","student_register"];
+    return Auth.canOr(permissions);
+  }
+
+  /**
+   * صفحات الارشاد و التقارير الاكاديمية.
+   * نفس قائمة الصلاحيات المستخدمة في حراس المسارات (academic-route.module)
+   * حتى لا يظهر في القائمة لينك لا يفتح عند الضغط عليه.
+   */
+  canAccessAcademicReports() {
+    let permissions = ["course_read", "course_category_read", "degree_map_read"];
     return Auth.canOr(permissions);
   }
 

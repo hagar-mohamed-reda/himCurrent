@@ -372,6 +372,9 @@
                                 <!-- .toString().slice(0, (response.CGPA.indexOf("."))+3) -->
                                 {{ response.CGPA }}
                             </div>
+
+                            <ng-container *ngTemplateOutlet="gradeLegend"></ng-container>
+
                             <div class="container" style="text-align: center !important;">
                                 <div class="row">
 
@@ -491,6 +494,9 @@
                                 <b> وقد اعطى هذا البيان بناء على طلب الطالب لتقديمه الى / {{val}}
                                 </b>
                             </h5>
+
+                            <ng-container *ngTemplateOutlet="gradeLegend"></ng-container>
+
                             <br><br>
                             <div class="container" style="text-align: center !important;">
                                 <div class="row">
@@ -634,30 +640,7 @@
                                 </tbody>
                             </table>
 
-                            <!-- جدول ترميز التقديرات - مبني من اللائحة المسجلة في النظام -->
-                            <table class="table table-bordered"
-                                style="direction: rtl!important;margin-bottom: 0px !important;">
-                                <thead>
-                                    <tr>
-                                        <th
-                                            style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;">
-                                            ترميز</th>
-                                        <td *ngFor="let g of response.degreeMap"
-                                            style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;">
-                                            {{ g.key }}</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th
-                                            style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;">
-                                            التقديرات</th>
-                                        <td *ngFor="let g of response.degreeMap"
-                                            style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;">
-                                            {{ g.gpa }}</td>
-                                    </tr>
-                                </tbody>
-                            </table><br>
+                            <ng-container *ngTemplateOutlet="gradeLegend"></ng-container>
 
                             <div style="text-align: right !important; ">
                                 <h5>وطبقا لسجلات المعهد فان الطالب المذكور له حق القيد بالمستوى :
@@ -717,10 +700,40 @@
                         </div>
                     </div>
                         <!-- =====end second bian 7ala=== -->
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!--
+    جدول ترميز التقديرات - معرّف مرة واحدة و يُستدعى في الصفحات الثلاث
+    بـ *ngTemplateOutlet. القيم مقروءة من academic_degree_map فتتغير مع اللائحة.
+-->
+<ng-template #gradeLegend>
+    <table class="table table-bordered" *ngIf="response?.degreeMap?.length"
+        style="direction: rtl!important;margin-bottom: 6px !important;">
+        <thead>
+            <tr>
+                <th
+                    style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;font-size: 12px !important;">
+                    ترميز</th>
+                <td *ngFor="let g of response.degreeMap"
+                    style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;font-size: 12px !important;">
+                    {{ g.key }}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th
+                    style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;font-size: 12px !important;">
+                    التقديرات</th>
+                <td *ngFor="let g of response.degreeMap"
+                    style="text-align: center;font-weight: bolder;border: 1px solid black !important;padding: 2px !important;font-size: 12px !important;">
+                    {{ g.gpa }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
