@@ -38,6 +38,7 @@ import { StudentBalanceReportComponent } from './components/report/student-balan
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ReportCreatorReportComponent } from './components/report/report-creator-report/report-creator-report.component';
 import { CreateBalanceResetComponent } from './components/safe/create-balance-reset/create-balance-reset.component';
+import { AddStudentDebtComponent } from './components/safe/add-student-debt/add-student-debt.component';
 import { InstallmentReportComponent } from './components/report/installment-report/installment-report.component';
 import { StudentDiscountReportComponent } from './components/report/student-discount-report/student-discount-report.component';
 import { TreeIndexComponent } from './components/tree/tree-index/tree-index.component';
@@ -114,6 +115,7 @@ import { PaymentSummerComponent } from './components/payment-summer/payment-summ
     StudentBalanceReportComponent,
     ReportCreatorReportComponent,
     CreateBalanceResetComponent,
+    AddStudentDebtComponent,
     InstallmentReportComponent,
     StudentDiscountReportComponent,
     TreeIndexComponent,

@@ -136,4 +136,9 @@ export class StudentAccountService {
   public createStudentBalanceReset(data) {
     return this.http.post('account/create_balance_reset?api_token='+Auth.getApiToken(), data);
   }
+
+  /** اضافة مديونية يدويا: موجب يزيد و سالب يخصم */
+  public addStudentDebt(data) {
+    return this.http.post('account/student-debt/add?api_token=' + Auth.getApiToken(), data);
+  }
 }

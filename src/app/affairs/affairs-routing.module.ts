@@ -81,6 +81,8 @@ const routes: Routes = [
       },
       {
         path: "registrationtype",
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('student_constraint_edit_report')},
         component: RegistrationtypeComponent,
       },
       {

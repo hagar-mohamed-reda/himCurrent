@@ -1,0 +1,49 @@
+<div class="modal fade" id="addStudentDebtModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-center">
+
+      <div class="modal-header w3-border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">اضافة مديونية</h4>
+      </div>
+
+      <div class="modal-body w3-border-0" style="direction: rtl">
+
+        <div class="w3-pale-red w3-round" style="padding: 6px; margin-bottom: 10px">
+          الطالب: <b>{{ safeObject?.name }}</b>
+          &nbsp;|&nbsp; المديونية الحالية: <b>{{ safeObject?.old_balance | number }}</b> جنيه
+        </div>
+
+        <div class="form-group text-right">
+          <label>المبلغ</label>
+          <input type="number" class="form-control" [(ngModel)]="item.value"
+                 placeholder="موجب للاضافة، سالب للخصم">
+          <small class="w3-text-gray">
+            مثال: 600 لاضافة مديونية، و 600- لخصمها
+          </small>
+        </div>
+
+        <div class="form-group text-right">
+          <label>السبب</label>
+          <input type="text" class="form-control" [(ngModel)]="item.notes" maxlength="191"
+                 placeholder="مثال: كتب الترم الثاني لم تُستلم">
+        </div>
+
+      </div>
+
+      <div class="modal-footer w3-border-0 text-center w3-center">
+        <button type="button" mat-raised-button data-dismiss="modal" style="margin: 5px">
+          {{ "close" | trans }}
+        </button>
+        <button type="button" class="w3-indigo" mat-raised-button style="margin: 5px"
+                [disabled]="isSubmitted" (click)="sendResource()">
+          <span *ngIf="!isSubmitted">حفظ</span>
+          <span *ngIf="isSubmitted" class="fa fa-spin fa-spinner"></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

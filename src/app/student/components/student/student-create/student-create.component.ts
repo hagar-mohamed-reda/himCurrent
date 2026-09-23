@@ -82,8 +82,40 @@ this.getQualificationTypes()
     });
   }
   setDefaultYear() {
-    this.application.academic_years_id = 11;
     this.application.nationality_id=1
+
+    let yearId = this.currentAcademicYearId();
+
+    if (yearId) {
+      this.application.academic_years_id = yearId;
+    } else {
+      // الاعدادات لم تصل بعد: اجلبها ثم اضبط السنة
+      this.applicationSettingService.getSettings().subscribe((res: any) => {
+        this.applicationSettings.SETTINGS = res;
+
+        // في وضع التعديل تكون بيانات الطالب قد حُمّلت، فلا تُدهس سنته
+        if (this.isUpdate)
+          return;
+
+        this.application.academic_years_id = this.currentAcademicYearId();
+      });
+    }
+  }
+
+  /**
+   * السنة الدراسية الحالية من اعدادات النظام (globale_settings id 7).
+   * كانت مثبتة على 11 (2024-2025) فكانت شاشة الانشاء تفتح على سنة قديمة
+   * بعد كل ترحيل. ترجع null ان لم تكن الاعدادات قد وصلت بعد.
+   */
+  currentAcademicYearId() {
+    let yearId = null;
+
+    (this.applicationSettings.SETTINGS || []).forEach((element: any) => {
+      if (element.id == 7)
+        yearId = parseInt(element.value);
+    });
+
+    return yearId ? yearId : null;
   }
   loadApplication(id) {
     this.studentService.load(id).subscribe((res: any) => {

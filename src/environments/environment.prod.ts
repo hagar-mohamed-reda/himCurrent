@@ -7,11 +7,11 @@ export const environment = {
   // http://localhost/samsa-backend/public
   // window.location.hostname
   //192.168.43.159
-        // publicUrl: "https://him-eg.com/",
-    //  apiUrl: "https://him-eg.com/api",
+        publicUrl: "https://him-eg.com/",
+     apiUrl: "https://him-eg.com/api",
 new:false,
-     publicUrl: "http://app.him-eg.com",
-     apiUrl: "https://app.him-eg.com/api",
+    //  publicUrl: "http://app.him-eg.com",
+    //  apiUrl: "https://app.him-eg.com/api",
       // publicUrl: "http://127.0.0.1:8199/",
     //  apiUrl: "http://127.0.0.1:8199/api",
 
